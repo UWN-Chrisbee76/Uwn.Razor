@@ -25,5 +25,4 @@ jobs:
       run: dotnet build -c Release
 
     - name: Remove the .snk file
-      run: rm -f Assets/UWN-GH.snk
-      shell: bash
+      run: Remove-Item Assets/UWN-GH.snk -ErrorAction SilentlyContinue

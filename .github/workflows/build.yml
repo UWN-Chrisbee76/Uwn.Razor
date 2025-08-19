@@ -14,12 +14,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Create Assets directory
-      run: mkdir -p Assets
-
     - name: Decode and save .snk file
+      shell: pwsh
       run: |
-        echo "${{ secrets.UWN_GH_SNK_BASE64 }}" | base64 --decode > Assets/UWN-GH.snk
+        $base64String = "${{ secrets.SNK_KEY_BASE64 }}"
+        $bytes = [System.Convert]::FromBase64String($base64String)
+        [System.IO.File]::WriteAllBytes("Assets/UWN-GH.snk", $bytes)
 
     - name: Build and sign the project
       run: dotnet build -c Release

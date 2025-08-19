@@ -31,7 +31,7 @@ jobs:
         $bytes = [System.Convert]::FromBase64String($base64String)
         [System.IO.File]::WriteAllBytes("Assets/UWN-GH.snk", $bytes)
 
-    - name: Build and sign the project
+    - name: Build and sign the project; this will create the NuGet package as well
       run: dotnet build --configuration Release --no-restore
 
     - name: Remove the .snk file

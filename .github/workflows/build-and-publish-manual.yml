@@ -29,7 +29,7 @@ jobs:
         $bytes = [System.Convert]::FromBase64String($base64String)
         [System.IO.File]::WriteAllBytes("Assets/UWN-GH.snk", $bytes)
 
-    - name: Build and sign the project
+    - name: Build and sign the project; this will create the NuGet package as well
       run: dotnet build --configuration Release --no-restore
 
     - name: Remove the .snk file
@@ -37,6 +37,10 @@ jobs:
       
 #   - name: Pack
 #     run: dotnet pack --configuration Release --no-build --output nupkgs
+
+    - name: List nupkg files before push
+      run: dir Uwn.Razor\Uwn.Razor\bin\Release\
+      shell: cmd
 
     - name: Publish to NuGet
       run: dotnet nuget push Uwn.Razor/Uwn.Razor/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

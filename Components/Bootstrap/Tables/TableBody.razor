@@ -1,0 +1,29 @@
+﻿@namespace Uwn.Razor.Components.Bootstrap.Tables
+@inherits UwnComponentBase
+
+@if (IsVisible)
+{
+	<tbody id="@Id" class="@ClassNames @AdditionalClassNames">
+		@ChildContent
+	</tbody>
+}
+
+@code {
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+	[CascadingParameter] public TablePurpose Purpose { get; set; }
+
+	protected string ClassNames
+	{
+		get
+		{
+			if (IsBootstrapAvailable)
+				return Purpose switch
+				{
+					TablePurpose.Editor => "table-group-divider",
+					_ => string.Empty,
+				};
+			else
+				return string.Empty;
+		}
+	}
+}

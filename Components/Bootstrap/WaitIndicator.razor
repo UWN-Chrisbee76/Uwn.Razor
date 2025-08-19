@@ -1,0 +1,61 @@
+﻿@namespace Uwn.Razor.Components.Bootstrap
+@inherits UwnComponentBase
+
+@if (IsVisible)
+{
+	if (Fullscreen)
+	{
+		<div id="@Id" class="@AdditionalClassNames">
+			@BuildFontAwesomeElement("fa-gear fa-spin fa-2xl")
+			@if (DisplayTime && ElapsedTimeSpan is not null)
+			{
+				<br />
+				<span>@ElapsedTimeSpan.Value.ToString("hh\\:mm\\:ss")</span>
+			}
+		</div>
+	}
+	else
+	{
+		<div id="@Id" class="d-flex align-items-center m-4 @AdditionalClassNames">
+			@BuildFontAwesomeElement("fa-gear fa-spin fa-lg")
+			@if (DisplayTime)
+			{
+				<i class="ms-2">
+					<span>@GetTranslation("PleaseWaitMessage")</span>
+					@if (ElapsedTimeSpan is not null)
+					{
+						<span>&nbsp;</span>
+						<span>(@ElapsedTimeSpan.Value.ToString("hh\\:mm\\:ss"))</span>
+					}
+				</i>
+			}
+		</div>
+	}
+}
+
+@code {
+	[Parameter] public bool Fullscreen { get; set; } = false;
+	[Parameter] public bool DisplayTime { get; set; } = true;
+
+	private System.Timers.Timer _timer = new System.Timers.Timer(1000);
+	private DateTime _startTime = DateTime.MinValue;
+
+	protected TimeSpan? ElapsedTimeSpan { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		base.OnAfterRender(firstRender);
+		if (firstRender)
+		{
+			_startTime = DateTime.Now;
+			_timer.Elapsed += OnTimerElapsed;
+			_timer.Start();
+		}
+	}
+
+	protected void OnTimerElapsed(Object? sender, System.Timers.ElapsedEventArgs e)
+	{
+		ElapsedTimeSpan = DateTime.Now - _startTime;
+		InvokeAsync(StateHasChanged);
+	}
+}

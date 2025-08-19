@@ -1,0 +1,15 @@
+﻿@namespace Uwn.Razor.Components.Bootstrap.Links
+@inherits UwnComponentBase
+
+@if (IsVisible)
+{
+	<a id="@Id" class="external" href="@Href" target="_blank">
+		@BuildFontAwesomeElement("fa-arrow-up-right-from-square", "fa-sm")
+		@ChildContent
+	</a>
+}
+
+@code {
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+	[Parameter] public string Href { get; set; } = string.Empty;
+}

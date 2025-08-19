@@ -1,0 +1,12 @@
+﻿@namespace Uwn.Razor.Components.Common.Links
+@inherits UwnComponentWithRouteBase
+
+@if (IsVisible)
+{
+	<p>
+		<a id="@Id" class="@AdditionalClassNames" href="@RouteWithId">
+			@BuildFontAwesomeElement("fa-backward-step")
+			<span>@GetTranslation("GoBackCommand")</span>
+		</a>
+	</p>
+}

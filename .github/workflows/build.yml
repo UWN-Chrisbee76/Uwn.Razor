@@ -1,0 +1,29 @@
+name: Build and Sign
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Create Assets directory
+      run: mkdir -p Assets
+
+    - name: Decode and save .snk file
+      run: |
+        echo "${{ secrets.UWN_GH_SNK_BASE64 }}" | base64 --decode > Assets/UWN-GH.snk
+
+    - name: Build and sign the project
+      run: dotnet build -c Release
+
+    - name: Remove the .snk file
+      run: rm -f Assets/UWN-GH.snk
+      shell: bash

@@ -1,0 +1,62 @@
+﻿@namespace Uwn.Razor.Components.Bootstrap.Toasts
+@inherits UwnComponentBase
+
+@if (IsVisible)
+{
+	<div id="@Id" class="@BuildClassNames()" role="alert" data-bs-autohide="@AutoHideValue" data-bs-delay="@Delay">
+		@if (Icon is not null || Header is not null || HasCloseButton)
+		{
+			<div class="toast-header @Style.GetTextBackgroundClassName()">
+				@if (Icon is not null)
+				{
+					@BuildFontAwesomeElement(Icon)
+					<span>&nbsp;</span>
+				}
+				@if (Header is not null)
+				{
+					<strong class="me-auto">@Header</strong>
+				}
+				@if (HasCloseButton)
+				{
+					<button type="button" class="btn-close" data-bs-dismiss="toast" />
+				}
+			</div>
+		}
+		<div class="toast-body">
+			<p>@BuildFormattedContent(Content)</p>
+		</div>
+	</div>
+}
+
+@code {
+	[Parameter] public BS.Style Style { get; set; } = BS.Style.None;
+	[Parameter] public BS.Position Position { get; set; } = BS.Position.None;
+	[Parameter] public string? Icon { get; set; }
+	[Parameter] public string? Header { get; set; }
+	[Parameter] public string? Content { get; set; }
+	[Parameter] public string TriggerId { get; set; } = string.Empty;
+	[Parameter] public int Delay { get; set; } = 5000;
+	[Parameter] public bool DropShadow { get; set; } = false;
+	[Parameter] public bool HasCloseButton { get; set; } = true;
+
+	protected string AutoHideValue => Delay > 0 ? "true" : "false";
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		await base.OnAfterRenderAsync(firstRender);
+		if (!string.IsNullOrEmpty(TriggerId) && firstRender && Capabilities is not null && Capabilities.JsModule is not null)
+			_ = Capabilities.JsModule.InvokeAsync<bool>("registerToastTrigger", [Id, TriggerId]);
+	}
+
+	protected string BuildClassNames()
+	{
+		var builder = new StringBuilder();
+		builder.Append("toast" + " ");
+		builder.Append("m-2" + " ");
+		builder.Append(AdditionalClassNames + " ");
+		builder.Append(Position.GetClassName() + " ");
+		builder.Append(Style.GetBorderClassName() + " ");
+		if (DropShadow) builder.Append("shadow" + " ");
+		return builder.ToString().Trim();
+	}
+}

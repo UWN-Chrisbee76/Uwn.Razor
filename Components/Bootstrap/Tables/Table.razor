@@ -1,0 +1,32 @@
+﻿@namespace Uwn.Razor.Components.Bootstrap.Tables
+@inherits UwnComponentBase
+
+@if (IsVisible)
+{
+	<table id="@Id" class="@ClassNames @AdditionalClassNames">
+		<CascadingValue Value="Purpose">
+			@ChildContent
+		</CascadingValue>
+	</table>
+}
+
+@code {
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+	[Parameter] public TablePurpose Purpose { get; set; }
+
+	protected string ClassNames
+	{
+		get
+		{
+			if (IsBootstrapAvailable)
+				return Purpose switch
+				{
+					TablePurpose.Editor => "table table-hover table-striped",
+					TablePurpose.Filter => "table table-borderless table-sm",
+					_ => "table",
+				};
+			else
+				return string.Empty;
+		}
+	}
+}

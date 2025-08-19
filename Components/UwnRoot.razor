@@ -1,0 +1,22 @@
+﻿@namespace Uwn.Razor.Components
+@using Microsoft.JSInterop
+@using Uwn.Razor.Services
+@inject IJSRuntime JsRuntime
+@inject UwnCapabilitiesService CapabilitiesService
+@inherits LayoutComponentBase
+
+<CascadingValue Value="Capabilities">
+	<CascadingValue Value="Settings">
+		@ChildContent
+	</CascadingValue>
+</CascadingValue>
+
+@code {
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+	[Parameter] public UwnSettings Settings { get; set; } = new();
+
+	[CascadingParameter] public UwnCapabilities Capabilities { get; set; } = new();
+
+	protected override async Task OnInitializedAsync()
+		=> Capabilities = await CapabilitiesService.InitializeAsync(JsRuntime);
+}

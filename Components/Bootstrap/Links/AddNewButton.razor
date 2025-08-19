@@ -1,0 +1,29 @@
+﻿@namespace Uwn.Razor.Components.Bootstrap.Links
+@inherits UwnComponentWithRouteBase
+
+@if (IsVisible)
+{
+	if (IsBootstrapAvailable)
+	{
+		<a id="@Id" class="btn btn-primary @AdditionalClassNames" href="@RouteWithId">
+			@ElementContent
+		</a>
+	}
+	else
+	{
+		<button id="@Id" class="@AdditionalClassNames" onclick="window.location.href='@RouteWithId'">
+			@ElementContent
+		</button>
+	}
+}
+
+@code {
+	protected RenderFragment ElementContent => builder =>
+	{
+		builder.AddContent(0, BuildFontAwesomeElement("fa-circle-plus"));
+		builder.AddMarkupContent(1, "&nbsp;");
+		builder.OpenElement(2, "span");
+		builder.AddContent(3, GetTranslation("AddNewCommand"));
+		builder.CloseElement();
+	};
+}

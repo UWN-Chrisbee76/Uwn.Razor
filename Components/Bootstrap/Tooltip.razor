@@ -1,0 +1,22 @@
+﻿@namespace Uwn.Razor.Components.Bootstrap
+@inherits UwnComponentBase
+
+@if (IsVisible)
+{
+	<abbr id="@Id" class="@AdditionalClassNames" data-bs-toggle="tooltip" data-bs-placement="@Placement.ToBootstrapName()" data-bs-title="@Content" data-bs-html="@ContentIsHtml.ToString().ToLower()">
+		@ChildContent
+	</abbr>
+}
+
+@code {
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+	[Parameter] public Placement Placement { get; set; } = Placement.Bottom;
+	[Parameter] public string Content { get; set; } = string.Empty;
+	[Parameter] public bool ContentIsHtml { get; set; } = false;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+		UsesTooltips = true;
+	}
+}

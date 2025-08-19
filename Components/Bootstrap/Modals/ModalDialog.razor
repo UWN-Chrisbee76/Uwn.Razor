@@ -1,0 +1,70 @@
+﻿@namespace Uwn.Razor.Components.Bootstrap.Modals
+@inherits UwnComponentBase
+
+@if (IsVisible)
+{
+	<div id="@Id" class="@BuildModalClassNames()" role="dialog" tabindex="-1" data-bs-backdrop="static" aria-labelledby="@Id-modal-label" aria-hidden="true">
+		<div class="@BuildDialogClassNames()">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 id="@Id-modal-label" class="modal-title">@Title</h5>
+					<button type="button" class="btn-close" style="min-width: 0;" data-bs-dismiss="modal" aria-label="@GetTranslation("CloseCommand")" />
+				</div>
+				<div class="modal-body">
+					@ChildContent
+				</div>
+				<div class="modal-footer">
+					@if (HasOkCommand)
+					{
+						<button class="btn btn-success" type="button" data-bs-dismiss="modal" onclick="@OnOkCommandClickAsync">
+							@BuildFontAwesomeElement("fa-check")
+							<span>@GetTranslation("OkCommand")</span>
+						</button>
+					}
+					<button class="btn btn-danger" type="button" data-bs-dismiss="modal">
+						@BuildFontAwesomeElement("fa-xmark")
+						<span>@GetTranslation("CancelCommand")</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+@code {
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+	[Parameter] public ModalFullscreenMode FullscreenMode { get; set; } = ModalFullscreenMode.None;
+	[Parameter] public bool IsAnimated { get; set; } = true;
+	[Parameter] public bool IsCentered { get; set; } = true;
+	[Parameter] public bool IsScrollable { get; set; } = true;
+	[Parameter] public ModalSize Size { get; set; } = ModalSize.Default;
+	[Parameter] public string? Title { get; set; }
+	[Parameter] public bool HasOkCommand { get; set; } = true;
+	[Parameter] public EventCallback<string> OnOkCommand { get; set; }
+	[Parameter] public string OkCommandParameter { get; set; } = string.Empty;
+
+	protected string CloseButtonClass => IsFontAwesomeAvailable ? "btn btn-danger" : "btn-close";
+
+	protected string BuildModalClassNames()
+	{
+		var builder = new StringBuilder();
+		builder.Append("modal" + " ");
+		if (IsAnimated) builder.Append("fade" + " ");
+		builder.Append(AdditionalClassNames);
+		return builder.ToString().Trim();
+	}
+
+	protected string BuildDialogClassNames()
+	{
+		var builder = new StringBuilder();
+		builder.Append("modal-dialog" + " ");
+		builder.Append(ModalFullscreenModeExtender.GetClassName(FullscreenMode));
+		builder.Append(ModalSizeExtender.GetClassName(Size));
+		if (IsCentered) builder.Append("modal-dialog-centered" + " ");
+		if (IsScrollable) builder.Append("modal-dialog-scrollable" + " ");
+		return builder.ToString().Trim();
+	}
+
+	protected async Task OnOkCommandClickAsync()
+		=> await OnOkCommand.InvokeAsync(OkCommandParameter);
+}

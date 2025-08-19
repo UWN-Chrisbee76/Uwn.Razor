@@ -1,0 +1,49 @@
+﻿@namespace Uwn.Razor.Components.Bootstrap.Navs
+@inherits UwnComponentBase
+
+@if (IsVisible)
+{
+	<nav>
+		<ul id="@Id" class="pagination @AdditionalClassNames">
+			<li class="page-item @GoBackClass">
+				<a class="page-link" style="cursor: pointer;" @onclick="(() => OnPageSelected.InvokeAsync(CurrentPage - 1))">&laquo;</a>
+			</li>
+			@{
+				var lastCellWasEmpty = false;
+				for (var page = 1; page <= NumberOfPages; page++)
+				{
+					var pageNumber = page;
+					var activeClass = page == CurrentPage ? "active" : string.Empty;
+					<li class="page-item @activeClass">
+						@if (NumberOfPages <= MaximumNumberOfLinks || page <= 3 || page > (NumberOfPages - 3) || (page >= CurrentPage - 1 && page <= CurrentPage + 1))
+						{
+							lastCellWasEmpty = false;
+							<a class="page-link" style="cursor: pointer;" @onclick="(() => OnPageSelected.InvokeAsync(pageNumber))">@pageNumber</a>
+						}
+						else if (!lastCellWasEmpty)
+						{
+							lastCellWasEmpty = true;
+							<a class="page-link disabled">...</a>
+						}
+					</li>
+				}
+			}
+			<li class="page-item @GoForwardClass">
+				<a class="page-link" style="cursor:pointer;" @onclick="(() => OnPageSelected.InvokeAsync(CurrentPage + 1))">&raquo;</a>
+			</li>
+		</ul>
+	</nav>
+}
+
+@code {
+	[Parameter] public int CurrentPage { get; set; } = 1;
+	[Parameter] public int NumberOfPages { get; set; }
+	[Parameter] public int MaximumNumberOfLinks { get; set; } = 11;
+	[Parameter] public EventCallback<int> OnPageSelected { get; set; }
+
+	public bool CanGoBack => CurrentPage > 1;
+	public bool CanGoForward => CurrentPage < NumberOfPages;
+
+	public string GoBackClass => CanGoBack ? string.Empty : "disabled";
+	public string GoForwardClass => CanGoForward ? string.Empty : "disabled";
+}

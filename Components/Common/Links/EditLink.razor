@@ -1,0 +1,25 @@
+﻿@namespace Uwn.Razor.Components.Common.Links
+@inherits UwnComponentWithRouteBase
+
+@if (IsVisible)
+{
+	<a id="@Id" class="@AdditionalClassNames" href="@RouteWithId">
+		@if (IsFontAwesomeAvailable)
+		{
+			@BuildFontAwesomeElement("fa-pen-to-square")
+			<span class="text-decoration-none">&nbsp;</span>
+		}
+		@if (Text is null)
+		{
+			<span>@GetTranslation("EditCommand")</span>
+		}
+		else
+		{
+			<span>@Text</span>
+		}
+	</a>
+}
+
+@code {
+	[Parameter] public string? Text { get; set; }
+}

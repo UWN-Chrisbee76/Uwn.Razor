@@ -1,0 +1,40 @@
+name: Build and Publish NuGet Package (manual trigger)
+
+on:
+  workflow_dispatch
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 9
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Decode and save .snk file
+      shell: pwsh
+      run: |
+        $base64String = "${{ secrets.SNK_KEY_BASE64 }}"
+        $bytes = [System.Convert]::FromBase64String($base64String)
+        [System.IO.File]::WriteAllBytes("Assets/UWN-GH.snk", $bytes)
+
+    - name: Build and sign the project
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Remove the .snk file
+      run: rm -f Assets/UWN-GH.snk
+      shell: bash
+      
+    - name: Pack
+      run: dotnet pack --configuration Release --no-build --output nupkgs
+
+    - name: Publish to NuGet
+      run: dotnet nuget push nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

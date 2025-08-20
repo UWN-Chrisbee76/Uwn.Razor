@@ -12,4 +12,4 @@ A Razor Class Library for re-usable components, and Bootstrap wrappers.
 |**License**|MIT License
 
 Documentation and examples can be found at:  
-https://ultimatewisdom.net/
+https://razor-demo.ultimatewisdom.net/

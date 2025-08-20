@@ -3,5 +3,6 @@
 public enum TablePurpose
 {
 	Editor,
-	Filter
+	Filter,
+	Data
 }

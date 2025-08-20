@@ -18,12 +18,17 @@
 }
 
 @code {
+	[Parameter] public string? Text { get; set; }
+
 	protected RenderFragment ElementContent => builder =>
 	{
 		builder.AddContent(0, BuildFontAwesomeElement("fa-circle-plus"));
 		builder.AddMarkupContent(1, "&nbsp;");
 		builder.OpenElement(2, "span");
-		builder.AddContent(3, GetTranslation("AddNewCommand"));
+		if (string.IsNullOrEmpty(Text))
+			builder.AddContent(3, GetTranslation("AddNewCommand"));
+		else
+			builder.AddContent(3, Text);
 		builder.CloseElement();
 	};
 }

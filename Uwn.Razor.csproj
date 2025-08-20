@@ -5,20 +5,22 @@
 		<AssemblyOriginatorKeyFile>Assets\UWN-GH.snk</AssemblyOriginatorKeyFile>
 		<Authors>Chris B.</Authors>
 		<Copyright>Copyright © 2025 Chris B.</Copyright>
+		<Description>A Razor Class Library for re-usable components, and Bootstrap wrappers.</Description>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<PackageIcon>Assets\chaos-green-32.png</PackageIcon>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/UWN-Chrisbee76/Uwn.Razor</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PublisherName>UltimateWisdom.Net</PublisherName>
 		<RootNamespace>Uwn.Razor</RootNamespace>
 		<SignAssembly>true</SignAssembly>
 		<TargetFramework>net9.0</TargetFramework>
 		<Title>UltimateWisdom.Net Library for Razor components</Title>
-		<AssemblyVersion>9.0.0.0</AssemblyVersion>
-		<FileVersion>9.0.0.0</FileVersion>
-		<Version>9.0.0</Version>
+		<AssemblyVersion>9.0.1.0</AssemblyVersion>
+		<FileVersion>9.0.1.0</FileVersion>
+		<Version>9.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

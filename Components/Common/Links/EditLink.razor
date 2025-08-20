@@ -9,7 +9,7 @@
 			@BuildFontAwesomeElement("fa-pen-to-square")
 			<span class="text-decoration-none">&nbsp;</span>
 		}
-		@if (Text is null)
+		@if (string.IsNullOrEmpty(Text))
 		{
 			<span>@GetTranslation("EditCommand")</span>
 		}

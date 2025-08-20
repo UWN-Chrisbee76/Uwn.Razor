@@ -19,7 +19,8 @@
 			if (IsBootstrapAvailable)
 				return Purpose switch
 				{
-					TablePurpose.Editor => "table-dark",
+					TablePurpose.Data => "table-dark",
+					TablePurpose.Editor => "table-secondary",
 					_ => string.Empty,
 				};
 			else

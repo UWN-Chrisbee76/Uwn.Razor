@@ -7,6 +7,11 @@
 	{
 		<div id="@Id" class="@AdditionalClassNames">
 			@BuildFontAwesomeElement("fa-gear fa-spin fa-2xl")
+			@if (DisplayText)
+			{
+				<br />
+				<span>@GetTranslation("PleaseWaitMessage")</span>
+			}
 			@if (DisplayTime && ElapsedTimeSpan is not null)
 			{
 				<br />
@@ -18,15 +23,14 @@
 	{
 		<div id="@Id" class="d-flex align-items-center m-4 @AdditionalClassNames">
 			@BuildFontAwesomeElement("fa-gear fa-spin fa-lg")
-			@if (DisplayTime)
+			@if (DisplayText)
+			{
+				<i class="ms-2">@GetTranslation("PleaseWaitMessage")</i>
+			}
+			@if (DisplayTime && ElapsedTimeSpan is not null)
 			{
 				<i class="ms-2">
-					<span>@GetTranslation("PleaseWaitMessage")</span>
-					@if (ElapsedTimeSpan is not null)
-					{
-						<span>&nbsp;</span>
-						<span>(@ElapsedTimeSpan.Value.ToString("hh\\:mm\\:ss"))</span>
-					}
+					<span>(@ElapsedTimeSpan.Value.ToString("hh\\:mm\\:ss"))</span>
 				</i>
 			}
 		</div>
@@ -36,6 +40,7 @@
 @code {
 	[Parameter] public bool Fullscreen { get; set; } = false;
 	[Parameter] public bool DisplayTime { get; set; } = true;
+	[Parameter] public bool DisplayText { get; set; } = true;
 
 	private System.Timers.Timer _timer = new System.Timers.Timer(1000);
 	private DateTime _startTime = DateTime.MinValue;

@@ -21,7 +21,8 @@
 			if (IsBootstrapAvailable)
 				return Purpose switch
 				{
-					TablePurpose.Editor => "table table-hover table-striped",
+					TablePurpose.Data => "table table-hover table-striped",
+					TablePurpose.Editor => "table",
 					TablePurpose.Filter => "table table-borderless table-sm",
 					_ => "table",
 				};

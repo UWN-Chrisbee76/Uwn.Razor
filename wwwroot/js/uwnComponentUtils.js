@@ -44,6 +44,10 @@ export function registerToastTrigger(toastId, triggerId) {
 		trigger.addEventListener("click", () => { toastBootstrap.show() });
 		result = true;
 	}
+	else {
+		console.debug('toast = "' + toast + '"');
+		console.debug('trigger = "' + trigger + '"');
+	}
 	console.log('uwnComponentUtils::registerToastTrigger("' + toastId + '", "' + triggerId + '") => ' + result);
 }
 

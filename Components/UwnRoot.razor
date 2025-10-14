@@ -5,9 +5,11 @@
 @inject UwnCapabilitiesService CapabilitiesService
 @inherits LayoutComponentBase
 
-<CascadingValue Value="Capabilities">
-	<CascadingValue Value="Settings">
-		@ChildContent
+<CascadingValue Value="this">
+	<CascadingValue Value="Capabilities">
+		<CascadingValue Value="Settings">
+			@ChildContent
+		</CascadingValue>
 	</CascadingValue>
 </CascadingValue>
 

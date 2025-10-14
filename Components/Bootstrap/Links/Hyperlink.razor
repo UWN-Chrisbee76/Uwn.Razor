@@ -1,0 +1,17 @@
+﻿@namespace Uwn.Razor.Components.Bootstrap.Links
+@inherits UwnComponentBase
+
+@if (Link is not null)
+{
+	<a href="@Link.Href">
+		@if (Link.Icon is not null)
+		{
+			@BuildFontAwesomeElement(Link.Icon)
+		}
+		<span>@Link.Text</span>
+	</a>
+}
+
+@code {
+	[Parameter] public Link? Link { get; set; }
+}

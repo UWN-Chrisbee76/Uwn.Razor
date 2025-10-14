@@ -8,5 +8,5 @@ public sealed class UwnSettings
 	public Styles FontAwesomeStyle { get; set; } = FontAwesomeHelper.DefaultStyle;
 	public Dictionary<string, string> Translations { get; set; } = [];
 
-	internal int FontAwesomeFlags => FontAwesomeHelper.ToInt32(FontAwesomeIconPack, FontAwesomeStyle);
+	public int FontAwesomeFlags => FontAwesomeHelper.ToInt32(FontAwesomeIconPack, FontAwesomeStyle);
 }

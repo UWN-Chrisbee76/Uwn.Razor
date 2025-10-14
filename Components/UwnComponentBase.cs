@@ -51,9 +51,9 @@ public abstract class UwnComponentBase : ComponentBase
 
 	//
 
-	protected RenderFragment BuildFontAwesomeElement(string iconClassName)
+	public RenderFragment BuildFontAwesomeElement(string iconClassName)
 		=> BuildFontAwesomeElement(iconClassName, AdditionalClassNames);
-	protected RenderFragment BuildFontAwesomeElement(string iconClassName, string? additionalClassNames = null) => builder =>
+	public RenderFragment BuildFontAwesomeElement(string iconClassName, string? additionalClassNames = null) => builder =>
 	{
 		if (IsFontAwesomeAvailable)
 		{
@@ -62,6 +62,11 @@ public abstract class UwnComponentBase : ComponentBase
 			builder.CloseElement();
 		}
 	};
+
+	public string GetFontAwesomeClassNames(string iconClassName, string? additionalClassNames = null)
+		=> $"{FontAwesomeHelper.GetClassNames(FontAwesomeFlags)} {iconClassName} {additionalClassNames}".Trim();
+
+	//
 
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "ASP0006:Do not use non-literal sequence numbers", Justification = "No other way to do it")]
 	protected static RenderFragment BuildFormattedContent(string? content, int? maxLines = null) => builder =>
@@ -83,9 +88,6 @@ public abstract class UwnComponentBase : ComponentBase
 			builder.AddMarkupContent(index++, "<br />");
 		}
 	};
-
-	protected string GetFontAwesomeClassNames(string iconClassName, string? additionalClassNames = null)
-		=> $"{FontAwesomeHelper.GetClassNames(FontAwesomeFlags)} {iconClassName} {additionalClassNames}".Trim();
 
 	protected string GetTranslation(string name)
 	{

@@ -18,9 +18,9 @@ public sealed class WidthDefinition
 		if (MinWidth is not null)
 			builder.Append($"min-width: {MinWidth.Value}{unitName}; ");
 		if (FixedWidth is not null)
-			builder.Append($"min-width: {FixedWidth.Value}{unitName}; ");
+			builder.Append($"width: {FixedWidth.Value}{unitName}; ");
 		if (MaxWidth is not null)
-			builder.Append($"min-width: {MaxWidth.Value}{unitName}; ");
+			builder.Append($"max-width: {MaxWidth.Value}{unitName}; ");
 		return builder.ToString().Trim();
 	}
 }

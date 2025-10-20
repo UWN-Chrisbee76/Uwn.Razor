@@ -18,9 +18,9 @@
 		<SignAssembly>true</SignAssembly>
 		<TargetFramework>net9.0</TargetFramework>
 		<Title>UltimateWisdom.Net Library for Razor components</Title>
-		<AssemblyVersion>9.0.2.0</AssemblyVersion>
-		<FileVersion>9.0.2.0</FileVersion>
-		<Version>9.0.2</Version>
+		<AssemblyVersion>9.0.3.0</AssemblyVersion>
+		<FileVersion>9.0.3.0</FileVersion>
+		<Version>9.0.3</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

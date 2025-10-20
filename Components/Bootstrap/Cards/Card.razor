@@ -10,8 +10,7 @@
 			<div class="@BuildHeaderClassNames()">
 				@if (HeaderIcon is not null)
 				{
-					@BuildFontAwesomeElement(HeaderIcon)
-					<span>&nbsp;</span>
+					@BuildFontAwesomeElement(HeaderIcon, "me-1")
 				}
 				<span>@Header</span>
 			</div>
@@ -22,8 +21,7 @@
 				<h5 class="@BuildTitleClassNames()">
 					@if (TitleIcon is not null)
 					{
-						@BuildFontAwesomeElement(TitleIcon, "fa-lg")
-						<span>&nbsp;</span>
+						@BuildFontAwesomeElement(TitleIcon, "fa-lg me-1")
 					}
 					<span>@Title</span>
 				</h5>

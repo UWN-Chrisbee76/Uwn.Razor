@@ -9,8 +9,7 @@
 			<div class="toast-header @Style.GetTextBackgroundClassName()">
 				@if (Icon is not null)
 				{
-					@BuildFontAwesomeElement(Icon)
-					<span>&nbsp;</span>
+					@BuildFontAwesomeElement(Icon, "me-1")
 				}
 				@if (Header is not null)
 				{

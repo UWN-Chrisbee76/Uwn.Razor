@@ -141,4 +141,7 @@
   <data name="SuccessHeader" xml:space="preserve">
     <value>Erfolg</value>
   </data>
+  <data name="SuccessMessage" xml:space="preserve">
+    <value>Die Aktion war erfolgreich.</value>
+  </data>
 </root>

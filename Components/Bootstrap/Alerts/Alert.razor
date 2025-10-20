@@ -1,0 +1,75 @@
+﻿@namespace Uwn.Razor.Components.Bootstrap.Alerts
+@using System.Timers
+@inherits UwnComponentBase
+
+@if (IsVisible)
+{
+	<div id="@Id" class="@BuildClassNames()" style="@BuildStyles()" role="alert">
+		@if (Icon is not null)
+		{
+			@BuildFontAwesomeElement(Icon, "me-1")
+		}
+		<span>@BuildFormattedContent(Content)</span>
+		@if (HasCloseButton)
+		{
+			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		}
+	</div>
+}
+
+@code {
+	[Parameter] public BS.Style Style { get; set; } = BS.Style.None;
+	[Parameter] public BS.Position Position { get; set; } = BS.Position.None;
+	[Parameter] public string? Icon { get; set; }
+	[Parameter] public string? Content { get; set; }
+	[Parameter] public int Delay { get; set; } = 0;
+	[Parameter] public WidthDefinition? Width { get; set; }
+	[Parameter] public bool DropShadow { get; set; } = false;
+	[Parameter] public bool HasCloseButton { get; set; } = true;
+
+	protected Timer? _timer = null;
+
+	public void Show(string? content = null)
+	{
+		if (content is not null)
+			Content = content;
+		IsVisible = true;
+		StateHasChanged();
+		if (Delay > 0)
+		{
+			_timer = new(TimeSpan.FromMilliseconds(Delay));
+			_timer.Elapsed += OnTimerElapsedAsync;
+			_timer.Start();
+		}
+	}
+
+	protected async void OnTimerElapsedAsync(object? sender, ElapsedEventArgs e)
+	{
+		IsVisible = false;
+		await InvokeAsync(StateHasChanged);
+		_timer?.Stop();
+		_timer?.Dispose();
+		_timer = null;
+
+	}
+
+	protected string BuildClassNames()
+	{
+		var builder = new StringBuilder();
+		builder.Append("alert" + " ");
+		builder.Append(Style.GetAlertClassName() + " ");
+		builder.Append(Position.GetClassName() + " ");
+		builder.Append("m-2" + " ");
+		builder.Append(AdditionalClassNames + " ");
+		if (DropShadow) builder.Append("shadow" + " ");
+		return builder.ToString().Trim();
+	}
+
+	protected string BuildStyles()
+	{
+		var builder = new StringBuilder();
+		if (Width is not null)
+			builder.Append(Width.GetCssStyle());
+		return builder.ToString().Trim();
+	}
+}

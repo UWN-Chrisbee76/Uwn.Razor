@@ -6,7 +6,8 @@ using Uwn.Razor.Models;
 
 namespace Uwn.Razor.Components;
 
-public abstract class UwnComponentBase : ComponentBase
+public abstract class UwnComponentBase
+	: ComponentBase
 {
 	[Inject] public IStringLocalizerFactory? LocalizerFactory { get; set; }
 	private IStringLocalizer? _localizer;

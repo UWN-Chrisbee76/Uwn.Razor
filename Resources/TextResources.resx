@@ -149,4 +149,8 @@
     <value>Success</value>
     <comment>A header indicating success</comment>
   </data>
+  <data name="SuccessMessage" xml:space="preserve">
+    <value>A message informing about a successful operation</value>
+    <comment>The operation was successful.</comment>
+  </data>
 </root>

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.0.11111.16 d18.0
+VisualStudioVersion = 18.0.11111.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uwn.Razor", "Uwn.Razor.csproj", "{EA3857CA-0985-38A2-6950-D2DD92F5AA89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uwn.Razor", "Uwn.Razor\Uwn.Razor.csproj", "{EA3857CA-0985-38A2-6950-D2DD92F5AA89}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{C4A7BE13-4CBA-4A89-8166-F3E86FC85A3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

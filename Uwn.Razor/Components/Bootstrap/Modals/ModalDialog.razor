@@ -67,5 +67,8 @@
 	}
 
 	protected async Task OnOkCommandClickAsync()
-		=> await OnOkCommand.InvokeAsync(OkCommandParameter);
+	{
+		if (OnOkCommand is not null)
+			await OnOkCommand.Value.InvokeAsync(OkCommandParameter);
+	}
 }

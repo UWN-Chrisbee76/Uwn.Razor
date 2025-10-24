@@ -97,6 +97,15 @@ namespace Uwn.Razor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An Exception has occured.
+        /// </summary>
+        public static string ExceptionTitle {
+            get {
+                return ResourceManager.GetString("ExceptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Go back.
         /// </summary>
         public static string GoBackCommand {

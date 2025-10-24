@@ -1,0 +1,49 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared
+
+<PageTitle>UWN Razor Demo - @LastPathName</PageTitle>
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb border rounded shadow text-bg-light p-2">
+		<li class="breadcrumb-item"><a href="/">Home</a></li>
+		@for (var index = 0; index < PathsAndNames.Count; index++)
+		{
+			var item = PathsAndNames[index];
+			var isLastItem = index == (PathsAndNames.Count - 1);
+			if (!isLastItem)
+			{
+				<li class="breadcrumb-item">
+					<a href="@item.Path">@item.Name</a>
+				</li>
+			}
+			else
+			{
+				<li class="breadcrumb-item active" aria-current="page">
+					<strong>@item.Name</strong>
+				</li>
+			}
+		}
+
+	</ol>
+	<h3>@LastPathName</h3>
+</nav>
+
+@code {
+	// TODO - maybe this could become a public component?
+
+	private List<(string Path, string Name)> PathsAndNames = [];
+	private string LastPathName = string.Empty;
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		var path = NavigationManager.Uri.Replace(NavigationManager.BaseUri, "");
+		var parts = path.Split('/', StringSplitOptions.RemoveEmptyEntries);
+		var currentPath = string.Empty;
+		foreach (var part in parts)
+		{
+			currentPath += "/" + part;
+			PathsAndNames.Add(new(currentPath, part));
+		}
+		LastPathName = PathsAndNames.Last().Name;
+	}
+}

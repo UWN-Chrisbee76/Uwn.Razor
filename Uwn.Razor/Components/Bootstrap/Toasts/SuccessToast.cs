@@ -1,4 +1,6 @@
 ﻿using Uwn.Razor.Enumerations.Bootstrap;
+using Uwn.Razor.Models;
+using Uwn.Razor.Services;
 
 namespace Uwn.Razor.Components.Bootstrap.Toasts;
 
@@ -8,12 +10,10 @@ public sealed class SuccessToast
 	protected override async Task OnInitializedAsync()
 	{
 		await base.OnInitializedAsync();
-		Style = Style.Success;
 		Position = Position.FixedBottom;
-		Icon = "fa-circle-check";
+		Icon = IconNames.StatusSuccess;
 		Header = GetTranslation("SuccessHeader");
-		Delay = 2000;
-		DropShadow = true;
-		HasCloseButton = false;
+		Appearance = new(Style.Success, Decorations.Shadow);
+		DismissOptions = DismissOptions.Temporary;
 	}
 }

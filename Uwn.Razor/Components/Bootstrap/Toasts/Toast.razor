@@ -1,51 +1,62 @@
 ﻿@namespace Uwn.Razor.Components.Bootstrap.Toasts
-@inherits UwnComponentBase
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Toasts
+@inherits UwnComponentBase<ToastViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
-	<div id="@Id" class="@BuildClassNames()" role="alert" data-bs-autohide="@AutoHideValue" data-bs-delay="@Delay">
-		@if (Icon is not null || Header is not null || HasCloseButton)
+	<div id="@ViewModel.Id" class="@BuildClassNames()" role="alert" data-bs-autohide="@AutoHideValue" data-bs-delay="@ViewModel.DismissOptions.Delay">
+		@if (ViewModel.Icon is not null || ViewModel.Header is not null || ViewModel.DismissOptions.HasCloseButton)
 		{
-			<div class="toast-header @Style.GetTextBackgroundClassName()">
-				@if (Icon is not null)
+			<div class="@BuildHeaderClassNames()">
+				@if (ViewModel.Icon is not null)
 				{
-					@BuildFontAwesomeElement(Icon, "me-1")
+					@FragmentProvider.BuildFontAwesomeFragment(ViewModel.Icon, "me-1")
 				}
-				@if (Header is not null)
+				@if (ViewModel.Header is not null)
 				{
-					<strong class="me-auto">@Header</strong>
+					<strong class="me-auto">@ViewModel.Header</strong>
 				}
-				@if (HasCloseButton)
+				@if (ViewModel.DismissOptions.HasCloseButton)
 				{
 					<button type="button" class="btn-close" data-bs-dismiss="toast" />
 				}
 			</div>
 		}
 		<div class="toast-body">
-			<p>@BuildFormattedContent(Content)</p>
+			<p>@FragmentProvider.BuildFormattedContent(ViewModel.Content)</p>
 		</div>
 	</div>
 }
 
 @code {
-	[Parameter] public BS.Style Style { get; set; } = BS.Style.None;
 	[Parameter] public BS.Position Position { get; set; } = BS.Position.None;
 	[Parameter] public string? Icon { get; set; }
 	[Parameter] public string? Header { get; set; }
 	[Parameter] public string? Content { get; set; }
 	[Parameter] public string TriggerId { get; set; } = string.Empty;
-	[Parameter] public int Delay { get; set; } = 5000;
-	[Parameter] public bool DropShadow { get; set; } = false;
-	[Parameter] public bool HasCloseButton { get; set; } = true;
+	[Parameter] public Appearance Appearance { get; set; } = new();
+	[Parameter] public DismissOptions DismissOptions { get; set; } = new(5000, true);
 
-	protected string AutoHideValue => Delay > 0 ? "true" : "false";
+	protected string AutoHideValue => ViewModel.DismissOptions.Delay > 0 ? "true" : "false";
 
 	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
 		await base.OnAfterRenderAsync(firstRender);
-		if (!string.IsNullOrEmpty(TriggerId) && firstRender && Capabilities is not null && Capabilities.JsModule is not null)
-			_ = Capabilities.JsModule.InvokeAsync<bool>("registerToastTrigger", [Id, TriggerId]);
+		if (!string.IsNullOrEmpty(ViewModel.TriggerId) && firstRender && Capabilities is not null && Capabilities.JsModule is not null)
+			_ = Capabilities.JsModule.InvokeAsync<bool>("registerToastTrigger", [Id, ViewModel.TriggerId]);
 	}
+
+	protected override ToastViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			Appearance = Appearance,
+			Content = Content,
+			DismissOptions = DismissOptions,
+			Header = Header,
+			Icon = Icon,
+			Position = Position,
+			TriggerId = TriggerId
+		};
 
 	protected string BuildClassNames()
 	{
@@ -53,9 +64,16 @@
 		builder.Append("toast" + " ");
 		builder.Append("m-2" + " ");
 		builder.Append(AdditionalClassNames + " ");
-		builder.Append(Position.GetClassName() + " ");
-		builder.Append(Style.GetBorderClassName() + " ");
-		if (DropShadow) builder.Append("shadow" + " ");
+		ViewModel.Position.AppendClassNames(builder);
+		ViewModel.Appearance.AppendClassNames(StyleUsages.Border, builder);
+		return builder.ToString().Trim();
+	}
+
+	protected string BuildHeaderClassNames()
+	{
+		var builder = new StringBuilder();
+		builder.Append("toast-header" + " ");
+		ViewModel.Appearance.AppendClassNames(StyleUsages.TextBackground, builder, false);
 		return builder.ToString().Trim();
 	}
 }

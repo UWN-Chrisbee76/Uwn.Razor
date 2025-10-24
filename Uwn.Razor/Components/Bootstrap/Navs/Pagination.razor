@@ -1,24 +1,25 @@
 ﻿@namespace Uwn.Razor.Components.Bootstrap.Navs
-@inherits UwnComponentBase
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Navs
+@inherits UwnComponentBase<PaginationViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
 	<nav>
-		<ul id="@Id" class="pagination @AdditionalClassNames">
+		<ul id="@ViewModel.Id" class="pagination @ViewModel.AdditionalClassNames">
 			<li class="page-item @GoBackClass">
-				<a class="page-link" style="cursor: pointer;" @onclick="(() => OnPageSelected.InvokeAsync(CurrentPage - 1))">&laquo;</a>
+				<a class="page-link" style="cursor: pointer;" @onclick="(() => ViewModel.OnPageSelected.InvokeAsync(ViewModel.CurrentPage - 1))">&laquo;</a>
 			</li>
 			@{
 				var lastCellWasEmpty = false;
-				for (var page = 1; page <= NumberOfPages; page++)
+				for (var page = 1; page <= ViewModel.NumberOfPages; page++)
 				{
 					var pageNumber = page;
-					var activeClass = page == CurrentPage ? "active" : string.Empty;
+					var activeClass = page == ViewModel.CurrentPage ? "active" : string.Empty;
 					<li class="page-item @activeClass">
-						@if (NumberOfPages <= MaximumNumberOfLinks || page <= 3 || page > (NumberOfPages - 3) || (page >= CurrentPage - 1 && page <= CurrentPage + 1))
+						@if (ViewModel.NumberOfPages <= ViewModel.MaximumNumberOfLinks || page <= 3 || page > (ViewModel.NumberOfPages - 3) || (page >= ViewModel.CurrentPage - 1 && page <= ViewModel.CurrentPage + 1))
 						{
 							lastCellWasEmpty = false;
-							<a class="page-link" style="cursor: pointer;" @onclick="(() => OnPageSelected.InvokeAsync(pageNumber))">@pageNumber</a>
+							<a class="page-link" style="cursor: pointer;" @onclick="(() => ViewModel.OnPageSelected.InvokeAsync(pageNumber))">@pageNumber</a>
 						}
 						else if (!lastCellWasEmpty)
 						{
@@ -29,7 +30,7 @@
 				}
 			}
 			<li class="page-item @GoForwardClass">
-				<a class="page-link" style="cursor:pointer;" @onclick="(() => OnPageSelected.InvokeAsync(CurrentPage + 1))">&raquo;</a>
+				<a class="page-link" style="cursor:pointer;" @onclick="(() => ViewModel.OnPageSelected.InvokeAsync(ViewModel.CurrentPage + 1))">&raquo;</a>
 			</li>
 		</ul>
 	</nav>
@@ -41,9 +42,18 @@
 	[Parameter] public int MaximumNumberOfLinks { get; set; } = 11;
 	[Parameter] public EventCallback<int> OnPageSelected { get; set; }
 
-	public bool CanGoBack => CurrentPage > 1;
-	public bool CanGoForward => CurrentPage < NumberOfPages;
+	public bool CanGoBack => ViewModel.CurrentPage > 1;
+	public bool CanGoForward => ViewModel.CurrentPage < ViewModel.NumberOfPages;
 
 	public string GoBackClass => CanGoBack ? string.Empty : "disabled";
 	public string GoForwardClass => CanGoForward ? string.Empty : "disabled";
+
+	protected override PaginationViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			CurrentPage = CurrentPage,
+			MaximumNumberOfLinks = MaximumNumberOfLinks,
+			NumberOfPages = NumberOfPages,
+			OnPageSelected = OnPageSelected
+		};
 }

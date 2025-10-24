@@ -1,0 +1,8 @@
+#blazor-error-ui {
+    display: none;
+    z-index: 1000;
+}
+
+.w-8 {
+    width: 8rem;
+}

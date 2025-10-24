@@ -1,43 +1,59 @@
 ﻿@namespace Uwn.Razor.Components.Bootstrap.Alerts
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Alerts
 @using System.Timers
-@inherits UwnComponentBase
+@inherits UwnComponentBase<AlertViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
-	<div id="@Id" class="@BuildClassNames()" style="@BuildStyles()" role="alert">
-		@if (Icon is not null)
+	<div id="@ViewModel.Id" class="@BuildClassNames()" style="@BuildStyles()" role="alert">
+		@if (ViewModel.Header is not null)
 		{
-			@BuildFontAwesomeElement(Icon, "me-1")
+			<h4 class="alert-heading">@ViewModel.Header</h4>
 		}
-		<span>@BuildFormattedContent(Content)</span>
-		@if (HasCloseButton)
+		@if (ViewModel.Icon is not null)
 		{
-			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+			@FragmentProvider.BuildFontAwesomeFragment(ViewModel.Icon, "me-1")
+		}
+		<span>@FragmentProvider.BuildFormattedContent(ViewModel.Content)</span>
+		@if (ViewModel.DismissOptions.HasCloseButton)
+		{
+			<button type="button" class="btn-close" data-bs-dismiss="alert" />
 		}
 	</div>
 }
 
 @code {
-	[Parameter] public BS.Style Style { get; set; } = BS.Style.None;
 	[Parameter] public BS.Position Position { get; set; } = BS.Position.None;
+	[Parameter] public string? Header { get; set; }
 	[Parameter] public string? Icon { get; set; }
 	[Parameter] public string? Content { get; set; }
-	[Parameter] public int Delay { get; set; } = 0;
 	[Parameter] public WidthDefinition? Width { get; set; }
-	[Parameter] public bool DropShadow { get; set; } = false;
-	[Parameter] public bool HasCloseButton { get; set; } = true;
+	[Parameter] public Appearance Appearance { get; set; } = new();
+	[Parameter] public DismissOptions DismissOptions { get; set; } = new(0, true);
 
 	protected Timer? _timer = null;
+
+	protected override AlertViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			Appearance = Appearance,
+			Content = Content,
+			DismissOptions = DismissOptions,
+			Header = Header,
+			Icon = Icon,
+			Position = Position,
+			Width = Width
+		};
 
 	public void Show(string? content = null)
 	{
 		if (content is not null)
-			Content = content;
-		IsVisible = true;
+			ViewModel.Content = content;
+		ViewModel.IsVisible = true;
 		StateHasChanged();
-		if (Delay > 0)
+		if (ViewModel.DismissOptions.Delay > 0)
 		{
-			_timer = new(TimeSpan.FromMilliseconds(Delay));
+			_timer = new(TimeSpan.FromMilliseconds(ViewModel.DismissOptions.Delay));
 			_timer.Elapsed += OnTimerElapsedAsync;
 			_timer.Start();
 		}
@@ -45,7 +61,7 @@
 
 	protected async void OnTimerElapsedAsync(object? sender, ElapsedEventArgs e)
 	{
-		IsVisible = false;
+		ViewModel.IsVisible = false;
 		await InvokeAsync(StateHasChanged);
 		_timer?.Stop();
 		_timer?.Dispose();
@@ -57,19 +73,18 @@
 	{
 		var builder = new StringBuilder();
 		builder.Append("alert" + " ");
-		builder.Append(Style.GetAlertClassName() + " ");
-		builder.Append(Position.GetClassName() + " ");
 		builder.Append("m-2" + " ");
-		builder.Append(AdditionalClassNames + " ");
-		if (DropShadow) builder.Append("shadow" + " ");
+		builder.Append(ViewModel.AdditionalClassNames + " ");
+		ViewModel.Position.AppendClassNames(builder);
+		ViewModel.Appearance.AppendClassNames(StyleUsages.Alert, builder);
 		return builder.ToString().Trim();
 	}
 
 	protected string BuildStyles()
 	{
 		var builder = new StringBuilder();
-		if (Width is not null)
-			builder.Append(Width.GetCssStyle());
+		if (ViewModel.Width is not null)
+			builder.Append(ViewModel.Width.GetCssStyle());
 		return builder.ToString().Trim();
 	}
 }

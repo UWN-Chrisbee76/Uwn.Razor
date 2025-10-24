@@ -3,13 +3,16 @@ using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
 using Uwn.Razor.Enumerations.FontAwesome;
 using Uwn.Razor.Models;
+using Uwn.Razor.Models.ViewModels;
 
 namespace Uwn.Razor.Components;
 
-public abstract class UwnComponentBase
+public abstract class UwnComponentBase<TViewModel>
 	: ComponentBase
+	where TViewModel : BaseViewModel, new()
 {
 	[Inject] public IStringLocalizerFactory? LocalizerFactory { get; set; }
+
 	private IStringLocalizer? _localizer;
 	protected IStringLocalizer Localizer
 	{
@@ -20,6 +23,9 @@ public abstract class UwnComponentBase
 		}
 	}
 
+	protected TViewModel ViewModel { get; set; } = new();
+
+	[Parameter] public TViewModel? Model { get; set; }
 	[Parameter] public string? AdditionalClassNames { get; set; }
 	[Parameter] public string? Id { get; set; } = Guid.NewGuid().ToString();
 	[Parameter] public bool IsVisible { get; set; } = true;
@@ -29,13 +35,30 @@ public abstract class UwnComponentBase
 
 	protected bool UsesTooltips { get; set; } = false;
 
-	protected int FontAwesomeFlags => Settings is null ? FontAwesomeHelper.DefaultFlags : Settings.FontAwesomeFlags;
 	protected bool IsBootstrapAvailable => Capabilities?.BootstrapMajorVersion is not null;
 	protected bool IsFontAwesomeAvailable => Capabilities?.IsFontAwesomeAvailable == true;
 
 	private bool _doInitializeTooltips = true;
 
 	//
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		FontAwesomeHelper.Flags = Settings is null ? FontAwesomeHelper.DefaultFlags : Settings.FontAwesomeFlags;
+	}
+
+	protected override void OnParametersSet()
+	{
+		base.OnParametersSet();
+		if (Model is not null)
+			ViewModel = Model;
+		else
+		{
+			ViewModel = BuildViewModelFromParameters();
+			SetViewModelParameters();
+		}
+	}
 
 	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
@@ -52,43 +75,14 @@ public abstract class UwnComponentBase
 
 	//
 
-	public RenderFragment BuildFontAwesomeElement(string iconClassName)
-		=> BuildFontAwesomeElement(iconClassName, AdditionalClassNames);
-	public RenderFragment BuildFontAwesomeElement(string iconClassName, string? additionalClassNames = null) => builder =>
+	protected abstract TViewModel BuildViewModelFromParameters();
+
+	protected virtual void SetViewModelParameters()
 	{
-		if (IsFontAwesomeAvailable)
-		{
-			builder.OpenElement(0, "i");
-			builder.AddAttribute(1, "class", $"{GetFontAwesomeClassNames(iconClassName, additionalClassNames)}");
-			builder.CloseElement();
-		}
-	};
-
-	public string GetFontAwesomeClassNames(string iconClassName, string? additionalClassNames = null)
-		=> $"{FontAwesomeHelper.GetClassNames(FontAwesomeFlags)} {iconClassName} {additionalClassNames}".Trim();
-
-	//
-
-	[System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "ASP0006:Do not use non-literal sequence numbers", Justification = "No other way to do it")]
-	protected static RenderFragment BuildFormattedContent(string? content, int? maxLines = null) => builder =>
-	{
-		if (content is null) return;
-		var lines = content.Split(["\r\n", "\r", "\n", "<br>", "<br/>", "<br />", "<BR>", "<BR/>", "<BR />"], StringSplitOptions.None).ToList();
-		if (maxLines is not null && lines.Count > maxLines)
-		{
-			while (lines.Count > (maxLines - 1))
-				lines.RemoveAt(lines.Count / 2);
-			lines.Insert(lines.Count / 2, "...");
-		}
-		var index = 0;
-		foreach (var line in lines)
-		{
-			builder.OpenElement(index++, "span");
-			builder.AddContent(index++, line);
-			builder.CloseElement();
-			builder.AddMarkupContent(index++, "<br />");
-		}
-	};
+		ViewModel.AdditionalClassNames = AdditionalClassNames;
+		ViewModel.Id = Id;
+		ViewModel.IsVisible = IsVisible;
+	}
 
 	protected string GetTranslation(string name)
 	{

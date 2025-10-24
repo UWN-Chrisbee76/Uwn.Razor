@@ -1,37 +1,36 @@
 ﻿@namespace Uwn.Razor.Components.Bootstrap
-@inherits UwnComponentBase
+@using Uwn.Razor.Models.ViewModels.Bootstrap
+@inherits UwnComponentBase<WaitIndicatorViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
-	if (Fullscreen)
+	if (ViewModel.Fullscreen)
 	{
-		<div id="@Id" class="@AdditionalClassNames">
-			@BuildFontAwesomeElement("fa-gear fa-spin fa-2xl")
-			@if (DisplayText)
+		<div id="@ViewModel.Id" class="@ViewModel.AdditionalClassNames">
+			@FragmentProvider.BuildFontAwesomeFragment("fa-gear fa-spin fa-2xl")
+			@if (ViewModel.DisplayText)
 			{
 				<br />
-				<span>@GetTranslation("PleaseWaitMessage")</span>
+				<span id="@ViewModel.Id-text">@GetTranslation("PleaseWaitMessage")</span>
 			}
-			@if (DisplayTime && ElapsedTimeSpan is not null)
+			@if (ViewModel.DisplayTime && ElapsedTimeSpan is not null)
 			{
 				<br />
-				<span>@ElapsedTimeSpan.Value.ToString("hh\\:mm\\:ss")</span>
+				<span id="@ViewModel.Id-time">@ElapsedTimeSpan.Value.ToString("hh\\:mm\\:ss")</span>
 			}
 		</div>
 	}
 	else
 	{
-		<div id="@Id" class="d-flex align-items-center m-4 @AdditionalClassNames">
-			@BuildFontAwesomeElement("fa-gear fa-spin fa-lg")
-			@if (DisplayText)
+		<div id="@ViewModel.Id" class="d-flex align-items-center m-4 @ViewModel.AdditionalClassNames">
+			@FragmentProvider.BuildFontAwesomeFragment("fa-gear fa-spin fa-lg")
+			@if (ViewModel.DisplayText)
 			{
-				<i class="ms-2">@GetTranslation("PleaseWaitMessage")</i>
+				<i id="@ViewModel.Id-text" class="ms-2">@GetTranslation("PleaseWaitMessage")</i>
 			}
-			@if (DisplayTime && ElapsedTimeSpan is not null)
+			@if (ViewModel.DisplayTime && ElapsedTimeSpan is not null)
 			{
-				<i class="ms-2">
-					<span>(@ElapsedTimeSpan.Value.ToString("hh\\:mm\\:ss"))</span>
-				</i>
+				<i id="@ViewModel.Id-time" class="ms-2">(@ElapsedTimeSpan.Value.ToString("hh\\:mm\\:ss"))</i>
 			}
 		</div>
 	}
@@ -41,6 +40,7 @@
 	[Parameter] public bool Fullscreen { get; set; } = false;
 	[Parameter] public bool DisplayTime { get; set; } = true;
 	[Parameter] public bool DisplayText { get; set; } = true;
+	[Parameter] public int MinimumBusyMilliseconds { get; set; } = 500;
 
 	private System.Timers.Timer _timer = new System.Timers.Timer(1000);
 	private DateTime _startTime = DateTime.MinValue;
@@ -63,4 +63,13 @@
 		ElapsedTimeSpan = DateTime.Now - _startTime;
 		InvokeAsync(StateHasChanged);
 	}
+
+	protected override WaitIndicatorViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			DisplayText = DisplayText,
+			DisplayTime = DisplayTime,
+			Fullscreen = Fullscreen,
+			MinimumBusyMilliseconds = MinimumBusyMilliseconds
+		};
 }

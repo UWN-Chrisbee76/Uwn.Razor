@@ -1,0 +1,51 @@
+﻿@page "/Components/Bootstrap/Alerts/Alert"
+@namespace Uwn.Razor.Demo.Components.Components.Bootstrap.Alerts
+
+<div class="bg-light border rounded p-4">
+	<pre class="bg-white border rounded p-2">
+&#60;Alert Style="@Style"
+       Position="@Position"
+       Header="@Header"
+       Icon="@Icon"
+       Content="@Content"
+       Delay="@Delay"
+       Width="@Width"
+       Appearance="@Appearance"
+       HasCloseButton="@HasCloseButton"
+       AdditionalClassNames="@AdditionalClassNames"
+       Id="@Id"
+       IsVisible="@IsVisible" /&#62;
+	</pre>
+	<hr />
+	<Alert Style="@Style"
+		   Position="@Position"
+		   Header="@Header"
+		   Icon="@Icon"
+		   Content="@Content"
+		   Delay="@Delay"
+		   Width="@Width"
+		   Appearance="@Appearance"
+		   HasCloseButton="@HasCloseButton"
+		   AdditionalClassNames="@AdditionalClassNames"
+		   Id="@Id"
+		   IsVisible="@IsVisible" />
+</div>
+
+@* TODO property descriptions *@
+
+@code {
+	// TODO use ViewModel
+
+	private Style Style = Style.None;
+	private Position Position = Position.None;
+	private string Header = string.Empty;
+	private string Icon = string.Empty;
+	private string Content = "Alert content";
+	private int Delay = 0;
+	private WidthDefinition? Width = null;
+	private Appearance Appearance = new();
+	private bool HasCloseButton = true;
+	private string AdditionalClassNames = string.Empty;
+	private string Id = "alertId";
+	private bool IsVisible = true;
+}

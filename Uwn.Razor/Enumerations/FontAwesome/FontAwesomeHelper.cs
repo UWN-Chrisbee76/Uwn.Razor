@@ -17,6 +17,10 @@ public static class FontAwesomeHelper
 
 	public static int DefaultFlags => ToInt32(DefaultIconPack, DefaultStyle);
 
+	public static int Flags { get; set; } = DefaultFlags;
+
+	//
+
 	public static void FromInt32(int flags, out IconPacks iconPack, out Styles style)
 	{
 		iconPack = GetFlag<IconPacks>(flags);
@@ -73,4 +77,10 @@ public static class FontAwesomeHelper
 		FromInt32(flags, out var iconPack, out var style);
 		return $"{GetClassName(iconPack)} {GetClassName(style)}".Trim();
 	}
+
+	public static string GetClassNames(int flags, string iconClassName, string? additionalClassNames = null)
+		=> $"{GetClassNames(flags)} {iconClassName} {additionalClassNames}".Trim();
+
+	public static string GetClassNames(string iconClassName, string? additionalClassNames = null)
+		=> GetClassNames(Flags, iconClassName, additionalClassNames);
 }

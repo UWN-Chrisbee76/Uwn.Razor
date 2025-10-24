@@ -1,10 +1,11 @@
 ﻿@namespace Uwn.Razor.Components.Bootstrap.Tables
-@inherits UwnComponentBase
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Tables
+@inherits UwnComponentBase<TableFootViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
-	<tfoot id="@Id" class="@ClassNames @AdditionalClassNames">
-		@ChildContent
+	<tfoot id="@ViewModel.Id" class="@ClassNames @ViewModel.AdditionalClassNames">
+		@ViewModel.ChildContent
 	</tfoot>
 }
 
@@ -26,4 +27,10 @@
 				return string.Empty;
 		}
 	}
+
+	protected override TableFootViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			ChildContent = ChildContent
+		};
 }

@@ -1,4 +1,5 @@
 ﻿using Uwn.Razor.Enumerations.Bootstrap;
+using Uwn.Razor.Services;
 
 namespace Uwn.Razor.Components.Bootstrap.Alerts;
 
@@ -8,11 +9,10 @@ public sealed class SuccessAlert
 	protected override async Task OnInitializedAsync()
 	{
 		await base.OnInitializedAsync();
-		Style = Style.Success;
+		Appearance = new Models.Appearance(Style.Success);
 		Position = Position.StickyTop;
-		Icon = "fa-circle-check";
+		Icon = IconNames.StatusSuccess;
 		Content = GetTranslation("SuccessMessage");
-		Delay = 2000;
-		HasCloseButton = false;
+		DismissOptions = new Models.DismissOptions(3000, false);
 	}
 }

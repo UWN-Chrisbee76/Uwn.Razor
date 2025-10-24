@@ -1,25 +1,31 @@
 ﻿@namespace Uwn.Razor.Components.Common.Links
-@inherits UwnComponentWithRouteBase
+@using Uwn.Razor.Models.ViewModels.Common.Links
+@inherits UwnComponentWithRouteBase<EditLinkViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
-	<a id="@Id" class="@AdditionalClassNames" href="@RouteWithId">
+	<a id="@ViewModel.Id" class="@ViewModel.AdditionalClassNames" href="@ViewModel.RouteWithId">
 		@if (IsFontAwesomeAvailable)
 		{
-			@BuildFontAwesomeElement("fa-pen-to-square")
-			<span class="text-decoration-none">&nbsp;</span>
+			@FragmentProvider.BuildFontAwesomeFragment(IconNames.ActionEdit, "me-1")
 		}
-		@if (string.IsNullOrEmpty(Text))
+		@if (string.IsNullOrEmpty(ViewModel.Content))
 		{
 			<span>@GetTranslation("EditCommand")</span>
 		}
 		else
 		{
-			<span>@Text</span>
+			<span>@ViewModel.Content</span>
 		}
 	</a>
 }
 
 @code {
-	[Parameter] public string? Text { get; set; }
+	[Parameter] public string? Content { get; set; }
+
+	protected override EditLinkViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			Content = Content
+		};
 }

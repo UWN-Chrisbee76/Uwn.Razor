@@ -1,17 +1,24 @@
 ﻿@namespace Uwn.Razor.Components.Bootstrap.Links
-@inherits UwnComponentBase
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Links
+@inherits UwnComponentBase<HyperlinkViewModel>
 
-@if (Link is not null)
+@if (ViewModel.Link is not null)
 {
-	<a href="@Link.Href">
-		@if (Link.Icon is not null)
+	<a href="@ViewModel.Link.Href">
+		@if (ViewModel.Link.Icon is not null)
 		{
-			@BuildFontAwesomeElement(Link.Icon)
+			@FragmentProvider.BuildFontAwesomeFragment(ViewModel.Link.Icon, "me-1")
 		}
-		<span>@Link.Text</span>
+		<span>@ViewModel.Link.Text</span>
 	</a>
 }
 
 @code {
 	[Parameter] public Link? Link { get; set; }
+
+	protected override HyperlinkViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			Link = Link
+		};
 }

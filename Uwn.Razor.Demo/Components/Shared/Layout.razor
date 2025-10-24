@@ -1,0 +1,36 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared
+@inherits LayoutComponentBase
+
+<UwnRoot Settings="UwnSettings">
+	<header>
+		@* TODO page header *@
+	</header>
+
+	<main>
+		<div class="container mt-2">
+			<PageHead />
+			@Body
+		</div>
+	</main>
+
+	<footer>
+		@* TODO page footer *@
+	</footer>
+</UwnRoot>
+
+<div id="blazor-error-ui" data-nosnippet>
+	<span> unhandled error has occurred.</span>
+	<a href="." class="reload">Reload</a>
+	<span class="dismiss">🗙</span>
+</div>
+
+@code {
+	protected UwnSettings UwnSettings { get; set; } = new();
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		UwnSettings.FontAwesomeIconPack = IconPacks.Duotone;
+		UwnSettings.FontAwesomeStyle = Styles.Regular;
+	}
+}

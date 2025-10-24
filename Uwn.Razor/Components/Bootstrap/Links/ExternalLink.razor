@@ -1,15 +1,23 @@
 ﻿@namespace Uwn.Razor.Components.Bootstrap.Links
-@inherits UwnComponentBase
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Links
+@inherits UwnComponentBase<ExternalLinkViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
-	<a id="@Id" class="external" href="@Href" target="_blank">
-		@BuildFontAwesomeElement("fa-arrow-up-right-from-square", "fa-sm")
-		@ChildContent
+	<a id="@ViewModel.Id" class="external" href="@ViewModel.Href" target="_blank">
+		@FragmentProvider.BuildFontAwesomeFragment("fa-arrow-up-right-from-square", "fa-sm")
+		@ViewModel.ChildContent
 	</a>
 }
 
 @code {
 	[Parameter] public RenderFragment? ChildContent { get; set; }
 	[Parameter] public string Href { get; set; } = string.Empty;
+
+	protected override ExternalLinkViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			ChildContent = ChildContent,
+			Href = Href
+		};
 }

@@ -1,0 +1,12 @@
+﻿@namespace Uwn.Razor.Providers
+@inherits ProviderBase<ExternalLinkViewModel>
+
+<ExternalLink Model="_ViewModel" />
+
+<CascadingValue Value="_ViewModel" IsFixed="true">
+	@ChildContent
+</CascadingValue>
+
+@code {
+	protected override string GetDefaultId() => DefaultIds.ExternalLinkId;
+}

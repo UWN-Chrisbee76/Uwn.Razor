@@ -129,6 +129,9 @@
   <data name="EditCommand" xml:space="preserve">
     <value>Bearbeiten</value>
   </data>
+  <data name="ExceptionTitle" xml:space="preserve">
+    <value>Eine Ausnahme ist aufgetreten</value>
+  </data>
   <data name="GoBackCommand" xml:space="preserve">
     <value>Zurück</value>
   </data>

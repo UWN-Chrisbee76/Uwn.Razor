@@ -2,12 +2,13 @@
 
 	<PropertyGroup>
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-		<AssemblyOriginatorKeyFile>Assets\UWN-GH.snk</AssemblyOriginatorKeyFile>
+		<AssemblyOriginatorKeyFile>..\Assets\UWN-GH.snk</AssemblyOriginatorKeyFile>
 		<Authors>Chris B.</Authors>
 		<Copyright>Copyright © 2025 Chris B.</Copyright>
 		<Description>A Razor Class Library for re-usable components, and Bootstrap wrappers.</Description>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<PackageIcon>Assets\codex-32.png</PackageIcon>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -18,9 +19,9 @@
 		<SignAssembly>true</SignAssembly>
 		<TargetFramework>net9.0</TargetFramework>
 		<Title>UltimateWisdom.Net Library for Razor components</Title>
-		<AssemblyVersion>9.0.3.0</AssemblyVersion>
-		<FileVersion>9.0.3.0</FileVersion>
-		<Version>9.0.3</Version>
+		<AssemblyVersion>9.1.0.0</AssemblyVersion>
+		<FileVersion>9.1.0.0</FileVersion>
+		<Version>9.1.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -47,7 +48,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.10" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.10" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Uwn.Mvvm.Generators\Uwn.Mvvm.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" PrivateAssets="all" />
+		<ProjectReference Include="..\Uwn.Mvvm\Uwn.Mvvm.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

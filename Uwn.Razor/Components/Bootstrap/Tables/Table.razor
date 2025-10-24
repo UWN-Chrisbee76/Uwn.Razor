@@ -1,11 +1,12 @@
 ﻿@namespace Uwn.Razor.Components.Bootstrap.Tables
-@inherits UwnComponentBase
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Tables
+@inherits UwnComponentBase<TableViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
-	<table id="@Id" class="@ClassNames @AdditionalClassNames">
-		<CascadingValue Value="Purpose">
-			@ChildContent
+	<table id="@ViewModel.Id" class="@ClassNames @ViewModel.AdditionalClassNames">
+		<CascadingValue Value="ViewModel.Purpose">
+			@ViewModel.ChildContent
 		</CascadingValue>
 	</table>
 }
@@ -19,7 +20,7 @@
 		get
 		{
 			if (IsBootstrapAvailable)
-				return Purpose switch
+				return ViewModel.Purpose switch
 				{
 					TablePurpose.Data => "table table-hover table-striped",
 					TablePurpose.Editor => "table",
@@ -30,4 +31,11 @@
 				return string.Empty;
 		}
 	}
+
+	protected override TableViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			ChildContent = ChildContent,
+			Purpose = Purpose
+		};
 }

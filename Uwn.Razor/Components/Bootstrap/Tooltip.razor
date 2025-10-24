@@ -1,10 +1,11 @@
 ﻿@namespace Uwn.Razor.Components.Bootstrap
-@inherits UwnComponentBase
+@using Uwn.Razor.Models.ViewModels.Bootstrap
+@inherits UwnComponentBase<TooltipViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
-	<abbr id="@Id" class="@AdditionalClassNames" data-bs-toggle="tooltip" data-bs-placement="@Placement.ToBootstrapName()" data-bs-title="@Content" data-bs-html="@ContentIsHtml.ToString().ToLower()">
-		@ChildContent
+	<abbr id="@ViewModel.Id" class="@ViewModel.AdditionalClassNames" data-bs-toggle="tooltip" data-bs-placement="@ViewModel.Placement.ToBootstrapName()" data-bs-title="@ViewModel.Content" data-bs-html="@ViewModel.ContentIsHtml.ToString().ToLower()">
+		@ViewModel.ChildContent
 	</abbr>
 }
 
@@ -19,4 +20,13 @@
 		await base.OnInitializedAsync();
 		UsesTooltips = true;
 	}
+
+	protected override TooltipViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			ChildContent = ChildContent,
+			Content = Content,
+			ContentIsHtml = ContentIsHtml,
+			Placement = Placement
+		};
 }

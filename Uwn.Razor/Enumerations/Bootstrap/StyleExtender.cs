@@ -19,4 +19,13 @@ public static class StyleExtender
 
 	public static string GetTextBackgroundClassName(this Style style)
 		=> style == Style.None ? string.Empty : $"text-bg-{GetStyleName(style)}";
+
+	public static IEnumerable<string> GetClassNames(this Style style, StyleUsages styleUsages)
+	{
+		if (styleUsages.HasFlag(StyleUsages.Alert)) yield return style.GetAlertClassName();
+		if (styleUsages.HasFlag(StyleUsages.Background)) yield return style.GetBackgroundClassName();
+		if (styleUsages.HasFlag(StyleUsages.Border)) yield return style.GetBorderClassName();
+		if (styleUsages.HasFlag(StyleUsages.Text)) yield return style.GetTextClassName();
+		if (styleUsages.HasFlag(StyleUsages.TextBackground)) yield return style.GetTextBackgroundClassName();
+	}
 }

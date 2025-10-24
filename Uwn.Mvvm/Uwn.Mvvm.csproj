@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Authors>Chris B.</Authors>
+		<AssemblyOriginatorKeyFile>..\Assets\UWN-GH.snk</AssemblyOriginatorKeyFile>
+		<Copyright>Copyright © 2025 Chris B.</Copyright>
+		<Description>Class Library for a minimalistic MVVM approach.</Description>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<PublisherName>UltimateWisdom.Net</PublisherName>
+		<RootNamespace>Uwn.Mvvm</RootNamespace>
+		<SignAssembly>true</SignAssembly>
+		<TargetFramework>net9.0</TargetFramework>
+		<Title>UltimateWisdom.Net MVVM Library</Title>
+		<AssemblyVersion>9.1.0.0</AssemblyVersion>
+		<FileVersion>9.1.0.0</FileVersion>
+		<Version>9.1.0</Version>
+	</PropertyGroup>
+
+</Project>

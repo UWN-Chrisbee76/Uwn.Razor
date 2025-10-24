@@ -1,50 +1,51 @@
 ﻿@namespace Uwn.Razor.Components.Bootstrap.Cards
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Cards
 @using Uwn.Razor.Components.Bootstrap.Links
-@inherits UwnComponentBase
+@inherits UwnComponentBase<CardViewModel>
 
 @if (IsVisible)
 {
-	<div id="@Id" class="@BuildClassNames()" style="@BuildStyles()">
-		@if (Header is not null)
+	<div id="@ViewModel.Id" class="@BuildClassNames()" style="@BuildStyles()">
+		@if (ViewModel.Header is not null)
 		{
 			<div class="@BuildHeaderClassNames()">
-				@if (HeaderIcon is not null)
+				@if (ViewModel.HeaderIcon is not null)
 				{
-					@BuildFontAwesomeElement(HeaderIcon, "me-1")
+					@FragmentProvider.BuildFontAwesomeFragment(ViewModel.HeaderIcon, "me-1")
 				}
-				<span>@Header</span>
+				<span>@ViewModel.Header</span>
 			</div>
 		}
 		<div class="card-body">
-			@if (Title is not null)
+			@if (ViewModel.Title is not null)
 			{
 				<h5 class="@BuildTitleClassNames()">
-					@if (TitleIcon is not null)
+					@if (ViewModel.TitleIcon is not null)
 					{
-						@BuildFontAwesomeElement(TitleIcon, "fa-lg me-1")
+						@FragmentProvider.BuildFontAwesomeFragment(ViewModel.TitleIcon, "fa-lg me-1")
 					}
-					<span>@Title</span>
+					<span>@ViewModel.Title</span>
 				</h5>
 			}
-			@if (SubTitle is not null)
+			@if (ViewModel.SubTitle is not null)
 			{
-				<h6 class="card-subtitle mb-2 text-body-secondary">@SubTitle</h6>
+				<h6 class="card-subtitle mb-2 text-body-secondary">@ViewModel.SubTitle</h6>
 			}
 			<p class="card-text">
-				@BuildFormattedContent(Text)
+				@FragmentProvider.BuildFormattedContent(ViewModel.Content)
 			</p>
-			<Hyperlink Link="BodyLink" AdditionalClassNames="card-link" />
+			<Hyperlink Link="ViewModel.BodyLink" AdditionalClassNames="card-link" />
 		</div>
-		@if (FooterText is not null || FooterLink is not null)
+		@if (ViewModel.FooterText is not null || ViewModel.FooterLink is not null)
 		{
 			<div class="card-footer">
-				@if (FooterText is not null)
+				@if (ViewModel.FooterText is not null)
 				{
-					<span>@BuildFormattedContent(FooterText)</span>
+					<span>@FragmentProvider.BuildFormattedContent(ViewModel.FooterText)</span>
 				}
-				@if (FooterLink is not null)
+				@if (ViewModel.FooterLink is not null)
 				{
-					<Hyperlink Link="FooterLink" />
+					<Hyperlink Link="ViewModel.FooterLink" />
 				}
 			</div>
 		}
@@ -52,18 +53,33 @@
 }
 
 @code {
-	[Parameter] public BS.Style Style { get; set; } = BS.Style.None;
 	[Parameter] public string? HeaderIcon { get; set; }
 	[Parameter] public string? Header { get; set; }
 	[Parameter] public string? TitleIcon { get; set; }
 	[Parameter] public string? Title { get; set; }
 	[Parameter] public string? SubTitle { get; set; }
-	[Parameter] public string Text { get; set; } = string.Empty;
+	[Parameter] public string? Content { get; set; }
 	[Parameter] public Link? BodyLink { get; set; }
 	[Parameter] public string? FooterText { get; set; }
 	[Parameter] public Link? FooterLink { get; set; }
 	[Parameter] public WidthDefinition? Width { get; set; }
-	[Parameter] public bool DropShadow { get; set; } = false;
+	[Parameter] public Appearance Appearance { get; set; } = new();
+
+	protected override CardViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			Appearance = Appearance,
+			BodyLink = BodyLink,
+			Content = Content,
+			FooterLink = FooterLink,
+			FooterText = FooterText,
+			Header = Header,
+			HeaderIcon = HeaderIcon,
+			SubTitle = SubTitle,
+			Title = Title,
+			TitleIcon = TitleIcon,
+			Width = Width
+		};
 
 	protected string BuildClassNames()
 	{
@@ -71,8 +87,7 @@
 		builder.Append("card" + " ");
 		builder.Append("m-2" + " ");
 		builder.Append(AdditionalClassNames + " ");
-		builder.Append(Style.GetBorderClassName() + " ");
-		if (DropShadow) builder.Append("shadow" + " ");
+		ViewModel.Appearance.AppendClassNames(StyleUsages.Border, builder);
 		return builder.ToString().Trim();
 	}
 
@@ -80,7 +95,7 @@
 	{
 		var builder = new StringBuilder();
 		builder.Append("card-header" + " ");
-		builder.Append(Style.GetTextBackgroundClassName());
+		ViewModel.Appearance.AppendClassNames(StyleUsages.TextBackground, builder, false);
 		return builder.ToString().Trim();
 	}
 
@@ -88,15 +103,15 @@
 	{
 		var builder = new StringBuilder();
 		builder.Append("card-title" + " ");
-		builder.Append(Style.GetTextClassName());
+		ViewModel.Appearance.AppendClassNames(StyleUsages.Text, builder, false);
 		return builder.ToString().Trim();
 	}
 
 	protected string BuildStyles()
 	{
 		var builder = new StringBuilder();
-		if (Width is not null)
-			builder.Append(Width.GetCssStyle());
+		if (ViewModel.Width is not null)
+			builder.Append(ViewModel.Width.GetCssStyle());
 		return builder.ToString().Trim();
 	}
 }

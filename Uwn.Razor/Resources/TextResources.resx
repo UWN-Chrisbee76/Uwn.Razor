@@ -133,6 +133,9 @@
     <value>Edit</value>
     <comment>Command for editing an item</comment>
   </data>
+  <data name="ExceptionTitle" xml:space="preserve">
+    <value>An Exception has occured</value>
+  </data>
   <data name="GoBackCommand" xml:space="preserve">
     <value>Go back</value>
     <comment>Command for the "Go back" navigation action</comment>

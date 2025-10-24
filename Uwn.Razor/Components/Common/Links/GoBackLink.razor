@@ -1,12 +1,33 @@
 ﻿@namespace Uwn.Razor.Components.Common.Links
-@inherits UwnComponentWithRouteBase
+@using Uwn.Razor.Models.ViewModels.Common.Links
+@inherits UwnComponentWithRouteBase<GoBackLinkViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
 	<p>
-		<a id="@Id" class="@AdditionalClassNames" href="@RouteWithId">
-			@BuildFontAwesomeElement("fa-backward-step")
-			<span>@GetTranslation("GoBackCommand")</span>
+		<a id="@ViewModel.Id" class="@ViewModel.AdditionalClassNames" href="@ViewModel.RouteWithId">
+			@if (IsFontAwesomeAvailable)
+			{
+				@FragmentProvider.BuildFontAwesomeFragment(IconNames.ActionBack, "me-1")
+			}
+			@if (string.IsNullOrEmpty(ViewModel.Content))
+			{
+				<span>@GetTranslation("GoBackCommand")</span>
+			}
+			else
+			{
+				<span>@ViewModel.Content</span>
+			}
 		</a>
 	</p>
+}
+
+@code {
+	[Parameter] public string? Content { get; set; }
+
+	protected override GoBackLinkViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			Content = Content
+		};
 }

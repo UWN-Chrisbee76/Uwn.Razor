@@ -29,14 +29,14 @@ jobs:
         $bytes = [System.Convert]::FromBase64String($base64String)
         [System.IO.File]::WriteAllBytes("Assets/UWN-GH.snk", $bytes)
 
-    - name: Build and sign the project
+    - name: Build and sign the project; this also creates the NuGet package
       run: dotnet build --configuration Release --no-restore
       
-    - name: Create the NuGet package
-      run: dotnet pack --configuration Release --output nupkgs
+#   - name: Create the NuGet package
+#     run: dotnet pack --configuration Release --output nupkgs
 
     - name: Publish to NuGet
-      run: dotnet nuget push nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push D:/a/Uwn.Razor/Uwn.Razor/Uwn.Razor/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
 
     - name: Remove the .snk file
       run: Remove-Item Assets/UWN-GH.snk -ErrorAction SilentlyContinue

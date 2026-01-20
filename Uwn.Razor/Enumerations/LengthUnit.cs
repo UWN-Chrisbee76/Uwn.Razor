@@ -2,12 +2,12 @@
 
 public enum AbsoluteLengthUnit
 {
-	Centimeter, // cm
-	Inch,       // in
-	Millimeter, // mm
-	Pica,       // pc
-	Pixel,      // px
-	Point,      // pt
+	Centimeter = 101, // cm
+	Inch,             // in
+	Millimeter,       // mm
+	Pica,             // pc
+	Pixel,            // px
+	Point,            // pt
 
 	cm = Centimeter,
 	@in = Inch,
@@ -19,14 +19,15 @@ public enum AbsoluteLengthUnit
 
 public enum RelativeLengthUnit
 {
-	ElementFontSize,    // em
-	RootFontSize,       // rem
-	ViewportHeight,     // vh
-	ViewportWidth,      // vw
-	Percent,            // %
+	ElementFontSize = 201, // em
+	RootFontSize,          // rem
+	ViewportHeight,        // vh
+	ViewportWidth,         // vw
+	Percent,               // %
 
 	em = ElementFontSize,
 	rem = RootFontSize,
 	vh = ViewportHeight,
-	vw = ViewportWidth
+	vw = ViewportWidth,
+	pc = Percent
 }

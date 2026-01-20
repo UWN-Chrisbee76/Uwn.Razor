@@ -1,0 +1,12 @@
+﻿@attribute [Route(RouteStrings.ServicesRoutesHelper)]
+@namespace Uwn.Razor.Demo.Services
+
+<ServiceDescriptionContainer Description="A static helper class that provides route information for Components." />
+
+<CodeContainer Language="@Language.CSharp">
+// Gets all routes for a given component type
+public static string[] GetRoutesFor&lt;TComponent&gt;() where TComponent : IComponent { ... }
+
+// Gets the first route for a given component type
+public static string GetFirstRouteFor&lt;TComponent&gt;() where TComponent : IComponent { ... }
+</CodeContainer>

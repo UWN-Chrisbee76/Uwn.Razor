@@ -1,0 +1,46 @@
+﻿@attribute [Route(RouteStrings.ComponentsCommonGoBackLink)]
+@namespace Uwn.Razor.Demo.Components.Components.Common.Links
+@inherits PageBase<GoBackLinkViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;GoBackLink AdditionalClassNames="@ViewModel.AdditionalClassNames"
+            Content="@ViewModel.Content"
+            Id="@ViewModel.Id"
+            IdString="@ViewModel.IdString"
+            IsVisible="@ViewModel.IsVisible"
+            Route="@ViewModel.Route" /&#62;
+	</CodeContainer>
+	<GoBackLink Model="ViewModel" />
+</DemoContainer>
+
+<ComponentDescriptionContainer Description="Provides an 'Go Back' type link"
+							   Namespace="Uwn.Razor.Components.Common.Links"
+							   Inherits="UwnComponentWithRouteBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<ContentEditorRow @bind-Value="ViewModel.Content" />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<IdStringRow @bind-Value="ViewModel.IdString" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+		<RouteRow @bind-Value="ViewModel.Route" />
+	</TableBody>
+</Table>
+
+@code {
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		ViewModel.Content = "Go back";
+		ViewModel.Id = null;
+		ViewModel.IdString = null;
+		ViewModel.IsVisible = true;
+		ViewModel.Route = "#";
+		//ViewModel.RouteWithId // readonly
+	}
+}

@@ -1,0 +1,16 @@
+﻿@attribute [Route(RouteStrings.ProvidersCardProvider)]
+@namespace Uwn.Razor.Demo.Providers
+
+<ProviderDescriptionContainer ComponentType="@typeof(Card)"
+							  ComponentRoute="@RouteStrings.ComponentsBootstrapCard"
+							  Namespace="Uwn.Razor.Providers"
+							  ProviderBaseGenericType="@typeof(CardViewModel)"
+							  ProviderBaseGenericTypeRoute="@RouteStrings.ModelsViewModelsBootstrapCardViewModel" />
+
+<CodeContainer Language="@Language.HTML">
+&lt;Card Model=&quot;_ViewModel&quot; /&gt;
+
+&lt;CascadingValue Value=&quot;_ViewModel&quot; IsFixed=&quot;true&quot;&gt;
+	@@ChildContent
+&lt;/CascadingValue&gt;
+</CodeContainer>

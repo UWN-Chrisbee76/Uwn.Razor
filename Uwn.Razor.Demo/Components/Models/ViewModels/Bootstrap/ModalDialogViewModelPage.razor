@@ -1,0 +1,65 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsBootstrapModalDialogViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Bootstrap
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(ModalDialog)"
+						   ComponentRoute="@RouteStrings.ComponentsBootstrapModalDialog"
+						   Namespace="Uwn.Razor.Models.ViewModels.Bootstrap.Modals"
+						   InheritsType="@typeof(ChildContentViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsChildContentViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="HtmlContent"
+						  PropertyType="@typeof(String)"
+						  Description="Defines the optional HTML content for the Component." />
+		<ModelPropertyRow PropertyName="FullscreenMode"
+						  PropertyType="@typeof(ModalFullscreenMode)"
+						  PropertyTypeRoute="@RouteStrings.EnumerationsBootstrapModalFullscreenMode"
+						  Description="Defines the fullscreen mode for the Component." />
+		<ModelPropertyRow PropertyName="IsAnimated"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Defines if the Component should be animated." />
+		<ModelPropertyRow PropertyName="IsCentered"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Defines if the Component should be centered." />
+		<ModelPropertyRow PropertyName="IsScrollable"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Defines if the Component should be scrollable." />
+		<ModelPropertyRow PropertyName="Size"
+						  PropertyType="@typeof(ModalSize)"
+						  PropertyTypeRoute="@RouteStrings.EnumerationsBootstrapModalSize"
+						  Description="Defines the size of the Component." />
+		<ModelPropertyRow PropertyName="Title"
+						  PropertyType="@typeof(Content)"
+						  PropertyTypeRoute="@RouteStrings.ModelsContent"
+						  Description="Defines the optional title text for the Component." />
+		<ModelPropertyRow PropertyName="HasOkCommand"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Defines if the Component should fire the 'Ok' event." />
+		<ModelPropertyRow PropertyName="OnOkCommand"
+						  PropertyType="@typeof(EventCallback<String>)"
+						  Description="Defines the optional callback for the 'Ok' event." />
+		<ModelPropertyRow PropertyName="OkCommandParameter"
+						  PropertyType="@typeof(String)"
+						  Description="Defines the optional parameter for the 'Ok' event callback." />
+		<ModelPropertyRow PropertyName="OnDismissed"
+						  PropertyType="@typeof(EventCallback)"
+						  Description="Defines the optional callback for the 'Close' event." />
+	</TableBody>
+</Table>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Prepares the modal dialog to be shown
+public async Task PrepareAsync() { ... }
+
+// Shows the modal dialog
+public override async Task ShowAsync() { ... }
+
+// Prepares the ViewModel, and shows the modal dialog
+public Task ShowAsync(string title, string htmlContent, EventCallback&lt;string&gt;? onOkCommand, string? okCommandParameter, EventCallback? onDismissed) { ... }
+</CodeContainer>

@@ -1,0 +1,9 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsBootstrapTableBodyViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Bootstrap
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(TableBody)"
+						   ComponentRoute="@RouteStrings.ComponentsBootstrapTableBody"
+						   Namespace="Uwn.Razor.Models.ViewModels.Bootstrap.Tables"
+						   InheritsType="@typeof(ChildContentViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsChildContentViewModel" />

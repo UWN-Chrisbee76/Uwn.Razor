@@ -1,0 +1,21 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsBootstrapTableViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Bootstrap
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(Table)"
+						   ComponentRoute="@RouteStrings.ComponentsBootstrapTable"
+						   Namespace="Uwn.Razor.Models.ViewModels.Bootstrap.Tables"
+						   InheritsType="@typeof(ChildContentViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsChildContentViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Purpose"
+						  PropertyType="@typeof(TablePurpose)"
+						  PropertyTypeRoute="@RouteStrings.EnumerationsBootstrapTablePurpose"
+						  Description="Defines the purpose of the Component." />
+	</TableBody>
+</Table>

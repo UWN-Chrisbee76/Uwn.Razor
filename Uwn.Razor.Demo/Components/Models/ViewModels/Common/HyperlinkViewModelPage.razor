@@ -1,0 +1,21 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsCommonHyperlinkViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Common
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(Hyperlink)"
+						   ComponentRoute="@RouteStrings.ComponentsCommonHyperlink"
+						   Namespace="Uwn.Razor.Models.ViewModels.Common.Links"
+						   InheritsType="@typeof(BaseViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsBaseViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Link"
+						  PropertyType="@typeof(Link)"
+						  PropertyTypeRoute="@RouteStrings.ModelsLink"
+						  Description="Defines the Link content for the Component." />
+	</TableBody>
+</Table>

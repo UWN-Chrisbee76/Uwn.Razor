@@ -1,0 +1,16 @@
+﻿@attribute [Route(RouteStrings.ProvidersWaitIndicatorProvider)]
+@namespace Uwn.Razor.Demo.Providers
+
+<ProviderDescriptionContainer ComponentType="@typeof(WaitIndicator)"
+							  ComponentRoute="@RouteStrings.ComponentsBootstrapWaitIndicator"
+							  Namespace="Uwn.Razor.Providers"
+							  ProviderBaseGenericType="@typeof(WaitIndicatorViewModel)"
+							  ProviderBaseGenericTypeRoute="@RouteStrings.ModelsViewModelsBootstrapWaitIndicatorViewModel" />
+
+<CodeContainer Language="@Language.HTML">
+&lt;WaitIndicator Model=&quot;_ViewModel&quot; /&gt;
+
+&lt;CascadingValue Value=&quot;_ViewModel&quot; IsFixed=&quot;true&quot;&gt;
+	@@ChildContent
+&lt;/CascadingValue&gt;
+</CodeContainer>

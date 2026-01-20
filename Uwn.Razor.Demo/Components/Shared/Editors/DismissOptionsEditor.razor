@@ -1,0 +1,13 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Editors
+
+<strong>Delay</strong>
+<InputNumber class="form-control w-8" @bind-Value="Model.Delay" />
+
+<strong>HasCloseButton</strong>
+<div class="form-check form-switch">
+	<InputCheckbox class="form-check-input" role="switch" id="HasCloseButton" @bind-Value="Model.HasCloseButton" />
+</div>
+
+@code {
+	[Parameter] public DismissOptions Model { get; set; } = new();
+}

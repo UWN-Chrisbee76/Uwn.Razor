@@ -1,0 +1,9 @@
+﻿@attribute [Route(RouteStrings.ServicesUwnCapabilitiesService)]
+@namespace Uwn.Razor.Demo.Services
+
+<ServiceDescriptionContainer Description="A helper class that provides UwnCapabilities." />
+
+<CodeContainer Language="@Language.CSharp">
+// Determines and gets the UwnCapabilities
+public async Task&lt;UwnCapabilities&gt; InitializeAsync(IJSRuntime JsRuntime) { ... }
+</CodeContainer>

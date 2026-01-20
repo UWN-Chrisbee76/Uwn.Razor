@@ -1,0 +1,61 @@
+﻿@attribute [Route(RouteStrings.ComponentsBootstrapCard)]
+@namespace Uwn.Razor.Demo.Components.Components.Bootstrap.Alerts
+@inherits PageBase<CardViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;Card AdditionalClassNames="@ViewModel.AdditionalClassNames"
+      Appearance="@ViewModel.Appearance"
+      BodyLink="@ViewModel.BodyLink"
+      Content="@ViewModel.Content"
+      Footer="@ViewModel.Footer"
+      Header="@ViewModel.Header"
+      Id="@ViewModel.Id"
+      IsVisible="@ViewModel.IsVisible"
+      SubTitle="@ViewModel.SubTitle"
+      Title="@ViewModel.Title"
+      Width="@ViewModel.Width" /&#62;
+	</CodeContainer>
+	<Card Model="ViewModel" />
+</DemoContainer>
+
+<ComponentDescriptionContainer Description="A configurable card, which is a flexible and extensible content container."
+							   Namespace="Uwn.Razor.Components.Bootstrap.Cards"
+							   Inherits="UwnComponentBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<AppearanceEditorRow @bind-Value="ViewModel.Appearance" />
+		<LinkEditorRow @bind-Value="ViewModel.BodyLink" />
+		<ContentEditorRow @bind-Value="ViewModel.Content" />
+		<GenericLinkContentEditorRow Label="Footer" Description="(Optional) The Component's footer content" @bind-Value="ViewModel.Footer" />
+		<HeaderEditorRow @bind-Value="ViewModel.Header" />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+		<GenericContentEditorRow Label="SubTitle" Description="(Optional) The component's sub title content)" @bind-Value="ViewModel.SubTitle" />
+		<TitleEditorRow @bind-Value="ViewModel.Title" />
+		<WidthDefinitionEditorRow @bind-Value="ViewModel.Width" />
+	</TableBody>
+</Table>
+
+@code {
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		ViewModel.Appearance = new();
+		//ViewModel.Body // readonly
+		ViewModel.BodyLink = null;
+		ViewModel.Content = "Card body";
+		ViewModel.Footer = "Card footer";
+		ViewModel.Header = "Card header";
+		ViewModel.Id = null;
+		ViewModel.IsVisible = true;
+		ViewModel.SubTitle = null;
+		ViewModel.Title = "Card title";
+		ViewModel.Width = null;
+	}
+}

@@ -1,0 +1,25 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+
+<tr>
+	<td><code>@PropertyName</code></td>
+	<td>
+		@if (PropertyTypeRoute is not null)
+		{
+			<NavLink Href="@PropertyTypeRoute">@PropertyTypeName</NavLink>
+		}
+		else
+		{
+			<code>@PropertyTypeName</code>
+		}
+	</td>
+	<td>@Description</td>
+</tr>
+
+@code {
+	[Parameter] public string? PropertyName { get; set; }
+	[Parameter] public Type? PropertyType { get; set; }
+	[Parameter] public string? PropertyTypeRoute { get; set; }
+	[Parameter] public string? Description { get; set; }
+
+	private string PropertyTypeName => PropertyType?.Name ?? "(undefined)";
+}

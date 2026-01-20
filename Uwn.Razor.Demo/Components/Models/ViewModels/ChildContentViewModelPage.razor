@@ -1,0 +1,18 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsChildContentViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels
+
+<ModelDescriptionContainer IsViewModel="true"
+						   Namespace="Uwn.Razor.Models.ViewModels"
+						   InheritsType="@typeof(BaseViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsBaseViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="ChildContent"
+						  PropertyType="@typeof(RenderFragment)"
+						  Description="Defines the child content of the Component." />
+	</TableBody>
+</Table>

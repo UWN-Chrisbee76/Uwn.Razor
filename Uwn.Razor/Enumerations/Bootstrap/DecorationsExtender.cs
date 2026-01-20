@@ -30,4 +30,13 @@ public static class DecorationsExtender
 			builder.Append(' ');
 		}
 	}
+
+	public static IEnumerable<Decorations> GetFlags()
+	{
+		foreach (var value in Enum.GetValues<Decorations>())
+		{
+			if (FlagsHelper.HasExactlyOneFlagSet(value))
+				yield return value;
+		}
+	}
 }

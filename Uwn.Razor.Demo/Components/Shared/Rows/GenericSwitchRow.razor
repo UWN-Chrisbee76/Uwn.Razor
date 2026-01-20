@@ -1,0 +1,24 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+
+<tr>
+	<th scope="row">@Label</th>
+	<td><code>bool</code></td>
+	<td>@Description</td>
+	<td></td>
+	<td>
+		<div class="form-check form-switch">
+			<InputCheckbox class="form-check-input"
+						   role="switch"
+						   Value="@Value"
+						   ValueChanged="@(v => ValueChanged.InvokeAsync(v))"
+						   ValueExpression="@(()=>Value)" />
+		</div>
+	</td>
+</tr>
+
+@code {
+	[Parameter] public string Label { get; set; } = string.Empty;
+	[Parameter] public string Description { get; set; } = string.Empty;
+	[Parameter] public bool Value { get; set; }
+	[Parameter] public EventCallback<bool> ValueChanged { get; set; }
+}

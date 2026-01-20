@@ -1,0 +1,50 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsBootstrapToastViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Bootstrap
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(Toast)"
+						   ComponentRoute="@RouteStrings.ComponentsBootstrapToast"
+						   Namespace="Uwn.Razor.Models.ViewModels.Bootstrap.Toasts"
+						   InheritsType="@typeof(NotificationViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsNotificationViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="TriggerId"
+						  PropertyType="@typeof(String)"
+						  Description="Defines the ID of the trigger for the Component." />
+	</TableBody>
+</Table>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Shows a Success-type toast with a default header
+public async Task ShowSuccessAsync(string message) { .. }
+
+// Shows a Success-type toast
+public async Task ShowSuccessAsync(string? header, string message) { .. }
+
+// Shows an Information-type toast with a default header
+public async Task ShowInformationAsync(string message) { .. }
+
+// Shows an Information-type toast
+public async Task ShowInformationAsync(string? header, string message) { .. }
+
+// Shows a Warning-type toast with a default header
+public async Task ShowWarningAsync(string message) { .. }
+
+// Shows a Warning-type toast
+public async Task ShowWarningAsync(string? header, string message) { .. }
+
+// Shows an Error-type toast with a default header
+public async Task ShowErrorAsync(string message) { .. }
+
+// Shows an Error-type toast
+public async Task ShowErrorAsync(string? header, string message) { .. }
+
+// Shows an Error-type toast built from an Exception
+public async Task ShowExceptionAsync(Exception ex) { .. }
+</CodeContainer>

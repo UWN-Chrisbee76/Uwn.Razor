@@ -1,0 +1,98 @@
+﻿@attribute [Route(RouteStrings.ModelsWidthDefinition)]
+@namespace Uwn.Razor.Demo.Models
+
+<ModelDescriptionContainer IsViewModel="false"
+						   Namespace="Uwn.Razor.Models" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="MinWidth"
+						  PropertyType="@typeof(Int32)"
+						  Description="Defines the minimum width of the Component." />
+		<ModelPropertyRow PropertyName="FixedWidth"
+						  PropertyType="@typeof(Int32)"
+						  Description="Defines the fixed width of the Component." />
+		<ModelPropertyRow PropertyName="MaxWidth"
+						  PropertyType="@typeof(Int32)"
+						  Description="Defines the maximum width of the Component." />
+		<ModelPropertyRow PropertyName="LengthUnit"
+						  PropertyType="@typeof(LengthUnit)"
+						  PropertyTypeRoute="@RouteStrings.ModelsLengthUnit"
+						  Description="Defines the length unit for the Component." />
+	</TableBody>
+</Table>
+
+<h4>Constructors</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance
+public WidthDefinition() { ... }
+
+// Creates a new instance with the given min, fixed, and max widths
+public WidthDefinition(int? minWidth, int? fixedWidth, int? maxWidth) { ... }
+
+// Creates a new instance with the given length unit
+public WidthDefinition(LengthUnit lengthUnit) { ... }
+
+// Creates a new instance with the given min, fixed, and max widths and length unit
+public WidthDefinition(int? minWidth, int? fixedWidth, int? maxWidth, LengthUnit lengthUnit) { ... }
+
+// Creates a new instance trying to parse properties from a String
+public WidthDefinition(string value) { ... }
+</CodeContainer>
+
+<h4>Implicit Conversions</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance from a String, parsing the properties
+public static implicit operator WidthDefinition(string value) { ... }
+</CodeContainer>
+
+<h4>Static Factory Properties</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new WidthDefinition with a minimum width of 50%
+public static WidthDefinition Min50Percent { ... }
+
+// Creates a new WidthDefinition with a fixed width of 50%
+public static WidthDefinition Fixed50Percent { ... }
+
+// Creates a new WidthDefinition with a maximum width of 50%
+public static WidthDefinition Max50Percent { ... }
+
+// Creates a new WidthDefinition with a minimum width of 20 rem
+public static WidthDefinition Min20Rem { ... }
+
+// Creates a new WidthDefinition with a fixed width of 20 rem
+public static WidthDefinition Fixed20Rem { ... }
+
+// Creates a new WidthDefinition with a maximum width of 20 rem
+public static WidthDefinition Max20Rem { ... }
+
+// Creates a new WidthDefinition with a minimum width of 40 rem
+public static WidthDefinition Min40Rem { ... }
+
+// Creates a new WidthDefinition with a fixed width of 40 rem
+public static WidthDefinition Fixed40Rem { ... }
+
+// Creates a new WidthDefinition with a maximum width of 40 rem
+public static WidthDefinition Max40Rem { ... }
+
+// Creates a new WidthDefinition with a minimum width of 80 rem
+public static WidthDefinition Min80Rem { ... }
+
+// Creates a new WidthDefinition with a fixed width of 80 rem
+public static WidthDefinition Fixed80Rem { ... }
+
+// Creates a new WidthDefinition with a maximum width of 80 rem
+public static WidthDefinition Max80Rem { ... }
+</CodeContainer>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Gets the CSS style for the WidthDefinition
+public string GetCssStyle() { ... }
+
+// Creates a String representation
+public override string ToString() { ... }
+</CodeContainer>

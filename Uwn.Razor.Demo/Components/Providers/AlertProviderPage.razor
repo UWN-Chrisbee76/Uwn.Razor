@@ -1,0 +1,16 @@
+﻿@attribute [Route(RouteStrings.ProvidersAlertProvider)]
+@namespace Uwn.Razor.Demo.Providers
+
+<ProviderDescriptionContainer ComponentType="@typeof(Alert)"
+							  ComponentRoute="@RouteStrings.ComponentsBootstrapAlert"
+							  Namespace="Uwn.Razor.Providers"
+							  ProviderBaseGenericType="@typeof(AlertViewModel)"
+							  ProviderBaseGenericTypeRoute="@RouteStrings.ModelsViewModelsBootstrapAlertViewModel" />
+
+<CodeContainer Language="@Language.HTML">
+&lt;Alert Model=&quot;_ViewModel&quot; /&gt;
+
+&lt;CascadingValue Value=&quot;_ViewModel&quot; IsFixed=&quot;true&quot;&gt;
+	@@ChildContent
+&lt;/CascadingValue&gt;
+</CodeContainer>

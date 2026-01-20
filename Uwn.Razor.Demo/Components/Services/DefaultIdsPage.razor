@@ -1,0 +1,22 @@
+﻿@attribute [Route(RouteStrings.ServicesDefaultIds)]
+@namespace Uwn.Razor.Demo.Services
+
+<ServiceDescriptionContainer Description="A static class that defines the default HTML element IDs for Components of various types." />
+
+<CodeContainer Language="@Language.CSharp">
+public static class DefaultIds
+{
+	public const string AlertId = &quot;uwn-alert&quot;;
+	public const string CardId = &quot;uwn-card&quot;;
+	public const string AddNewButtonId = &quot;uwn-addnew-button&quot;;
+	public const string ExternalLinkId = &quot;uwn-external-link&quot;;
+	public const string HyperlinkId = &quot;uwn-hyperlink&quot;;
+	public const string ModalDialogId = &quot;uwn-modal-dialog&quot;;
+	public const string PaginationId = &quot;uwn-pagination&quot;;
+	public const string ToastId = &quot;uwn-toast&quot;;
+	public const string TooltipId = &quot;uwn-tooltip&quot;;
+	public const string WaitIndicatorId = &quot;uwn-wait-indicator&quot;;
+	public const string EditLinkId = &quot;uwn-edit-link&quot;;
+	public const string GoBackLinkId = &quot;uwn-goback-link&quot;;
+}
+</CodeContainer>

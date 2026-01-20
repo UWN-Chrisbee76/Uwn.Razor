@@ -1,0 +1,46 @@
+﻿@attribute [Route(RouteStrings.ComponentsCommonExternalLink)]
+@namespace Uwn.Razor.Demo.Components.Components.Common.Links
+@inherits PageBase<ExternalLinkViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;ExternalLink AdditionalClassNames="@ViewModel.AdditionalClassNames"
+              Href="@ViewModel.Href"
+              Id="@ViewModel.Id"
+              IsVisible="@ViewModel.IsVisible"&#62;
+    Let's go somewhere
+&#60;/ExternalLink&#62;
+	</CodeContainer>
+	<ExternalLink Model="ViewModel">
+		Let's go somewhere
+	</ExternalLink>
+</DemoContainer>
+
+<ComponentDescriptionContainer Description="A link that indicates that the linked content is on an external site"
+							   Namespace="Uwn.Razor.Components.Common.Links"
+							   Inherits="UwnComponentWithRouteBase"
+							   CssClasses="@(["external"])" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<ChildContentRow />
+		<GenericStringRow Label="Href" Description="href for the link element" @bind-Value="ViewModel.Href" />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+	</TableBody>
+</Table>
+
+@code {
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		//ViewModel.ChildContent // embedded
+		ViewModel.Href = "https://github.com/UWN-Chrisbee76/Uwn.Razor";
+		ViewModel.Id = null;
+		ViewModel.IsVisible = true;
+	}
+}

@@ -142,7 +142,7 @@ namespace Uwn.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A message informing about a successful operation.
+        ///   Looks up a localized string similar to The operation was successful..
         /// </summary>
         public static string SuccessMessage {
             get {

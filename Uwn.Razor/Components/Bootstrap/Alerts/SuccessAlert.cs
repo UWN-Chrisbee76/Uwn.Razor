@@ -11,8 +11,7 @@ public sealed class SuccessAlert
 		await base.OnInitializedAsync();
 		Appearance = new Models.Appearance(Style.Success);
 		Position = Position.StickyTop;
-		Icon = IconNames.StatusSuccess;
-		Content = GetTranslation("SuccessMessage");
+		Content = new(IconNames.StatusSuccess, GetTranslation("SuccessMessage"));
 		DismissOptions = new Models.DismissOptions(3000, false);
 	}
 }

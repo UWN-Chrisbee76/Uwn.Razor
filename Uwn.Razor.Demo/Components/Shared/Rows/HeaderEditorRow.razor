@@ -1,0 +1,12 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+@inherits ModelEditorBaseRow<Content>
+
+<tr>
+	<th scope="row">Header</th>
+	<td><code>Content</code></td>
+	<td>(Optional) The Component's header content</td>
+	<td></td>
+	<td>
+		<ContentEditor Model="@Value" ModelChanged="v => Value = v" />
+	</td>
+</tr>

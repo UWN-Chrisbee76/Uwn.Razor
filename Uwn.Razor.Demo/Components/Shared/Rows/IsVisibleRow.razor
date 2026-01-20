@@ -1,0 +1,30 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+
+<tr>
+	<th scope="row">IsVisible</th>
+	<td><code>bool</code></td>
+	<td>(Optional) Determines if the Component is visible (default = <code>true</code>)</td>
+	@if (!IsBase)
+	{
+		<td>Inherited from <code>UwnComponentBase</code></td>
+		@if (!IsRoute)
+		{
+			<td>
+				<div class="form-check form-switch">
+					<InputCheckbox class="form-check-input"
+								   role="switch"
+								   Value="@Value"
+								   ValueChanged="@(v=>ValueChanged.InvokeAsync(v))"
+								   ValueExpression="@(()=>Value)" />
+				</div>
+			</td>
+		}
+	}
+</tr>
+
+@code {
+	[Parameter] public bool IsBase { get; set; } = false;
+	[Parameter] public bool IsRoute { get; set; } = false;
+	[Parameter] public bool Value { get; set; } = true;
+	[Parameter] public EventCallback<bool> ValueChanged { get; set; }
+}

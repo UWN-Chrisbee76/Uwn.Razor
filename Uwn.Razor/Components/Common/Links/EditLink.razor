@@ -7,15 +7,16 @@
 	<a id="@ViewModel.Id" class="@ViewModel.AdditionalClassNames" href="@ViewModel.RouteWithId">
 		@if (IsFontAwesomeAvailable)
 		{
-			@FragmentProvider.BuildFontAwesomeFragment(IconNames.ActionEdit, "me-1")
+			var icon = ViewModel.Content?.Icon ?? IconNames.ActionEdit;
+			@FragmentProvider.BuildFontAwesomeFragment(icon, "me-1")
 		}
-		@if (string.IsNullOrEmpty(ViewModel.Content))
+		@if (ViewModel.Content?.Text is null)
 		{
 			<span>@GetTranslation("EditCommand")</span>
 		}
 		else
 		{
-			<span>@ViewModel.Content</span>
+			<span>@ViewModel.Content.Text</span>
 		}
 	</a>
 }

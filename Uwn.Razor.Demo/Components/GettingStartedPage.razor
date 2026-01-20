@@ -1,0 +1,149 @@
+﻿@attribute [Route(RouteStrings.GettingStarted)]
+@namespace Uwn.Razor.Demo
+
+<p id="topOfPage">This guide provides a step-by-step introduction to adding <strong>Uwn.Razor</strong> to a Blazor project.</p>
+
+<ul>
+	<li><NavLink href="GettingStarted#newProject">Creating a new Project</NavLink></li>
+	<li><NavLink href="GettingStarted#addUwn">Adding Uwn.Razor</NavLink></li>
+	<li><NavLink href="GettingStarted#uwnSettings">Configure UwnSettings</NavLink></li>
+	<li><NavLink href="GettingStarted#injections">Required Dependency Injections</NavLink></li>
+	<li><NavLink href="GettingStarted#translations">Custom Translations</NavLink></li>
+</ul>
+
+<p><NavLink href="GettingStarted#topOfPage">Back to top</NavLink></p>
+
+<h3 id="newProject" class="mt-4">Creating a new Project</h3>
+
+<ol>
+	<li>Open Visual Studio</li>
+	<li>Select File &rarr; New &rarr; Project</li>
+	<li>Select "Blazor Web App"</li>
+	<li>Name your project</li>
+	<li>Select ".NET 9" or later as the Framework</li>
+	<li>Select "Server" as the Interactive render mode</li>
+</ol>
+
+<p><NavLink href="GettingStarted#topOfPage">Back to top</NavLink></p>
+
+<h3 id="addUwn" class="mt-4">Adding Uwn.Razor</h3>
+
+<p>Once you have a Blazor project, the following steps are required to enable <strong>Uwn.Razor</strong>.</p>
+
+<ol>
+	<li>Add the "Uwn.Razor" NuGet package to your project</li>
+	<li>
+		<span>Open "Program.cs"</span>
+		<ul>
+			<li>
+				<span>After <code>builder.Services.AddRazorComponents().AddInteractiveServerComponents()</code></span>
+				<ol>
+					<li>Add <code>builder.Services.AddLocalization()</code></li>
+					<li>Add <code>builder.Services.AddSingleton&lt;UwnCapabilitiesService>&gt;()</code></li>
+				</ol>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<span>Open "Components/App.razor"</span>
+		<ol>
+			<li>Inside <code>head</code>, add <code>&lt;script type="module" src="_content/Uwn.Razor/js/uwnComponentUtils.js"&gt;&lt;/script&gt;</code></li>
+			<li>
+				Modify the <code>HeadOutlet</code> and <code>Routes</code> components to disable pre-rendering, as that would break JS interop:
+				<br />
+				<code>@@rendermode=@@(new InteractiveServerRenderMode(prerender: false))</code>
+			</li>
+		</ol>
+	</li>
+	<li>
+		<span>Open "Components/Layout/MainLayout.razor"</span>
+		<ol>
+			<li>
+				Place your <code>@@Body</code> inside the root Uwn.Razor component like this:
+				<br />
+				<code>&lt;UwnRoot Settings=&quot;UwnSettings&quot;&gt;@@Body&lt;/UwnRoot&gt;</code>
+			</li>
+			<li>Configure your UwnSettings (see <NavLink href="GettingStarted#uwnSettings">below</NavLink>)</li>
+		</ol>
+	</li>
+	<li>
+		<span>Open "Components/_Import.razor"</span>
+		<ol>
+			<li>Add the required dependency injections (see <NavLink href="GettingStarted#injections">below</NavLink>)</li>
+			<li>(Optional) Add <code>using</code> directives for <code>Uwn.Razor.Components</code> and the namespaces of all Uwn.Razor components you plan to use</li>
+		</ol>
+	</li>
+</ol>
+<p>...and you're done. You can now use Uwn.Razor components anywhere that's covered by your @@Body.</p>
+
+<p><NavLink href="GettingStarted#topOfPage">Back to top</NavLink></p>
+
+<h3 id="uwnSettings" class="mt-4">Configure UwnSettings</h3>
+
+<p>
+	If you followed the above instructions, you now have an <code>UwnRoot</code> component in your "MainLayout.razor", encapsulating your <code>@@Body</code>.
+	<br />
+	This component has a <code>Settings</code> Parameter that you will have to define if you want to use FontAwesome, and define the icon pack and style.
+	<br />
+	It is also required if you want to use custom <NavLink href="GettingStarted#translations">translations</NavLink>.
+</p>
+<p>In the <code>@@code</code> section of your "MainLayout.razor", add a new Property:</p>
+<CodeContainer Language="@Language.CSharp">protected UwnSettings UwnSettings { get; set; } = new();</CodeContainer>
+<p>Then configure the settings in either <code>OnInitialized</code>, or <code>OnInitializedAsync</code>:</p>
+<CodeContainer Language="@Language.CSharp">protected override void OnInitialized()
+{
+	UwnSettings.FontAwesomeIconPack = FA.IconPacks.Duotone;
+	UwnSettings.FontAwesomeStyle = FA.Styles.Regular;
+}</CodeContainer>
+
+<p><NavLink href="GettingStarted#topOfPage">Back to top</NavLink></p>
+
+<h3 id="injections" class="mt-4">Required Dependency Injections</h3>
+
+<p>
+	These injections should be present in your "_Imports.razor" file.
+	<br />
+	The instance name does not matter, but the injection types must be present.
+</p>
+<CodeContainer Language="@Language.CSharp">@@inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager
+@@inject Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage.ProtectedLocalStorage LocalStorage
+@@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment WebHostEnvironment
+@@inject Microsoft.JSInterop.IJSRuntime JsRuntime</CodeContainer>
+
+<p><NavLink href="GettingStarted#topOfPage">Back to top</NavLink></p>
+
+<h3 id="translations" class="mt-4">Custom Translations</h3>
+
+<p>
+	Some Uwn.Razor components use localization, for example in the <code>ModalDialog</code> component.
+	<br />
+	There are pre-defined text resources for English and German, but you can also add more languages, or override these pre-defined resources with your own values.
+	<br />
+	See <NavLink href="@RouteStrings.ResourcesTextResources">TextResources</NavLink> for more details.
+</p>
+
+<p>
+	When initializing <code>UwnSettings</code> (see <NavLink href="GettingStarted#uwnSettings">above</NavLink>), you can assign a <code>Dictionary&lt;string, string&gt;</code> to the <code>Translations</code> Property of <code>UwnSettings</code>.
+	<br />
+	The <code>Key</code> in that Dictionary must be one of the localization keys present in <NavLink href="@RouteStrings.ResourcesTextResources">TextResources</NavLink>.
+	<br />
+	The <code>Value</code> will be your custom translation for that entry.
+</p>
+
+<p class="fst-italic">
+	Please note that it is currently not possible to add new languages by using this Dictionary.
+	<br />
+	You must fill the Dictionary with values for the currently requested language.
+</p>
+
+<CodeContainer Language="@Language.CSharp">UwnSettings.Translations = new Dictionary&lt;string, string&gt;
+{
+	{ &quot;AddNewCommand&quot;, &quot;A&#241;adir Nuevo&quot; },
+	{ &quot;CancelCommand&quot;, &quot;Cancelar&quot; },
+	{ &quot;CloseCommand&quot;, &quot;Cerrar&quot; },
+	{ &quot;EditCommand&quot;, &quot;Editar&quot; },
+	{ &quot;GoBackCommand&quot;, &quot;Volver&quot; },
+	{ &quot;OkCommand&quot;, &quot;OK&quot; }
+};</CodeContainer>
+
+<p><NavLink href="GettingStarted#topOfPage">Back to top</NavLink></p>

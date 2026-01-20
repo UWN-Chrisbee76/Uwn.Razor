@@ -1,0 +1,39 @@
+﻿@attribute [Route(RouteStrings.ComponentsCommonTextWithIcon)]
+@namespace Uwn.Razor.Demo.Components.Components.Common
+@inherits PageBase<TextWithIconViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;TextWithIcon AdditionalClassNames="@ViewModel.AdditionalClassNames"
+              Content="@ViewModel.Content"
+              Id="@ViewModel.Id"
+              IsVisible="@ViewModel.IsVisible" /&#62;
+	</CodeContainer>
+	<TextWithIcon Model="ViewModel" />
+</DemoContainer>
+
+<ComponentDescriptionContainer Description="Provides a text with an optional icon"
+							   Namespace="Uwn.Razor.Components.Common"
+							   Inherits="UwnComponentBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<ContentEditorRow @bind-Value="ViewModel.Content" />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+	</TableBody>
+</Table>
+
+@code {
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		ViewModel.Content = new("fa-globe", "Hello, World!");
+		ViewModel.Id = null;
+		ViewModel.IsVisible = true;
+	}
+}

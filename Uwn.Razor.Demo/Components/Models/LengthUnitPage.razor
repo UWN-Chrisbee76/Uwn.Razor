@@ -1,0 +1,57 @@
+﻿@attribute [Route(RouteStrings.ModelsLengthUnit)]
+@namespace Uwn.Razor.Demo.Models
+
+<ModelDescriptionContainer IsViewModel="false"
+						   Namespace="Uwn.Razor.Models" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Absolute"
+						  PropertyType="@typeof(AbsoluteLengthUnit)"
+						  PropertyTypeRoute="@RouteStrings.EnumerationsLengthUnits"
+						  Description="Defines the absolute length unit for the Component." />
+		<ModelPropertyRow PropertyName="Relative"
+						  PropertyType="@typeof(RelativeLengthUnit)"
+						  PropertyTypeRoute="@RouteStrings.EnumerationsLengthUnits"
+						  Description="Defines the relative length unit for the Component." />
+		<ModelPropertyRow PropertyName="RawValue"
+						  PropertyType="@typeof(Int32)"
+						  Description="Defines the length unit value for the Component." />
+	</TableBody>
+</Table>
+
+<h4>Constructors</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance with the given absolute length unit
+public LengthUnit(AbsoluteLengthUnit unit) { ... }
+
+// Creates a new instance with the given relative length unit
+public LengthUnit(RelativeLengthUnit unit) { ... }
+
+// Creates a new instance and tries to parse properties from a String
+public LengthUnit(string value) { ... }
+</CodeContainer>
+
+<h4>Implicit Conversions</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance from an absolute length unit
+public static implicit operator LengthUnit(AbsoluteLengthUnit unit) { ... }
+
+// Creates a new instance from a relative length unit
+public static implicit operator LengthUnit(RelativeLengthUnit unit) { ... }
+
+// Creates a new instance from a String
+public static implicit operator LengthUnit(string value) { ... }
+</CodeContainer>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Gets the name of the length unit
+public string GetName() { ... }
+
+// Creates a String representation
+public override string ToString() { ... }
+</CodeContainer>

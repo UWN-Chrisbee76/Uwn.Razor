@@ -1,0 +1,61 @@
+﻿@attribute [Route(RouteStrings.ModelsLinkContent)]
+@namespace Uwn.Razor.Demo.Models
+
+<ModelDescriptionContainer IsViewModel="false"
+						   Namespace="Uwn.Razor.Models"
+						   InheritsType="@typeof(Content)"
+						   InheritsRoute="@RouteStrings.ModelsContent" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Link"
+						  PropertyType="@typeof(Link)"
+						  PropertyTypeRoute="@RouteStrings.ModelsLink"
+						  Description="Defines the link for the Component." />
+	</TableBody>
+</Table>
+
+<h4>Constructors</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance
+public LinkContent() { ... }
+
+// Creates a new instance with the given text
+public LinkContent(string? text) { ... }
+
+// Creates a new instance with the given icon and text
+public LinkContent(string? icon, string? text) { ... }
+
+// Creates a new instance with the given text and link
+public LinkContent(string? text, Link? link) { ... }
+
+// Creates a new instance with the given content
+public LinkContent(Content? content) { ... }
+
+// Creates a new instance with the given link
+public LinkContent(Link? link) { ... }
+
+// Creates a new instance with the given content and link
+public LinkContent(Content? content, Link? link) { ... }
+
+// Creates a new instance with the given icon, text, and link
+public LinkContent(string? icon, string? text, Link? link) { ... }
+</CodeContainer>
+
+<h4>Implicit Conversions</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance from a String
+public static implicit operator LinkContent(string? text) { ... }
+
+// Creates a new instance from a Link
+public static implicit operator LinkContent(Link? link) { ... }
+</CodeContainer>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a String representation
+public override string ToString() { ... }
+</CodeContainer>

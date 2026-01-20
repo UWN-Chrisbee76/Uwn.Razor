@@ -19,7 +19,8 @@ https://razor-demo.ultimatewisdom.net/
 1. Property `Style` is now part of `Appearance`
 1. Property `DropShadow` is now part of `Decorations`, which is part of `Appearance`
 1. Properties `Delay` and `HasCloseButton` are now part of `DismissOptions`
-1. Property `Text` has been renamed to `Content` for consistency
+1. Most `Content` / `Text` properties have been changed to the `Content` type, which includes an optional icon
+1. Moved component `ExternalLink` from `Bootstrap` to `Common`
 
 ## New and Improved in v9.1.0
 
@@ -30,7 +31,6 @@ https://razor-demo.ultimatewisdom.net/
 1. Text and Time elements of the `WaitIndicator` now have an individual `id` each, derived from the `Id` of the `WaitIndicator`
 1. Added static class `IconNames` for commonly used icon names
 1. Added `OnDismissed` callback to `ModalDialog`
-1. Added `TitleIcon` to `ModalDialog`
 1. Added `Header` to `Alert`
 
 ### Component Providers

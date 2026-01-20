@@ -1,0 +1,12 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+@inherits ModelEditorBaseRow<Link>
+
+<tr>
+	<th scope="row">Link</th>
+	<td><code>Link</code></td>
+	<td>(Optional) A Link inside the Component</td>
+	<td></td>
+	<td>
+		<LinkEditor Model="@Value" ModelChanged="v => Value = v" />
+	</td>
+</tr>

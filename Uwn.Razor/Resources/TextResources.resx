@@ -135,6 +135,7 @@
   </data>
   <data name="ExceptionTitle" xml:space="preserve">
     <value>An Exception has occured</value>
+    <comment>Title for an Exception</comment>
   </data>
   <data name="GoBackCommand" xml:space="preserve">
     <value>Go back</value>
@@ -153,7 +154,7 @@
     <comment>A header indicating success</comment>
   </data>
   <data name="SuccessMessage" xml:space="preserve">
-    <value>A message informing about a successful operation</value>
-    <comment>The operation was successful.</comment>
+    <value>The operation was successful.</value>
+    <comment>A message informing about a successful operation</comment>
   </data>
 </root>

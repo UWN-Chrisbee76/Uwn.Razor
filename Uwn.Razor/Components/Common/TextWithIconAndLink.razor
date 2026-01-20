@@ -1,0 +1,27 @@
+﻿@namespace Uwn.Razor.Components.Common
+@using Uwn.Razor.Components.Common.Links
+@using Uwn.Razor.Models.ViewModels.Common
+@inherits UwnComponentBase<TextWithIconAndLinkViewModel>
+
+@if (ViewModel.IsVisible)
+{
+	if (ViewModel.Content is not null && (ViewModel.Content.Icon is not null || ViewModel.Content.Text is not null))
+	{
+		<p>
+			<TextWithIcon Content="ViewModel.Content" />
+		</p>
+	}
+	<Hyperlink Link="ViewModel.Link" />
+}
+
+@code {
+	[Parameter] public Content? Content { get; set; }
+	[Parameter] public Link Link { get; set; } = new(string.Empty);
+
+	protected override TextWithIconAndLinkViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			Content = Content,
+			Link = Link
+		};
+}

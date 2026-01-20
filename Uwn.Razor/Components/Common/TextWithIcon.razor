@@ -1,0 +1,25 @@
+﻿@namespace Uwn.Razor.Components.Common
+@using Uwn.Razor.Models.ViewModels.Common
+@inherits UwnComponentBase<TextWithIconViewModel>
+
+@if (ViewModel.IsVisible)
+{
+	if (ViewModel.Content?.Icon is not null)
+	{
+		@FragmentProvider.BuildFontAwesomeFragment(ViewModel.Content.Icon, "me-1")
+	}
+	if (ViewModel.Content?.Text is not null)
+	{
+		<span>@FragmentProvider.BuildFormattedContent(ViewModel.Content.Text)</span>
+	}
+}
+
+@code {
+	[Parameter] public Content? Content { get; set; }
+
+	protected override TextWithIconViewModel BuildViewModelFromParameters()
+		=> new()
+		{
+			Content = Content
+		};
+}

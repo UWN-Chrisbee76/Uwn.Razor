@@ -1,0 +1,24 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Editors
+@typeparam TModel
+
+<div class="form-check form-switch">
+	<input class="form-check-input"
+		   type="checkbox"
+		   role="switch"
+		   id="@SwitchId"
+		   checked="@HasModel"
+		   @onchange="@(e => OnSwitchChanged((bool)e.Value!))" />
+	<label class="form-check-label" for="@SwitchId">@Label</label>
+</div>
+
+@code {
+	[Parameter] public bool HasModel { get; set; }
+	[Parameter] public EventCallback<bool> HasModelChanged { get; set; }
+	[Parameter] public string Label { get; set; } = "Has Value";
+
+	private readonly string SwitchId = $"switch-{Guid.NewGuid():N}";
+
+	private void OnSwitchChanged(bool value)
+		=> HasModelChanged.InvokeAsync(value);
+}
+

@@ -1,0 +1,47 @@
+﻿@attribute [Route(RouteStrings.EnumerationsBootstrapStyle)]
+@namespace Uwn.Razor.Demo.Components.Enumerations.Bootstrap
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations.Bootstrap;
+
+public enum Style
+{
+	None,
+	Primary,
+	Secondary,
+	Success,
+	Danger,
+	Warning,
+	Info,
+	Light,
+	Dark
+}
+</CodeContainer>
+
+<p>Defines the Bootstrap style for a component.</p>
+
+<CodeContainer Language="Language.CSharp">
+public static class StyleExtender
+{
+	// Get the name of the style
+	public static string GetStyleName(this Style style) { ... }
+
+	// Gets the Alert style CSS class name
+	public static string GetAlertClassName(this Style style) { ... }
+
+	// Gets the Background style CSS class name
+	public static string GetBackgroundClassName(this Style style) { ... }
+
+	// Gets the Border style CSS class name
+	public static string GetBorderClassName(this Style style) { ... }
+
+	// Gets the Text style CSS class name
+	public static string GetTextClassName(this Style style) { ... }
+
+	// Gets the Text Background style CSS class name
+	public static string GetTextBackgroundClassName(this Style style) { ... }
+
+	// Gets all CSS class names
+	public static IEnumerable&lt;string&gt; GetClassNames(this Style style, StyleUsages styleUsages) { ... }
+}
+</CodeContainer>

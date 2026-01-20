@@ -1,0 +1,20 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+
+<tr>
+	<th scope="col">Property</th>
+	<th scope="col">Type</th>
+	<th scope="col">Description</th>
+	@if (!IsBase)
+	{
+		<th scope="col">Remark</th>
+		@if (!IsRoute)
+		{
+			<th scope="col">Value</th>
+		}
+	}
+</tr>
+
+@code {
+	[Parameter] public bool IsBase { get; set; } = false;
+	[Parameter] public bool IsRoute { get; set; } = false;
+}

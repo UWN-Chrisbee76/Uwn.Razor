@@ -1,0 +1,90 @@
+﻿@attribute [Route(RouteStrings.ModelsAppearance)]
+@namespace Uwn.Razor.Demo.Models
+
+<ModelDescriptionContainer IsViewModel="false"
+						   Namespace="Uwn.Razor.Models" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Style"
+						 PropertyType="@typeof(Style)"
+						 PropertyTypeRoute="@RouteStrings.EnumerationsBootstrapStyle"
+						 Description="Defines the style for the Component." />
+		<ModelPropertyRow PropertyName="Decorations"
+						 PropertyType="@typeof(Decorations)"
+						 PropertyTypeRoute="@RouteStrings.EnumerationsBootstrapDecorations"
+						 Description="Defines the decorations for the Component." />
+	</TableBody>
+</Table>
+
+<h4>Constructors</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance
+public Appearance() { ... }
+
+// Creates a new instance, and sets the Style
+public Appearance(Style style) { ... }
+
+// Creates a new instance, and sets the Decorations
+public Appearance(Decorations decorations) { ... }
+
+// Creates a new instance, and sets both Style, and Decorations
+public Appearance(Style style, Decorations decorations) { ... }
+
+// Creates a new instance, and tries to parse Style and Decorations from a String
+public Appearance(string value) { ... }
+</CodeContainer>
+
+<h4>Implicit Conversions</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates and returns a new instance with the given Style
+public static implicit operator Appearance(Style style) { ... }
+
+// Creates and returns a new instance with the given Decorations
+public static implicit operator Appearance(Decorations decorations) { ... }
+
+// Creates and returns a new instance, trying to parse Style and Decorations from the given String
+public static implicit operator Appearance(string value) { ... }
+</CodeContainer>
+
+<h4>Static Factory Properties</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates an Appearance in the Information style
+public static Appearance Information { ... }
+
+// Creates an Appearance in the Information style with shadows
+public static Appearance InformationShadow { ... }
+
+// Creates an Appearance in the Success style
+public static Appearance Success { ... }
+
+// Creates an Appearance in the Success style with shadows
+public static Appearance SuccessShadow { ... }
+
+// Creates an Appearance in the Warning style
+public static Appearance Warning { ... }
+
+// Creates an Appearance in the Warning style with shadows
+public static Appearance WarningShadow { ... }
+
+// Creates an Appearance in the Error style
+public static Appearance Error { ... }
+
+// Creates an Appearance in the Error style with shadows
+public static Appearance ErrorShadow { ... }
+</CodeContainer>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Gets the CSS class names
+public IEnumerable&lt;string&gt; GetClassNames(StyleUsages styleUsages, bool includeDecorations = true) { ... }
+
+// Appends the CSS class names to a StringBuilder
+public void AppendClassNames(StyleUsages styleUsages, StringBuilder builder, bool includeDecorations = true) { ... }
+
+// Creates a String representation
+public override string ToString() { ... }
+</CodeContainer>

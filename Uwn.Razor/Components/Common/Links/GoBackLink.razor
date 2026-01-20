@@ -8,15 +8,16 @@
 		<a id="@ViewModel.Id" class="@ViewModel.AdditionalClassNames" href="@ViewModel.RouteWithId">
 			@if (IsFontAwesomeAvailable)
 			{
-				@FragmentProvider.BuildFontAwesomeFragment(IconNames.ActionBack, "me-1")
+				var icon = ViewModel.Content?.Icon ?? IconNames.ActionBack;
+				@FragmentProvider.BuildFontAwesomeFragment(icon, "me-1")
 			}
-			@if (string.IsNullOrEmpty(ViewModel.Content))
+			@if (ViewModel.Content?.Text is null)
 			{
 				<span>@GetTranslation("GoBackCommand")</span>
 			}
 			else
 			{
-				<span>@ViewModel.Content</span>
+				<span>@ViewModel.Content.Text</span>
 			}
 		</a>
 	</p>

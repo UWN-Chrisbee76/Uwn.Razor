@@ -5,7 +5,7 @@
 @if (ViewModel.IsVisible)
 {
 	<abbr id="@ViewModel.Id" class="@ViewModel.AdditionalClassNames" data-bs-toggle="tooltip" data-bs-placement="@ViewModel.Placement.ToBootstrapName()" data-bs-title="@ViewModel.Content" data-bs-html="@ViewModel.ContentIsHtml.ToString().ToLower()">
-		@ViewModel.ChildContent
+		@ChildContent
 	</abbr>
 }
 

@@ -11,8 +11,7 @@ public sealed class SuccessToast
 	{
 		await base.OnInitializedAsync();
 		Position = Position.FixedBottom;
-		Icon = IconNames.StatusSuccess;
-		Header = GetTranslation("SuccessHeader");
+		Header = new Content(IconNames.StatusSuccess, GetTranslation("SuccessHeader"));
 		Appearance = new(Style.Success, Decorations.Shadow);
 		DismissOptions = DismissOptions.Temporary;
 	}

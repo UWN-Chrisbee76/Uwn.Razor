@@ -1,0 +1,16 @@
+﻿@attribute [Route(RouteStrings.ProvidersAddNewButtonProvider)]
+@namespace Uwn.Razor.Demo.Providers
+
+<ProviderDescriptionContainer ComponentType="@typeof(AddNewButton)"
+							  ComponentRoute="@RouteStrings.ComponentsBootstrapAddNewButton"
+							  Namespace="Uwn.Razor.Providers"
+							  ProviderBaseGenericType="@typeof(AddNewButtonViewModel)"
+							  ProviderBaseGenericTypeRoute="@RouteStrings.ModelsViewModelsBootstrapAddNewButtonViewModel" />
+
+<CodeContainer Language="@Language.HTML">
+&lt;AddNewButton Model="_ViewModel" /&gt;
+
+&lt;CascadingValue Value="_ViewModel" IsFixed="true"&gt;
+	@@ChildContent
+&lt;/CascadingValue&gt;
+</CodeContainer>

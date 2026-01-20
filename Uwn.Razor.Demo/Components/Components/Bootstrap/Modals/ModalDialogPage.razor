@@ -1,0 +1,97 @@
+﻿@attribute [Route(RouteStrings.ComponentsBootstrapModalDialog)]
+@namespace Uwn.Razor.Demo.Components.Components.Bootstrap.Modals
+@inherits PageBase<ModalDialogViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;ModalDialog AdditionalClassNames="@ViewModel.AdditionalClassNames"
+             FullscreenMode="@ViewModel.FullscreenMode"
+             HasOkCommand="@ViewModel.HasOkCommand"
+             HtmlContent="@ViewModel.HtmlContent"
+             Id="@ViewModel.Id"
+             IsAnimated="@ViewModel.IsAnimated"
+             IsCentered="@ViewModel.IsCentered"
+             IsScrollable="@ViewModel.IsScrollable"
+             IsVisible="@ViewModel.IsVisible"
+             OkCommandParameter="@ViewModel.OkCommandParameter"
+             OnDismissed="@ViewModel.OnDismissed"
+             OnOkCommand="@ViewModel.OnOkCommand"
+             Size="@ViewModel.Size"
+             Title="@ViewModel.Title" /&#62;
+&#60;button class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#@ViewModel.Id"&#62;
+	Open Modal Dialog
+&#60;/button&#62;
+	</CodeContainer>
+	<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#@ViewModel.Id">Open Modal Dialog</button>
+	<ModalDialog Model="ViewModel" />
+</DemoContainer>
+
+@if (EventMessage is not null)
+{
+	<Alert Appearance="@EventAppearance" Content="@EventMessage" />
+}
+
+<ComponentDescriptionContainer Description="A modal Dialog"
+							   Namespace="Uwn.Razor.Components.Bootstrap.Modals"
+							   Inherits="UwnComponentBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<ChildContentRow />
+		<GenericEnumRow TEnum="ModalFullscreenMode" Label="FullscreenMode" Description="Determines the fullscreen mode of the modal" @bind-Value="ViewModel.FullscreenMode" />
+		<GenericSwitchRow Label="HasOkCommand" Description="Determines if the modal has an 'OK' button" @bind-Value="ViewModel.HasOkCommand" />
+		<GenericStringRow Label="HtmlContent" Description="(Optional) HTML markup representing the main Content" @bind-Value="ViewModel.HtmlContent" />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<GenericSwitchRow Label="IsAnimated" Description="Determines if the modal is animated" @bind-Value="ViewModel.IsAnimated" />
+		<GenericSwitchRow Label="IsCentered" Description="Determines if the modal is centered" @bind-Value="ViewModel.IsCentered" />
+		<GenericSwitchRow Label="IsScrollable" Description="Determines if the modal is scrollable" @bind-Value="ViewModel.IsScrollable" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+		<GenericStringRow Label="OkCommandParameter" Description="(Optional) Parameter for the OnOkCommand callback" @bind-Value="ViewModel.OkCommandParameter" />
+		<GenericRow Label="OnDismissed" Type="EventCallback" Description="(Optional) Event callback for when the dialog is dismissed" />
+		<GenericRow Label="OnOkCommand" Type="EventCallback<string>" Description="(Optional) Event callback for the 'OK' command" />
+		<GenericEnumRow TEnum="ModalSize" Label="Size" Description="Determines the size of the modal" @bind-Value="ViewModel.Size" />
+		<TitleEditorRow @bind-Value="ViewModel.Title" />
+	</TableBody>
+</Table>
+
+@code {
+	private Appearance EventAppearance { get; set; } = new();
+	private string? EventMessage { get; set; }
+
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		//ViewModel.ChildContent // embedded
+		ViewModel.FullscreenMode = ModalFullscreenMode.None;
+		ViewModel.HasOkCommand = false;
+		ViewModel.HtmlContent = "<h5>Hello!</h5><p>This is a modal dialog.</p>";
+		ViewModel.Id = "uwn-modal-dialog";
+		ViewModel.IsAnimated = true;
+		ViewModel.IsCentered = true;
+		ViewModel.IsScrollable = true;
+		ViewModel.IsVisible = true;
+		ViewModel.OkCommandParameter = null;
+		ViewModel.OnDismissed = EventCallback.Factory.Create(this, OnDismissed); ;
+		ViewModel.OnOkCommand = EventCallback.Factory.Create<string>(this, OnOkCommand);
+		ViewModel.Size = ModalSize.Default;
+		ViewModel.Title = "Modal Dialog Title";
+	}
+
+	private void OnDismissed()
+	{
+		EventAppearance = Appearance.Warning;
+		EventMessage = "You dismissed the modal.";
+	}
+
+	private void OnOkCommand(string? parameter)
+	{
+		EventAppearance = Appearance.Success;
+		EventMessage = $"You confirmed the modal with parameter '{parameter}'.";
+	}
+}

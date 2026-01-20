@@ -1,0 +1,56 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Editors
+@typeparam TEnum
+@using System.ComponentModel
+@using System.Reflection
+@using System.Numerics
+
+<div>
+	@foreach (var value in GetValues())
+	{
+		var name = GetDisplayName(value);
+		<div class="form-check">
+			<input class="form-check-input" id="@value" type="checkbox" checked="@IsChecked(value)" @onchange="@(() => ToggleFlag(value))" />
+			<label class="form-check-label" for="@value">@name</label>
+		</div>
+	}
+</div>
+
+@code {
+	[Parameter]
+	public TEnum Value { get; set; } = default!;
+
+	[Parameter]
+	public EventCallback<TEnum> ValueChanged { get; set; }
+
+	private IEnumerable<TEnum> GetValues()
+	{
+		foreach (var value in Enum.GetValues(typeof(TEnum)).Cast<TEnum>())
+		{
+			if (BitOperations.PopCount(Convert.ToUInt64(value)) == 1)
+				yield return value;
+		}
+	}
+
+	private static string GetDisplayName(TEnum value)
+	{
+		var valueString = value?.ToString() ?? $"{value}";
+		var field = typeof(TEnum).GetField(valueString);
+		return field?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? valueString;
+	}
+	private bool IsChecked(TEnum flag)
+	{
+		var valueLong = Convert.ToInt64(Value);
+		var flagLong = Convert.ToInt64(flag);
+		return (valueLong & flagLong) == flagLong && flagLong != 0;
+	}
+
+	private async Task ToggleFlag(TEnum flag)
+	{
+		var current = Convert.ToInt64(Value);
+		var mask = Convert.ToInt64(flag);
+		var newValue = (current ^ mask);
+		var newEnum = (TEnum)Enum.ToObject(typeof(TEnum), newValue);
+		Value = newEnum;
+		await ValueChanged.InvokeAsync(newEnum);
+	}
+}

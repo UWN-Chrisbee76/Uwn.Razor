@@ -1,0 +1,16 @@
+﻿@attribute [Route(RouteStrings.ProvidersModalDialogProvider)]
+@namespace Uwn.Razor.Demo.Providers
+
+<ProviderDescriptionContainer ComponentType="@typeof(ModalDialog)"
+							  ComponentRoute="@RouteStrings.ComponentsBootstrapModalDialog"
+							  Namespace="Uwn.Razor.Providers"
+							  ProviderBaseGenericType="@typeof(ModalDialogViewModel)"
+							  ProviderBaseGenericTypeRoute="@RouteStrings.ModelsViewModelsBootstrapModalDialogViewModel" />
+
+<CodeContainer Language="@Language.HTML">
+&lt;ModalDialog Model=&quot;_ViewModel&quot; /&gt;
+
+&lt;CascadingValue Value=&quot;_ViewModel&quot; IsFixed=&quot;true&quot;&gt;
+	@@ChildContent
+&lt;/CascadingValue&gt;
+</CodeContainer>

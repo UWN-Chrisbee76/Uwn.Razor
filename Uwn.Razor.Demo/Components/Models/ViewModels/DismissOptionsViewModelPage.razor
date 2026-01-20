@@ -1,0 +1,19 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsDismissOptionsViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels
+
+<ModelDescriptionContainer IsViewModel="true"
+						   Namespace="Uwn.Razor.Models.ViewModels"
+						   InheritsType="@typeof(AppearanceViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsAppearanceViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="DismissOptions"
+						  PropertyType="@typeof(DismissOptions)"
+						  PropertyTypeRoute="@RouteStrings.ModelsDismissOptions"
+						  Description="Defines the dismissal options for the Component." />
+	</TableBody>
+</Table>

@@ -1,0 +1,15 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Containers
+
+<pre><code class="@Language.GetClassName()">@ChildContent</code></pre>
+
+@code {
+	[Parameter] public Language Language { get; set; } = Language.HTML;
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		await base.OnAfterRenderAsync(firstRender);
+		if (JsRuntime is not null)
+			await JsRuntime.InvokeVoidAsync("prismHighlight");
+	}
+}

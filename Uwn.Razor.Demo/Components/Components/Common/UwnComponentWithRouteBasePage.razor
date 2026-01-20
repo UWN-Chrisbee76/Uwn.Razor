@@ -1,0 +1,19 @@
+﻿@attribute [Route(RouteStrings.ComponentsCommonUwnComponentWithRouteBase)]
+@namespace Uwn.Razor.Demo.Components.Components.Common
+
+<ComponentDescriptionContainer Description="This is the abstract base class for all Components that include route data"
+							   Namespace="Uwn.Razor.Components.Common"
+							   Inherits="UwnComponentBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow IsRoute="true" />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow IsRoute="true" />
+		<IdRow IsRoute="true" />
+		<IdStringRow IsRoute="true" />
+		<IsVisibleRow IsRoute="true" />
+		<RouteRow IsRoute="true" />
+	</TableBody>
+</Table>

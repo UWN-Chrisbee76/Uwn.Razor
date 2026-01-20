@@ -1,0 +1,51 @@
+﻿@attribute [Route(RouteStrings.ComponentsBootstrapTooltip)]
+@namespace Uwn.Razor.Demo.Components.Components.Bootstrap
+@inherits PageBase<TooltipViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;Tooltip AdditionalClassNames="@ViewModel.AdditionalClassNames"
+         Content="@ViewModel.Content"
+         ContentIsHtml="@ViewModel.ContentIsHtml"
+         Id="@ViewModel.Id"
+         IsVisible="@ViewModel.IsVisible"
+         Placement="@ViewModel.Placement"&#62;
+             &#60;button class="btn btn-primary"&#62;Button with Tooltip&#60;/button&#62;
+         &#60;/Tooltip&#62;
+	</CodeContainer>
+	<Tooltip Model="ViewModel">
+		<button class="btn btn-primary">Button with Tooltip</button>
+	</Tooltip>
+</DemoContainer>
+
+<ComponentDescriptionContainer Description="Provides a tooltip"
+							   Namespace="Uwn.Razor.Components.Bootstrap"
+							   Inherits="UwnComponentBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<ChildContentRow />
+		<StringContentRow @bind-Value="ViewModel.Content" />
+		<GenericSwitchRow Label="ContentIsHtml" Description="Determines if the content is HTML markup" @bind-Value="ViewModel.ContentIsHtml" />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+		<GenericEnumRow TEnum="Placement" Label="Placement" Description="Determines the placement of the tooltip" @bind-Value="ViewModel.Placement" />
+	</TableBody>
+</Table>
+
+@code {
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		//ViewModel.ChildContent // embedded
+		ViewModel.Content = "Tooltip content";
+		ViewModel.ContentIsHtml = false;
+		ViewModel.Id = null;
+		ViewModel.IsVisible = true;
+		ViewModel.Placement = Placement.Bottom;
+	}
+}

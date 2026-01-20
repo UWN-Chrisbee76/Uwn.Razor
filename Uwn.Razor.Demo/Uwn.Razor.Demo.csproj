@@ -24,11 +24,4 @@
 		<ProjectReference Include="..\Uwn.Razor\Uwn.Razor.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="Components\Enumerations\" />
-		<Folder Include="Components\Models\" />
-		<Folder Include="Components\Services\" />
-		<Folder Include="Components\Resources\" />
-	</ItemGroup>
-
 </Project>

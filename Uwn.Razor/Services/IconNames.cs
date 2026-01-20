@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Uwn.Razor.Services;
+﻿namespace Uwn.Razor.Services;
 
 public static class IconNames
 {
@@ -24,9 +18,14 @@ public static class IconNames
 	public const string ActionSaveAndNew = "fa-floppy-disk-pen";
 	public const string ActionSearch = "fa-magnifying-glass";
 	public const string ActionSelect = "fa-square-check";
+	public const string ActionOk = "fa-check";
+	public const string ActionCancel = "fa-xmark";
+
+	public const string IndicatorExternal = "fa-arrow-up-right-from-square";
 
 	public const string StatusSuccess = "fa-circle-check";
 	public const string StatusInformation = "fa-circle-info";
 	public const string StatusWarning = "fa-circle-exclamation";
 	public const string StatusError = "fa-triangle-exclamation";
+	public const string StatusWorking = "fa-gear fa-spin";
 }

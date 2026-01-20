@@ -9,59 +9,42 @@
 		@if (ViewModel.Header is not null)
 		{
 			<div class="@BuildHeaderClassNames()">
-				@if (ViewModel.HeaderIcon is not null)
-				{
-					@FragmentProvider.BuildFontAwesomeFragment(ViewModel.HeaderIcon, "me-1")
-				}
-				<span>@ViewModel.Header</span>
+				<TextWithIcon Content="ViewModel.Header" />
 			</div>
 		}
 		<div class="card-body">
 			@if (ViewModel.Title is not null)
 			{
 				<h5 class="@BuildTitleClassNames()">
-					@if (ViewModel.TitleIcon is not null)
-					{
-						@FragmentProvider.BuildFontAwesomeFragment(ViewModel.TitleIcon, "fa-lg me-1")
-					}
-					<span>@ViewModel.Title</span>
+					<TextWithIcon Content="ViewModel.Title" />
 				</h5>
 			}
 			@if (ViewModel.SubTitle is not null)
 			{
-				<h6 class="card-subtitle mb-2 text-body-secondary">@ViewModel.SubTitle</h6>
+				<h6 class="card-subtitle mb-2 text-body-secondary">
+					<TextWithIcon Content="ViewModel.SubTitle" />
+				</h6>
 			}
-			<p class="card-text">
-				@FragmentProvider.BuildFormattedContent(ViewModel.Content)
-			</p>
-			<Hyperlink Link="ViewModel.BodyLink" AdditionalClassNames="card-link" />
+			<div class="card-text">
+				<TextWithIconAndLink Content="ViewModel.Content" Link="ViewModel.BodyLink" />
+			</div>
 		</div>
-		@if (ViewModel.FooterText is not null || ViewModel.FooterLink is not null)
+		@if (ViewModel.Footer is not null)
 		{
 			<div class="card-footer">
-				@if (ViewModel.FooterText is not null)
-				{
-					<span>@FragmentProvider.BuildFormattedContent(ViewModel.FooterText)</span>
-				}
-				@if (ViewModel.FooterLink is not null)
-				{
-					<Hyperlink Link="ViewModel.FooterLink" />
-				}
+				<TextWithIconAndLink Content="ViewModel.Footer" Link="ViewModel.Footer.Link" />
 			</div>
 		}
 	</div>
 }
 
 @code {
-	[Parameter] public string? HeaderIcon { get; set; }
-	[Parameter] public string? Header { get; set; }
-	[Parameter] public string? TitleIcon { get; set; }
-	[Parameter] public string? Title { get; set; }
-	[Parameter] public string? SubTitle { get; set; }
-	[Parameter] public string? Content { get; set; }
+	[Parameter] public Content? Header { get; set; }
+	[Parameter] public Content? Title { get; set; }
+	[Parameter] public Content? SubTitle { get; set; }
+	[Parameter] public Content? Content { get; set; }
 	[Parameter] public Link? BodyLink { get; set; }
-	[Parameter] public string? FooterText { get; set; }
-	[Parameter] public Link? FooterLink { get; set; }
+	[Parameter] public LinkContent? Footer { get; set; }
 	[Parameter] public WidthDefinition? Width { get; set; }
 	[Parameter] public Appearance Appearance { get; set; } = new();
 
@@ -71,13 +54,10 @@
 			Appearance = Appearance,
 			BodyLink = BodyLink,
 			Content = Content,
-			FooterLink = FooterLink,
-			FooterText = FooterText,
+			Footer = Footer,
 			Header = Header,
-			HeaderIcon = HeaderIcon,
 			SubTitle = SubTitle,
 			Title = Title,
-			TitleIcon = TitleIcon,
 			Width = Width
 		};
 

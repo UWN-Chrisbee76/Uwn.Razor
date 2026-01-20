@@ -62,6 +62,7 @@ public abstract class UwnComponentBase<TViewModel>
 
 	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
+		await base.OnAfterRenderAsync(firstRender);
 		if (_doInitializeTooltips &&
 			UsesTooltips &&
 			Capabilities is not null &&

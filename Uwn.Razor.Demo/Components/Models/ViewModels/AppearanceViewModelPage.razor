@@ -1,0 +1,27 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsAppearanceViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels
+
+<ModelDescriptionContainer IsViewModel="true"
+						   Namespace="Uwn.Razor.Models.ViewModels"
+						   InheritsType="@typeof(ContentViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsContentViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Appearance"
+						  PropertyType="@typeof(Appearance)"
+						  PropertyTypeRoute="@RouteStrings.ModelsAppearance"
+						  Description="Defines the Appearance of the Component." />
+	</TableBody>
+</Table>
+
+@*
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Shows an Error-type card with the content built from an Exception
+public async Task ShowExceptionAsync(Exception ex) { ... }
+</CodeContainer>
+*@

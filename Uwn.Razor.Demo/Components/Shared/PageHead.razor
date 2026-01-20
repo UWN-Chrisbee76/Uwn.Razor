@@ -36,14 +36,34 @@
 	protected override void OnInitialized()
 	{
 		base.OnInitialized();
-		var path = NavigationManager.Uri.Replace(NavigationManager.BaseUri, "");
-		var parts = path.Split('/', StringSplitOptions.RemoveEmptyEntries);
-		var currentPath = string.Empty;
-		foreach (var part in parts)
+		NavigationManager.LocationChanged += OnLocationChanged;
+		UpdateContent();
+	}
+
+	private void OnLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+	{
+		UpdateContent();
+		InvokeAsync(StateHasChanged);
+	}
+
+	private void UpdateContent()
+	{
+		PathsAndNames.Clear();
+		string path = NavigationManager.Uri.Replace(NavigationManager.BaseUri, "");
+		string[] parts = path.Split('/', StringSplitOptions.RemoveEmptyEntries);
+		string currentPath = String.Empty;
+		foreach (string part in parts)
 		{
 			currentPath += "/" + part;
-			PathsAndNames.Add(new(currentPath, part));
+			int index = part.IndexOf('#');
+			PathsAndNames.Add(new(currentPath, index >= 0 ? part.Substring(0, index) : part));
 		}
-		LastPathName = PathsAndNames.Last().Name;
+		if (PathsAndNames.Any())
+			LastPathName = PathsAndNames.Last().Name;
+		else
+			LastPathName = "Navigation";
 	}
+
+	public void Dispose()
+		=> NavigationManager.LocationChanged -= OnLocationChanged;
 }

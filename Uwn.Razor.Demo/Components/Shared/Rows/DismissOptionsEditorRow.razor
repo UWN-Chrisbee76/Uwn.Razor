@@ -1,0 +1,32 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+
+<tr>
+	<th scope="row">DismissOptions</th>
+	<td><code>DismissOptions</code></td>
+	<td>Options defining the Component's dismiss behaviour</td>
+	<td></td>
+	<td><DismissOptionsEditor Model="@Value" /></td>
+</tr>
+
+@code {
+#pragma warning disable BL0007 // Component parameter '...' should be auto property
+	private DismissOptions? _value;
+	[Parameter]
+	public DismissOptions? Value
+	{
+		get => _value;
+		set
+		{
+			if (value != _value)
+			{
+				_value = value;
+				ValueChanged.InvokeAsync(_value);
+				if (_value is not null)
+					_value.PropertyChanged += (_, _) => ValueChanged.InvokeAsync(_value);
+			}
+		}
+	}
+#pragma warning restore BL0007
+
+	[Parameter] public EventCallback<DismissOptions?> ValueChanged { get; set; }
+}

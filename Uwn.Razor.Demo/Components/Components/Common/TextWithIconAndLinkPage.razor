@@ -1,0 +1,42 @@
+﻿@attribute [Route(RouteStrings.ComponentsCommonTextWithIconAndLink)]
+@namespace Uwn.Razor.Demo.Components.Components.Common
+@inherits PageBase<TextWithIconAndLinkViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;TextWithIconAndLink AdditionalClassNames="@ViewModel.AdditionalClassNames"
+                     Content="@ViewModel.Content"
+                     Id="@ViewModel.Id"
+                     IsVisible="@ViewModel.IsVisible"
+                     Link="@ViewModel.Link" /&#62;
+	</CodeContainer>
+	<TextWithIconAndLink Model="ViewModel" />
+</DemoContainer>
+
+<ComponentDescriptionContainer Description="Provides a text with an optional icon, and a link"
+							   Namespace="Uwn.Razor.Components.Common"
+							   Inherits="UwnComponentBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<ContentEditorRow @bind-Value="ViewModel.Content" />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+		<LinkEditorRow @bind-Value="ViewModel.Link" />
+	</TableBody>
+</Table>
+
+@code {
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		ViewModel.Content = "Follow this link:";
+		ViewModel.Id = null;
+		ViewModel.IsVisible = true;
+		ViewModel.Link = new("fa-code-branch", "Go somewhere", "https://github.com/UWN-Chrisbee76/Uwn.Razor");
+	}
+}

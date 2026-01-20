@@ -1,6 +1,6 @@
 ﻿using Uwn.Mvvm;
 
-namespace Uwn.Razor.Models.ViewModels.Bootstrap.Links;
+namespace Uwn.Razor.Models.ViewModels.Common.Links;
 
 public sealed partial class ExternalLinkViewModel
 	: ChildContentViewModel

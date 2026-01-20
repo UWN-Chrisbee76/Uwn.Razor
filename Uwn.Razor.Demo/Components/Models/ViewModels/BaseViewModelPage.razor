@@ -1,0 +1,40 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsBaseViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels
+
+<ModelDescriptionContainer IsViewModel="true"
+						   Namespace="Uwn.Razor.Models.ViewModels" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="AdditionalClassNames"
+						  PropertyType="@typeof(String)"
+						  Description="Defines additional CSS class names for the Component." />
+		<ModelPropertyRow PropertyName="Id"
+						  PropertyType="@typeof(String)"
+						  Description="Defines the ID of the Component." />
+		<ModelPropertyRow PropertyName="IsVisible"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Defines if the Component is visible." />
+	</TableBody>
+</Table>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Shows the Component
+public virtual void Show() { ... }
+
+// Hides the Component
+public virtual void Hide() { ... }
+
+// Shows the Component
+public virtual async Task ShowAsync() { ... }
+
+// Hides the Component
+public virtual async Task HideAsync() { ... }
+
+// Resets all properties of the Component
+public void Reset() { ... }
+</CodeContainer>

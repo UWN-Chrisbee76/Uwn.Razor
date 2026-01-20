@@ -1,0 +1,33 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Containers
+
+<p class="m-4">
+	<strong>Description:</strong>
+	<br />
+	<span class="ps-4">@Description</span>
+	<br />
+	<strong>Namespace:</strong>
+	<br />
+	<code class="ps-4">@Namespace</code>
+	@if (Inherits is not null)
+	{
+		<br />
+		<strong>Inherits:</strong>
+		<br />
+		<code class="ps-4">@Inherits</code>
+	}
+	@if (CssClasses is not null)
+	{
+		var content = string.Join(", ", CssClasses);
+		<br />
+		<strong>CSS class(es):</strong>
+		<br />
+		<code class="ps-4">@content</code>
+	}
+</p>
+
+@code {
+	[Parameter] public string Description { get; set; } = string.Empty;
+	[Parameter] public string Namespace { get; set; } = string.Empty;
+	[Parameter] public string? Inherits { get; set; }
+	[Parameter] public string[]? CssClasses { get; set; }
+}

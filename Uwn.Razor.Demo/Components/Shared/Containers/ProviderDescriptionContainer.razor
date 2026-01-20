@@ -1,0 +1,42 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Containers
+
+<p class="mb-4">
+	@if (ComponentType is not null)
+	{
+		<strong>Description:</strong>
+		<br />
+		<span class="ps-4">Provider for the <NavLink Href="@ComponentRoute">@ComponentTypeName</NavLink> Component.</span>
+		<br />
+	}
+	<strong>Namespace:</strong>
+	<br />
+	<code class="ps-4">@Namespace</code>
+	@if (ProviderBaseGenericType is not null)
+	{
+		<br />
+		<strong>Inherits:</strong>
+		<br />
+		<NavLink Href="@RouteStrings.ProvidersProviderBase" class="ps-4">ProviderBase</NavLink>
+		<span>&lt;</span>
+		@if (ProviderBaseGenericTypeRoute is not null)
+		{
+			<NavLink Href="@ProviderBaseGenericTypeRoute">@ProviderBaseGenericTypeName</NavLink>
+		}
+		else
+		{
+			<code>@ProviderBaseGenericTypeName</code>
+		}
+		<span>&gt;</span>
+	}
+</p>
+
+@code {
+	[Parameter] public Type? ComponentType { get; set; }
+	[Parameter] public string? ComponentRoute { get; set; }
+	[Parameter] public string? Namespace { get; set; }
+	[Parameter] public Type? ProviderBaseGenericType { get; set; }
+	[Parameter] public string? ProviderBaseGenericTypeRoute { get; set; }
+
+	private string ComponentTypeName => ComponentType?.Name ?? "(undefined)";
+	private string? ProviderBaseGenericTypeName => ProviderBaseGenericType?.Name;
+}

@@ -1,0 +1,87 @@
+﻿@attribute [Route(RouteStrings.ResourcesTextResources)]
+@namespace Uwn.Razor.Demo.Resources
+
+<p class="mb-4">
+	<strong>Namespace:</strong>
+	<br />
+	<code class="ps-4">Uwn.Razor.Resources</code>
+</p>
+
+<p>
+	<span>This RESX resource contains the default translations for components that are using standard texts.</span>
+	<br />
+	<span>If a text is not available in a certain language, it falls back to the Neutral language.</span>
+</p>
+
+<Table Purpose="@TablePurpose.Editor">
+	<TableHead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Comment</th>
+			<th scope="col">Neutral</th>
+			<th scope="col">German</th>
+		</tr>
+	</TableHead>
+	<TableBody>
+		<tr>
+			<th scope="row">AddNewCommand</th>
+			<td>Command for adding a new item</td>
+			<td>Add New</td>
+			<td>Neues Element</td>
+		</tr>
+		<tr>
+			<th scope="row">CancelCommand</th>
+			<td>Command for cancelling an action</td>
+			<td>Cancel</td>
+			<td>Abbrechen</td>
+		</tr>
+		<tr>
+			<th scope="row">CloseCommand</th>
+			<td>Command for closing a Window or Dialog</td>
+			<td>Close</td>
+			<td>Schließen</td>
+		</tr>
+		<tr>
+			<th scope="row">EditCommand</th>
+			<td>Command for editing an item</td>
+			<td>Edit</td>
+			<td>Bearbeiten</td>
+		</tr>
+		<tr>
+			<th scope="row">ExceptionTitle</th>
+			<td>Title for an Exception</td>
+			<td>An Exception has occured</td>
+			<td>Eine Ausnahme ist aufgetreten</td>
+		</tr>
+		<tr>
+			<th scope="row">GoBackCommand</th>
+			<td>Command for the "Go back" navigation action</td>
+			<td>Go back</td>
+			<td>Zurück</td>
+		</tr>
+		<tr>
+			<th scope="row">OkCommand</th>
+			<td>Command for confirming an action</td>
+			<td>OK</td>
+			<td></td>
+		</tr>
+		<tr>
+			<th scope="row">PleaseWaitMessage</th>
+			<td>A message saying "Please wait"</td>
+			<td>Please wait</td>
+			<td>Bitte warten</td>
+		</tr>
+		<tr>
+			<th scope="row">SuccessHeader</th>
+			<td>A header indicating success</td>
+			<td>Success</td>
+			<td>Erfolg</td>
+		</tr>
+		<tr>
+			<th scope="row">SuccessMessage</th>
+			<td>A message informing about a successful operation</td>
+			<td>The operation was successful.</td>
+			<td>Die Aktion war erfolgreich.</td>
+		</tr>
+	</TableBody>
+</Table>

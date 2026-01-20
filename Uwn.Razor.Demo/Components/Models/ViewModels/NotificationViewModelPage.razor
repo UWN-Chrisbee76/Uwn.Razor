@@ -1,0 +1,23 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsNotificationViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels
+
+<ModelDescriptionContainer IsViewModel="true"
+						   Namespace="Uwn.Razor.Models.ViewModels"
+						   InheritsType="@typeof(DismissOptionsViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsDismissOptionsViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Position"
+						  PropertyType="@typeof(Position)"
+						  PropertyTypeRoute="@RouteStrings.EnumerationsBootstrapPosition"
+						  Description="Defines the position of the Component." />
+		<ModelPropertyRow PropertyName="Header"
+						  PropertyType="@typeof(Content)"
+						  PropertyTypeRoute="@RouteStrings.ModelsContent"
+						  Description="Defines the optional header of the Component." />
+	</TableBody>
+</Table>

@@ -1,0 +1,32 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+
+<tr>
+	<th scope="row">Appearance</th>
+	<td><code>Appearance</code></td>
+	<td>Options defining the Component's appearance</td>
+	<td></td>
+	<td><AppearanceEditor Model="@Value" /></td>
+</tr>
+
+@code {
+#pragma warning disable BL0007 // Component parameter '...' should be auto property
+	private Appearance? _value;
+	[Parameter]
+	public Appearance? Value
+	{
+		get => _value;
+		set
+		{
+			if (value != _value)
+			{
+				_value = value;
+				ValueChanged.InvokeAsync(_value);
+				if (_value is not null)
+					_value.PropertyChanged += (_, _) => ValueChanged.InvokeAsync(_value);
+			}
+		}
+	}
+#pragma warning restore BL0007
+
+	[Parameter] public EventCallback<Appearance?> ValueChanged { get; set; }
+}

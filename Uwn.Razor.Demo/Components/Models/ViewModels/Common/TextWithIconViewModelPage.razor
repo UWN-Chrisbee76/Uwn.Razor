@@ -1,0 +1,9 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsCommonTextWithIconViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Common
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(TextWithIcon)"
+						   ComponentRoute="@RouteStrings.ComponentsCommonTextWithIcon"
+						   Namespace="Uwn.Razor.Models.ViewModels.Common"
+						   InheritsType="@typeof(ContentViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsContentViewModel" />

@@ -1,0 +1,45 @@
+﻿@attribute [Route(RouteStrings.EnumerationsBootstrapDecorations)]
+@namespace Uwn.Razor.Demo.Components.Enumerations.Bootstrap
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations.Bootstrap;
+
+[Flags]
+public enum Decorations
+{
+	None = 0,           // 0
+
+	Rounded = 1 &#60;&#60; 0,   // 1
+	Shadow = 1 &#60;&#60; 1,    // 2
+
+	All = Rounded | Shadow
+}
+</CodeContainer>
+
+<ul>
+	<li>
+		<strong>Rounded:</strong>
+		<span>Adds the "rounded" CSS class to the Component</span>
+	</li>
+	<li>
+		<strong>Shadow:</strong>
+		<span>Adds the "shadow" CSS class to the Component</span>
+	</li>
+</ul>
+
+<CodeContainer Language="Language.CSharp">
+public static class DecorationsExtender
+{
+	// Get the CSS class name for the given flag
+	public static string GetClassName(this Decorations decoration) { ... }
+
+	// Get the CSS class names for the given flags
+	public static IEnumerable&#60;string&#62; GetClassNames(this Decorations decorations) { ... }
+
+	// Append the StringBuilder with the CSS class names for the given flags
+	public static void AppendClassNames(this Decorations decorations, StringBuilder builder) { ... }
+
+	// Get the individual flags that are set
+	public static IEnumerable&#60;Decorations&#62; GetFlags() { ... }
+}
+</CodeContainer>

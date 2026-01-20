@@ -1,0 +1,62 @@
+﻿@attribute [Route(RouteStrings.ComponentsBootstrapPagination)]
+@namespace Uwn.Razor.Demo.Components.Components.Bootstrap.Navs
+@inherits PageBase<PaginationViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;Pagination AdditionalClassNames="@ViewModel.AdditionalClassNames"
+            CurrentPage="@ViewModel.CurrentPage"
+            Id="@ViewModel.Id"
+            IsVisible="@ViewModel.IsVisible"
+            MaximumNumberOfLinks="@ViewModel.MaximumNumberOfLinks"
+            NumberOfPages="@ViewModel.NumberOfPages"
+            OnPageSelected="@ViewModel.OnPageSelected" /&#62;
+	</CodeContainer>
+	<Pagination Model="ViewModel" />
+</DemoContainer>
+
+@if (EventMessage is not null)
+{
+	<Alert Appearance="Appearance.Information" Content="@EventMessage" />
+}
+
+
+<ComponentDescriptionContainer Description="A pagination nav bar"
+							   Namespace="Uwn.Razor.Components.Bootstrap.Navs"
+							   Inherits="UwnComponentBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<GenericIntRow Label="CurrentPage" Description="The current page (starting at 1)" @bind-Value="ViewModel.CurrentPage" />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+		<GenericIntRow Label="MaximumNumberOfLinks" Description="The maximum number of page links to show in the bar" @bind-Value="ViewModel.MaximumNumberOfLinks" />
+		<GenericIntRow Label="NumberOfPages" Description=" 	The total number of pages" @bind-Value="ViewModel.NumberOfPages" />
+		<GenericRow Label="OnPageSelected" Type="EventCallback<int>" Description="Callback for the selection of a page" />
+	</TableBody>
+</Table>
+
+@code {
+	private string? EventMessage { get; set; }
+
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		ViewModel.CurrentPage = 1;
+		ViewModel.Id = null;
+		ViewModel.IsVisible = true;
+		ViewModel.MaximumNumberOfLinks = 11;
+		ViewModel.NumberOfPages = 20;
+		ViewModel.OnPageSelected = EventCallback.Factory.Create<int>(this, OnPageSelected);
+	}
+
+	private void OnPageSelected(int page)
+	{
+		ViewModel.CurrentPage = page;
+		EventMessage = $"You selected page '{page}'.";
+	}
+}

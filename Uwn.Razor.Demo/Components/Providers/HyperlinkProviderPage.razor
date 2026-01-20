@@ -1,0 +1,16 @@
+﻿@attribute [Route(RouteStrings.ProvidersHyperlinkProvider)]
+@namespace Uwn.Razor.Demo.Providers
+
+<ProviderDescriptionContainer ComponentType="@typeof(Hyperlink)"
+							  ComponentRoute="@RouteStrings.ComponentsCommonHyperlink"
+							  Namespace="Uwn.Razor.Providers"
+							  ProviderBaseGenericType="@typeof(HyperlinkViewModel)"
+							  ProviderBaseGenericTypeRoute="@RouteStrings.ModelsViewModelsCommonHyperlinkViewModel" />
+
+<CodeContainer Language="@Language.HTML">
+&lt;Hyperlink Model=&quot;_ViewModel&quot; /&gt;
+
+&lt;CascadingValue Value=&quot;_ViewModel&quot; IsFixed=&quot;true&quot;&gt;
+	@@ChildContent
+&lt;/CascadingValue&gt;
+</CodeContainer>

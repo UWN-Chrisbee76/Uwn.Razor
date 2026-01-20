@@ -1,0 +1,45 @@
+﻿@attribute [Route(RouteStrings.ModelsLink)]
+@namespace Uwn.Razor.Demo.Models
+
+<ModelDescriptionContainer IsViewModel="false"
+						   Namespace="Uwn.Razor.Models"
+						   InheritsType="@typeof(Content)"
+						   InheritsRoute="@RouteStrings.ModelsContent" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Href"
+						  PropertyType="@typeof(String)"
+						  Description="Defines the href for the Component." />
+	</TableBody>
+</Table>
+
+<h4>Constructors</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance
+public Link() { ... }
+
+// Creates a new instance with the given href
+public Link(string href) { ... }
+
+// Creates a new instance with the given text and href
+public Link(string? text, string href) { ... }
+
+// Creates a new instance with the given icon, text and href
+public Link(string? icon, string? text, string href) { ... }
+</CodeContainer>
+
+<h4>Implicit Conversions</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance from a String
+public static implicit operator Link(string href) { ... }
+</CodeContainer>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a String representation
+public override string ToString() { ... }
+</CodeContainer>

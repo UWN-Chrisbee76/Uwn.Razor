@@ -1,0 +1,19 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Editors
+@inherits ModelEditorBase<LinkContent>
+
+@RenderSwitch
+
+@if (HasModel)
+{
+	<strong>Icon (FA)</strong>
+	<InputText class="form-control w-8" @bind-Value="Model.Icon" @oninput="() => ModelChanged.InvokeAsync(Model)" />
+
+	<strong>Text</strong>
+	<InputText class="form-control w-8" @bind-Value="Model.Text" @oninput="() => ModelChanged.InvokeAsync(Model)" />
+
+	<LinkEditor Model="@Model.Link" ModelChanged="v => Model = v" />
+}
+
+@code {
+	protected override string GetLabel() => "Has Content";
+}

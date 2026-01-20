@@ -1,0 +1,17 @@
+﻿@attribute [Route(RouteStrings.ProvidersProviderBase)]
+@namespace Uwn.Razor.Demo.Providers
+
+<ProviderDescriptionContainer Namespace="Uwn.Razor.Providers" />
+
+<p>This is the base component for all Providers.</p>
+
+<CodeContainer Language="@Language.CSharp">
+public abstract class ProviderBase&lt;TViewModel&gt;
+	: ComponentBase, IDisposable
+	where TViewModel : BaseViewModel, new()
+{
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+
+	...
+}
+</CodeContainer>

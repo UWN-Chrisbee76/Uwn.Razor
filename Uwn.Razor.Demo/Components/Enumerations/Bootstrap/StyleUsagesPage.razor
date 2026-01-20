@@ -1,0 +1,20 @@
+﻿@attribute [Route(RouteStrings.EnumerationsBootstrapStyleUsages)]
+@namespace Uwn.Razor.Demo.Components.Enumerations.Bootstrap
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations.Bootstrap;
+
+[Flags]
+public enum StyleUsages
+{
+	None = 0,
+
+	Alert = 1 &lt;&lt; 0,         //  1
+	Background = 1 &lt;&lt; 1,    //  2
+	Border = 1 &lt;&lt; 2,        //  4
+	Text = 1 &lt;&lt; 3,          //  8
+	TextBackground = 1 &lt;&lt; 4 // 16
+}
+</CodeContainer>
+
+<p>Defines the possible usages for <NavLink href="@RouteStrings.EnumerationsBootstrapStyle">Styles</NavLink>.</p>

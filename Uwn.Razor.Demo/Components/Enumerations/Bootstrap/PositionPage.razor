@@ -1,0 +1,34 @@
+﻿@attribute [Route(RouteStrings.EnumerationsBootstrapPosition)]
+@namespace Uwn.Razor.Demo.Components.Enumerations.Bootstrap
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations.Bootstrap;
+
+public enum Position
+{
+	None,
+	FixedTop,
+	FixedBottom,
+	StickyTop,
+	StickyBottom
+}
+</CodeContainer>
+
+<p>Defines the position for an <NavLink href="@RouteStrings.ComponentsBootstrapAlert">Alert</NavLink> or <NavLink href="@RouteStrings.ComponentsBootstrapToast">Toast</NavLink> component.</p>
+
+<CodeContainer Language="Language.CSharp">
+public static class PositionExtender
+{
+	// Get the CSS class name
+	public static string GetClassName(this Position position) { ... }
+
+	// Get the additional CSS class name
+	public static string GetAdditionalClassName(this Position position) { ... }
+
+	// Gets both the default and additional CSS class names
+	public static IEnumerable&lt;string&gt; GetClassNames(this Position position) { ... }
+
+	// Adds both the default and additional CSS class names to a StringBuilder
+	public static void AppendClassNames(this Position position, StringBuilder builder) { ... }
+}
+</CodeContainer>

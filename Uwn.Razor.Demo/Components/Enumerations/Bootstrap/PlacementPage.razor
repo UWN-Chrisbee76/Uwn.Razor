@@ -1,0 +1,24 @@
+﻿@attribute [Route(RouteStrings.EnumerationsBootstrapPlacement)]
+@namespace Uwn.Razor.Demo.Components.Enumerations.Bootstrap
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations.Bootstrap;
+
+public enum Placement
+{
+	Top,
+	Left,
+	Bottom,
+	Right
+}
+</CodeContainer>
+
+<p>Defines the placement for a <NavLink href="@RouteStrings.ComponentsBootstrapTooltip">Tooltip</NavLink> in relation to the parent element.</p>
+
+<CodeContainer Language="Language.CSharp">
+public static class PlacementExtender
+{
+	// Get the CSS class name
+	public static string ToBootstrapName(this Placement placement) { ... }
+}
+</CodeContainer>

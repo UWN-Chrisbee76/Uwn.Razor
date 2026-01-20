@@ -1,0 +1,19 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsContentViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels
+
+<ModelDescriptionContainer IsViewModel="true"
+						   Namespace="Uwn.Razor.Models.ViewModels"
+						   InheritsType="@typeof(BaseViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsBaseViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Content"
+						  PropertyType="@typeof(Content)"
+						  PropertyTypeRoute="@RouteStrings.ModelsContent"
+						  Description="Defines the content of the Component." />
+	</TableBody>
+</Table>

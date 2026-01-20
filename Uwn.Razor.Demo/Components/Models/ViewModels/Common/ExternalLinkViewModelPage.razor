@@ -1,0 +1,28 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsCommonExternalLinkViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Common
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(ExternalLink)"
+						   ComponentRoute="@RouteStrings.ComponentsCommonExternalLink"
+						   Namespace="Uwn.Razor.Models.ViewModels.Common.Links"
+						   InheritsType="@typeof(ChildContentViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsChildContentViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Href"
+						  PropertyType="@typeof(String)"
+						  Description="Defines the href content for the Component." />
+	</TableBody>
+</Table>
+
+@*
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Shows an Error-type card with the content built from an Exception
+public async Task ShowExceptionAsync(Exception ex) { ... }
+</CodeContainer>
+*@

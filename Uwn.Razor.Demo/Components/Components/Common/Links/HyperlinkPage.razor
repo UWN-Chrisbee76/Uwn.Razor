@@ -1,0 +1,39 @@
+﻿@attribute [Route(RouteStrings.ComponentsCommonHyperlink)]
+@namespace Uwn.Razor.Demo.Components.Components.Common.Links
+@inherits PageBase<HyperlinkViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;Hyperlink AdditionalClassNames="@ViewModel.AdditionalClassNames"
+           Id="@ViewModel.Id"
+           IsVisible="@ViewModel.IsVisible"
+           Link="@ViewModel.Link" /&#62;
+	</CodeContainer>
+	<Hyperlink Model="ViewModel" />
+</DemoContainer>
+
+<ComponentDescriptionContainer Description="Provides a hyperlink with an optional icon"
+							   Namespace="Uwn.Razor.Components.Common.Links"
+							   Inherits="UwnComponentWithRouteBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+		<LinkEditorRow @bind-Value="ViewModel.Link" />
+	</TableBody>
+</Table>
+
+@code {
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		ViewModel.Id = null;
+		ViewModel.IsVisible = true;
+		ViewModel.Link = new("Let's go somewhere", "https://github.com/UWN-Chrisbee76/Uwn.Razor");
+	}
+}

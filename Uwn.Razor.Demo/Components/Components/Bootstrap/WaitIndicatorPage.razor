@@ -1,0 +1,48 @@
+﻿@attribute [Route(RouteStrings.ComponentsBootstrapWaitIndicator)]
+@namespace Uwn.Razor.Demo.Components.Components.Bootstrap
+@inherits PageBase<WaitIndicatorViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;WaitIndicator AdditionalClassNames="@ViewModel.AdditionalClassNames"
+               DisplayText="@ViewModel.DisplayText"
+               DisplayTime="@ViewModel.DisplayTime"
+               Fullscreen="@ViewModel.Fullscreen"
+               Id="@ViewModel.Id"
+               IsVisible="@ViewModel.IsVisible"
+               MinimumBusyMilliseconds="@ViewModel.MinimumBusyMilliseconds" /&#62;
+	</CodeContainer>
+	<WaitIndicator Model="ViewModel" />
+</DemoContainer>
+
+<ComponentDescriptionContainer Description="Provides a wait indicator - either inline, or fullscreen"
+							   Namespace="Uwn.Razor.Components.Bootstrap"
+							   Inherits="UwnComponentBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<GenericSwitchRow Label="DisplayText" Description="Determines if the indicator should show a 'Please wait' message" @bind-Value="ViewModel.DisplayText" />
+		<GenericSwitchRow Label="DisplayTime" Description="Determines if the indicator should show the waiting time that has passed" @bind-Value="ViewModel.DisplayTime" />
+		<GenericSwitchRow Label="Fullscreen" Description="Determines if the indicator should be full-screen" @bind-Value="ViewModel.Fullscreen" />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+		<GenericIntRow Label="MinimumBusyMilliseconds" Description="The minimum number of milliseconds the indicator will stay visible" @bind-Value="ViewModel.MinimumBusyMilliseconds" />
+	</TableBody>
+</Table>
+
+@code {
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		ViewModel.DisplayText = true;
+		ViewModel.DisplayTime = true;
+		ViewModel.Fullscreen = false;
+		ViewModel.Id = null;
+		ViewModel.IsVisible = true;
+		ViewModel.MinimumBusyMilliseconds = 500;
+	}
+}

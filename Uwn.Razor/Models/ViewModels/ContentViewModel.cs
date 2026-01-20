@@ -2,8 +2,8 @@
 
 namespace Uwn.Razor.Models.ViewModels;
 
-public abstract partial class ContentViewModel
+public partial class ContentViewModel
 	: BaseViewModel
 {
-	[ObservableProperty] private string? _content;
+	[ObservableProperty] private Content? _content;
 }

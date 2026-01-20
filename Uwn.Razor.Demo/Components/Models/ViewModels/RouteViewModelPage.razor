@@ -1,0 +1,28 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsRouteViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels
+
+<ModelDescriptionContainer IsViewModel="true"
+						   Namespace="Uwn.Razor.Models.ViewModels"
+						   InheritsType="@typeof(ContentViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsContentViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Route"
+						  PropertyType="@typeof(String)"
+						  Description="Defines the route for the Component." />
+		<ModelPropertyRow PropertyName="IdString"
+						  PropertyType="@typeof(String)"
+						  Description="Defines the optional ID for the route of the Component." />
+	</TableBody>
+</Table>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Shows the Component
+public virtual async Task ShowAsync(string route, string? idString = null) { ... }
+</CodeContainer>
+

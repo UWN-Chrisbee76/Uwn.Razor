@@ -1,0 +1,33 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsBootstrapTooltipViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Bootstrap
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(Tooltip)"
+						   ComponentRoute="@RouteStrings.ComponentsBootstrapTooltip"
+						   Namespace="Uwn.Razor.Models.ViewModels.Bootstrap"
+						   InheritsType="@typeof(ChildContentViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsChildContentViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Placement"
+						  PropertyType="@typeof(Placement)"
+						  PropertyTypeRoute="@RouteStrings.EnumerationsBootstrapPlacement"
+						  Description="Defines the placement of the Component." />
+		<ModelPropertyRow PropertyName="Content"
+						  PropertyType="@typeof(String)"
+						  Description="Defines the optional content of the Component." />
+		<ModelPropertyRow PropertyName="ContentIsHtml"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Defines if the Component's content is HTML code." />
+	</TableBody>
+</Table>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Shows the Tooltip
+public async Task ShowAsync(string content, bool contentIsHtml = false) { ... }
+</CodeContainer>

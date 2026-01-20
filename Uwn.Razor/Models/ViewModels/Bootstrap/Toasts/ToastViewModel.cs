@@ -16,8 +16,7 @@ public sealed partial class ToastViewModel
 		Reset();
 		Appearance = new Appearance(Style.Success);
 		Header = header;
-		Icon = IconNames.StatusSuccess;
-		Content = message;
+		Content = new(IconNames.StatusSuccess, message);
 		DismissOptions = DismissOptions.Temporary;
 		await ShowAsync();
 	}
@@ -29,8 +28,7 @@ public sealed partial class ToastViewModel
 		Reset();
 		Appearance = new Appearance(Style.Info);
 		Header = header;
-		Icon = IconNames.StatusInformation;
-		Content = message;
+		Content = new(IconNames.StatusInformation, message);
 		DismissOptions = DismissOptions.Temporary;
 		await ShowAsync();
 	}
@@ -42,8 +40,7 @@ public sealed partial class ToastViewModel
 		Reset();
 		Appearance = new Appearance(Style.Warning);
 		Header = header;
-		Icon = IconNames.StatusWarning;
-		Content = message;
+		Content = new(IconNames.StatusWarning, message);
 		DismissOptions = DismissOptions.Permanent;
 		await ShowAsync();
 	}
@@ -55,8 +52,7 @@ public sealed partial class ToastViewModel
 		Reset();
 		Appearance = new Appearance(Style.Danger);
 		Header = header;
-		Icon = IconNames.StatusError;
-		Content = message;
+		Content = new(IconNames.StatusError, message);
 		DismissOptions = DismissOptions.Permanent;
 		await ShowAsync();
 	}

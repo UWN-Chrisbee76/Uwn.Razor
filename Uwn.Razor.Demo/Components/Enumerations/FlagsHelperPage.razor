@@ -1,0 +1,26 @@
+﻿@attribute [Route(RouteStrings.EnumerationsFlagsHelper)]
+@namespace Uwn.Razor.Demo.Components.Enumerations
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations;
+
+public sealed class FlagsHelper
+{
+	// Determines if a flags enum value has no flags set
+	public static bool HasNoFlagsSet&lt;T&gt;(T value) where T : Enum { ... }
+
+	// Determines if a flags enum value has any flag set
+	public static bool HasAnyFlagsSet&lt;T&gt;(T value) where T : Enum { ... }
+
+	// Determines if a flags enum value has multiple flags set
+	public static bool HasMultipleFlagsSet&lt;T&gt;(T value) where T : Enum { ... }
+
+	// Determines if a flags enum value has no, or multiple flags set
+	public static bool HasNoOrMultipleFlagsSet&lt;T&gt;(T value) where T : Enum { ... }
+
+	// Determines if a flags enum value has exactly one flag set
+	public static bool HasExactlyOneFlagSet&lt;T&gt;(T value) where T : Enum { ... }
+}
+</CodeContainer>
+
+<p>Provides various helper methods regarding Flag enums.</p>

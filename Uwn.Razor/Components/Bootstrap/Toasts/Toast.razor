@@ -5,16 +5,14 @@
 @if (ViewModel.IsVisible)
 {
 	<div id="@ViewModel.Id" class="@BuildClassNames()" role="alert" data-bs-autohide="@AutoHideValue" data-bs-delay="@ViewModel.DismissOptions.Delay">
-		@if (ViewModel.Icon is not null || ViewModel.Header is not null || ViewModel.DismissOptions.HasCloseButton)
+		@if (ViewModel.Header is not null || ViewModel.DismissOptions.HasCloseButton)
 		{
 			<div class="@BuildHeaderClassNames()">
-				@if (ViewModel.Icon is not null)
-				{
-					@FragmentProvider.BuildFontAwesomeFragment(ViewModel.Icon, "me-1")
-				}
 				@if (ViewModel.Header is not null)
 				{
-					<strong class="me-auto">@ViewModel.Header</strong>
+					<strong class="me-auto">
+						<TextWithIcon Content="ViewModel.Header" />
+					</strong>
 				}
 				@if (ViewModel.DismissOptions.HasCloseButton)
 				{
@@ -23,27 +21,33 @@
 			</div>
 		}
 		<div class="toast-body">
-			<p>@FragmentProvider.BuildFormattedContent(ViewModel.Content)</p>
+			<p>
+				<TextWithIcon Content="ViewModel.Content" />
+			</p>
 		</div>
 	</div>
 }
 
 @code {
 	[Parameter] public BS.Position Position { get; set; } = BS.Position.None;
-	[Parameter] public string? Icon { get; set; }
-	[Parameter] public string? Header { get; set; }
-	[Parameter] public string? Content { get; set; }
+	[Parameter] public Content? Header { get; set; }
+	[Parameter] public Content? Content { get; set; }
 	[Parameter] public string TriggerId { get; set; } = string.Empty;
 	[Parameter] public Appearance Appearance { get; set; } = new();
 	[Parameter] public DismissOptions DismissOptions { get; set; } = new(5000, true);
 
 	protected string AutoHideValue => ViewModel.DismissOptions.Delay > 0 ? "true" : "false";
 
+	protected override void OnParametersSet() => base.OnParametersSet();
+
 	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
 		await base.OnAfterRenderAsync(firstRender);
-		if (!string.IsNullOrEmpty(ViewModel.TriggerId) && firstRender && Capabilities is not null && Capabilities.JsModule is not null)
-			_ = Capabilities.JsModule.InvokeAsync<bool>("registerToastTrigger", [Id, ViewModel.TriggerId]);
+		if (!string.IsNullOrEmpty(ViewModel.TriggerId) &&
+			//firstRender &&
+			Capabilities is not null &&
+			Capabilities.JsModule is not null)
+			_ = Capabilities.JsModule.InvokeAsync<bool>("registerToastTrigger", [ViewModel.Id, ViewModel.TriggerId]);
 	}
 
 	protected override ToastViewModel BuildViewModelFromParameters()
@@ -53,7 +57,6 @@
 			Content = Content,
 			DismissOptions = DismissOptions,
 			Header = Header,
-			Icon = Icon,
 			Position = Position,
 			TriggerId = TriggerId
 		};

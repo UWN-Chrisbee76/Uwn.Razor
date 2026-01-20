@@ -1,0 +1,9 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Containers
+
+<div class="bg-light border rounded p-4 mb-2">
+	@ChildContent
+</div>
+
+@code {
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+}

@@ -1,0 +1,16 @@
+﻿@attribute [Route(RouteStrings.ProvidersPaginationProvider)]
+@namespace Uwn.Razor.Demo.Providers
+
+<ProviderDescriptionContainer ComponentType="@typeof(Pagination)"
+							  ComponentRoute="@RouteStrings.ComponentsBootstrapPagination"
+							  Namespace="Uwn.Razor.Providers"
+							  ProviderBaseGenericType="@typeof(PaginationViewModel)"
+							  ProviderBaseGenericTypeRoute="@RouteStrings.ModelsViewModelsBootstrapPaginationViewModel" />
+
+<CodeContainer Language="@Language.HTML">
+&lt;Pagination Model=&quot;_ViewModel&quot; /&gt;
+
+&lt;CascadingValue Value=&quot;_ViewModel&quot; IsFixed=&quot;true&quot;&gt;
+	@@ChildContent
+&lt;/CascadingValue&gt;
+</CodeContainer>

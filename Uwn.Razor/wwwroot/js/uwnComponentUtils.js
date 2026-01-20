@@ -61,3 +61,8 @@ export function showToast(toastId) {
 	}
 	console.log('uwnComponentUtils::showToast("' + toastId + '") => ' + result);
 }
+
+// Create namespace object on window and attach functions that can be used from outside
+window.uwn = window.uwn || {};
+window.uwn.initializeTooltips = initializeTooltips;
+window.uwn.showToast = showToast;

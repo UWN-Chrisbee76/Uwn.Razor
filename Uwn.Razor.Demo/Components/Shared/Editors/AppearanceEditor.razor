@@ -1,0 +1,16 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Editors
+
+<strong>Style</strong>
+<InputSelect class="form-select w-8" @bind-Value="Model.Style">
+	@foreach (var style in Enum.GetValues<Style>())
+	{
+		<option value="@style">@style</option>
+	}
+</InputSelect>
+
+<strong>Decorations</strong>
+<FlagsEnumCheckboxes TEnum="Decorations" @bind-Value="Model.Decorations" />
+
+@code {
+	[Parameter] public Appearance Model { get; set; } = new();
+}

@@ -1,0 +1,47 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsBootstrapCardViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Bootstrap
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(Card)"
+						   ComponentRoute="@RouteStrings.ComponentsBootstrapCard"
+						   Namespace="Uwn.Razor.Models.ViewModels.Bootstrap.Cards"
+						   InheritsType="@typeof(AppearanceViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsAppearanceViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Header"
+						  PropertyType="@typeof(Content)"
+						  PropertyTypeRoute="@RouteStrings.ModelsContent"
+						  Description="Defines the optional header text for the Component." />
+		<ModelPropertyRow PropertyName="Title"
+						  PropertyType="@typeof(Content)"
+						  PropertyTypeRoute="@RouteStrings.ModelsContent"
+						  Description="Defines the optional title text for the Component." />
+		<ModelPropertyRow PropertyName="SubTitle"
+						  PropertyType="@typeof(Content)"
+						  PropertyTypeRoute="@RouteStrings.ModelsContent"
+						  Description="Defines the optional sub-title text for the Component." />
+		<ModelPropertyRow PropertyName="BodyLink"
+						  PropertyType="@typeof(Link)"
+						  PropertyTypeRoute="@RouteStrings.ModelsLink"
+						  Description="Defines the optional Link to include in the body of the Component." />
+		<ModelPropertyRow PropertyName="Footer"
+						  PropertyType="@typeof(LinkContent)"
+						  PropertyTypeRoute="@RouteStrings.ModelsLinkContent"
+						  Description="Defines the optional content for the footer of the Component." />
+		<ModelPropertyRow PropertyName="Width"
+						  PropertyType="@typeof(WidthDefinition)"
+						  PropertyTypeRoute="@RouteStrings.ModelsWidthDefinition"
+						  Description="Defines the optional width of the Component." />
+	</TableBody>
+</Table>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Shows an Error-type card with the content built from an Exception
+public async Task ShowExceptionAsync(Exception ex) { ... }
+</CodeContainer>

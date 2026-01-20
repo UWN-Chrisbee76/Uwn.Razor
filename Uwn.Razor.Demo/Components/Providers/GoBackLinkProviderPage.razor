@@ -1,0 +1,16 @@
+﻿@attribute [Route(RouteStrings.ProvidersGoBackLinkProvider)]
+@namespace Uwn.Razor.Demo.Providers
+
+<ProviderDescriptionContainer ComponentType="@typeof(GoBackLink)"
+							  ComponentRoute="@RouteStrings.ComponentsCommonGoBackLink"
+							  Namespace="Uwn.Razor.Providers"
+							  ProviderBaseGenericType="@typeof(GoBackLinkViewModel)"
+							  ProviderBaseGenericTypeRoute="@RouteStrings.ModelsViewModelsCommonGoBackLinkViewModel" />
+
+<CodeContainer Language="@Language.HTML">
+&lt;GoBackLink Model=&quot;_ViewModel&quot; /&gt;
+
+&lt;CascadingValue Value=&quot;_ViewModel&quot; IsFixed=&quot;true&quot;&gt;
+	@@ChildContent
+&lt;/CascadingValue&gt;
+</CodeContainer>

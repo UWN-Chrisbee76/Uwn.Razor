@@ -13,8 +13,7 @@ public sealed partial class ModalDialogViewModel
 	[ObservableProperty] private bool _isCentered = true;
 	[ObservableProperty] private bool _isScrollable = true;
 	[ObservableProperty] private ModalSize _size = ModalSize.Default;
-	[ObservableProperty] private string? _title;
-	[ObservableProperty] private string? _titleIcon;
+	[ObservableProperty] private Content? _title;
 	[ObservableProperty] private bool _hasOkCommand = true;
 	[ObservableProperty] private EventCallback<string>? _onOkCommand;
 	[ObservableProperty] private string? _okCommandParameter;

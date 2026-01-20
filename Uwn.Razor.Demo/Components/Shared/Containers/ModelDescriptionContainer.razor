@@ -1,0 +1,41 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Containers
+
+<p class="mb-4">
+	@if (ComponentType is not null)
+	{
+		<strong>Description:</strong>
+		<br />
+		<span class="ps-4">@DescriptionType for the <NavLink Href="@ComponentRoute">@ComponentTypeName</NavLink> Component.</span>
+		<br />
+	}
+	<strong>Namespace:</strong>
+	<br />
+	<code class="ps-4">@Namespace</code>
+	@if (InheritsType is not null)
+	{
+		<br />
+		<strong>Inherits:</strong>
+		<br />
+		@if (InheritsRoute is not null)
+		{
+			<NavLink Href="@InheritsRoute" class="ps-4">@InheritsTypeName</NavLink>
+		}
+		else
+		{
+			<code class="ps-4">@InheritsTypeName</code>
+		}
+	}
+</p>
+
+@code {
+	[Parameter] public bool IsViewModel { get; set; }
+	[Parameter] public Type? ComponentType { get; set; }
+	[Parameter] public string? ComponentRoute { get; set; }
+	[Parameter] public string? Namespace { get; set; }
+	[Parameter] public Type? InheritsType { get; set; }
+	[Parameter] public string? InheritsRoute { get; set; }
+
+	private string DescriptionType => IsViewModel ? "View Model" : "Model";
+	private string ComponentTypeName => ComponentType?.Name ?? "(undefined)";
+	private string? InheritsTypeName => InheritsType?.Name;
+}

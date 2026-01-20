@@ -1,0 +1,12 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+
+<GenericEnumRow TEnum="Position"
+				Value="@Value"
+				ValueChanged="ValueChanged"
+				Label="Position"
+				Description="(Optional) The Component's position in the viewport" />
+
+@code {
+	[Parameter] public Position Value { get; set; }
+	[Parameter] public EventCallback<Position> ValueChanged { get; set; }
+}

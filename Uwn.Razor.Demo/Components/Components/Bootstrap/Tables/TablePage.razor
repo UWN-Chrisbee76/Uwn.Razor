@@ -1,0 +1,108 @@
+﻿@attribute [Route(RouteStrings.ComponentsBootstrapTable)]
+@attribute [Route(RouteStrings.ComponentsBootstrapTableBody)]
+@attribute [Route(RouteStrings.ComponentsBootstrapTableFoot)]
+@attribute [Route(RouteStrings.ComponentsBootstrapTableHead)]
+@namespace Uwn.Razor.Demo.Components.Components.Bootstrap.Modals
+@inherits PageBase<TableViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;Table AdditionalClassNames="@ViewModel.AdditionalClassNames"
+       Id="@ViewModel.Id"
+       IsVisible="@ViewModel.IsVisible"
+       Purpose="@ViewModel.Purpose"&#62;
+    &#60;TableHead&#62;
+        &#60;tr&#62;
+            &#60;th scope="col"&#62;ID&#60;/th&#62;
+            &#60;th scope="col"&#62;Item&#60;/th&#62;
+            &#60;th scope="col"&#62;Count&#60;/th&#62;
+        &#60;/tr&#62;
+    &#60;/TableHead&#62;
+    &#60;TableBody&#62;
+        &#60;tr&#62;
+            &#60;th scope="row"&#62;1&#60;/th&#62;
+            &#60;td&#62;Item #1&#60;/td&#62;
+            &#60;td&#62;3&#60;/td&#62;
+        &#60;/tr&#62;
+        &#60;tr&#62;
+            &#60;th scope="row"&#62;2&#60;/th&#62;
+            &#60;td&#62;Item #2&#60;/td&#62;
+            &#60;td&#62;2&#60;/td&#62;
+        &#60;/tr&#62;
+        &#60;tr&#62;
+            &#60;th scope="row"&#62;3&#60;/th&#62;
+            &#60;td&#62;Item #3&#60;/td&#62;
+            &#60;td&#62;1&#60;/td&#62;
+        &#60;/tr&#62;
+    &#60;/TableBody&#62;
+    &#60;TableFoot&#62;
+        &#60;tr&#62;
+            &#60;td&#62;&#60;/td&#62;
+            &#60;td&#62;Total&#60;/td&#62;
+            &#60;th scope="row"&#62;6&#60;/th&#62;
+        &#60;/tr&#62;
+    &#60;/TableFoot&#62;
+&#60;/Table&#62;
+	</CodeContainer>
+	<Table Model="ViewModel">
+		<TableHead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Item</th>
+				<th scope="col">Count</th>
+			</tr>
+		</TableHead>
+		<TableBody>
+			<tr>
+				<th scope="row">1</th>
+				<td>Item #1</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<th scope="row">2</th>
+				<td>Item #2</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<th scope="row">3</th>
+				<td>Item #3</td>
+				<td>1</td>
+			</tr>
+		</TableBody>
+		<TableFoot>
+			<tr>
+				<td></td>
+				<td>Total</td>
+				<th scope="row">6</th>
+			</tr>
+		</TableFoot>
+	</Table>
+</DemoContainer>
+
+<ComponentDescriptionContainer Description="Tables for various purposes"
+							   Namespace="Uwn.Razor.Components.Bootstrap.Tables"
+							   Inherits="UwnComponentBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<ChildContentRow />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+		<GenericEnumRow TEnum="TablePurpose" Label="Purpose" Description="Determines the table's purpose" @bind-Value="ViewModel.Purpose" />
+	</TableBody>
+</Table>
+
+@code {
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		//ViewModel.ChildContent // embedded
+		ViewModel.Id = null;
+		ViewModel.IsVisible = true;
+		ViewModel.Purpose = TablePurpose.Editor;
+	}
+}

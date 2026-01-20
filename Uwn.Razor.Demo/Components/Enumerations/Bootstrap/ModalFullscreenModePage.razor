@@ -1,0 +1,27 @@
+﻿@attribute [Route(RouteStrings.EnumerationsBootstrapModalFullscreenMode)]
+@namespace Uwn.Razor.Demo.Components.Enumerations.Bootstrap
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations.Bootstrap;
+
+public enum ModalFullscreenMode
+{
+	None,
+	Always,
+	BelowSmall,
+	BelowMedium,
+	BelowLarge,
+	BelowExtraLarge,
+	BelowExtraExtraLarge
+}
+</CodeContainer>
+
+<p>If the viewport size matches the given threshold, the <NavLink href="@RouteStrings.ComponentsBootstrapModalDialog">Modal</NavLink> will be shown as fullscreen.</p>
+
+<CodeContainer Language="Language.CSharp">
+public static class ModalFullscreenModeExtender
+{
+	// Get the CSS class name
+	public static string GetClassName(this ModalFullscreenMode mode) { ... }
+}
+</CodeContainer>

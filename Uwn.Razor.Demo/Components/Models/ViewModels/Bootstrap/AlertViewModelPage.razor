@@ -1,0 +1,51 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsBootstrapAlertViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Bootstrap
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(Alert)"
+						   ComponentRoute="@RouteStrings.ComponentsBootstrapAlert"
+						   Namespace="Uwn.Razor.Models.ViewModels.Bootstrap.Alerts"
+						   InheritsType="@typeof(NotificationViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsNotificationViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Width"
+						  PropertyType="@typeof(WidthDefinition)"
+						  PropertyTypeRoute="@RouteStrings.ModelsWidthDefinition"
+						  Description="Defines the width of the Component." />
+	</TableBody>
+</Table>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Shows a Success-type Alert with a default header
+public async Task ShowSuccessAsync(string message) { ... }
+
+// Shows a Success-type Alert
+public async Task ShowSuccessAsync(string? header, string message) { ... }
+
+// Shows an Information-type Alert with a default header
+public async Task ShowInformationAsync(string message) { ... }
+
+// Shows an Information-type Alert
+public async Task ShowInformationAsync(string? header, string message) { ... }
+
+// Shows a Warning-type Alert with a default header
+public async Task ShowWarningAsync(string message) { ... }
+
+// Shows a Warning-type Alert
+public async Task ShowWarningAsync(string? header, string message) { ... }
+
+// Shows an Error-type Alert with a default header
+public async Task ShowErrorAsync(string message) { ... }
+
+// Shows an Error-type Alert
+public async Task ShowErrorAsync(string? header, string message) { ... }
+
+// Shows an Error-type Alert constructed from an Exception
+public async Task ShowExceptionAsync(Exception ex) { ... }
+</CodeContainer>

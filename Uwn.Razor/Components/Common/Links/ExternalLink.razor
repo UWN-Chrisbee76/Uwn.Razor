@@ -1,12 +1,12 @@
-﻿@namespace Uwn.Razor.Components.Bootstrap.Links
-@using Uwn.Razor.Models.ViewModels.Bootstrap.Links
+﻿@namespace Uwn.Razor.Components.Common.Links
+@using Uwn.Razor.Models.ViewModels.Common.Links
 @inherits UwnComponentBase<ExternalLinkViewModel>
 
 @if (ViewModel.IsVisible)
 {
 	<a id="@ViewModel.Id" class="external" href="@ViewModel.Href" target="_blank">
-		@FragmentProvider.BuildFontAwesomeFragment("fa-arrow-up-right-from-square", "fa-sm")
-		@ViewModel.ChildContent
+		@FragmentProvider.BuildFontAwesomeFragment(IconNames.IndicatorExternal, "fa-sm")
+		@ChildContent
 	</a>
 }
 

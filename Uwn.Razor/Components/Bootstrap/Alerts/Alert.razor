@@ -8,25 +8,24 @@
 	<div id="@ViewModel.Id" class="@BuildClassNames()" style="@BuildStyles()" role="alert">
 		@if (ViewModel.Header is not null)
 		{
-			<h4 class="alert-heading">@ViewModel.Header</h4>
+			<h4 class="alert-heading">
+				<TextWithIcon Content="ViewModel.Header" />
+			</h4>
 		}
-		@if (ViewModel.Icon is not null)
-		{
-			@FragmentProvider.BuildFontAwesomeFragment(ViewModel.Icon, "me-1")
-		}
-		<span>@FragmentProvider.BuildFormattedContent(ViewModel.Content)</span>
+		<TextWithIcon Content="ViewModel.Content" />
+		@*
 		@if (ViewModel.DismissOptions.HasCloseButton)
 		{
 			<button type="button" class="btn-close" data-bs-dismiss="alert" />
 		}
+		*@
 	</div>
 }
 
 @code {
 	[Parameter] public BS.Position Position { get; set; } = BS.Position.None;
-	[Parameter] public string? Header { get; set; }
-	[Parameter] public string? Icon { get; set; }
-	[Parameter] public string? Content { get; set; }
+	[Parameter] public Content? Header { get; set; }
+	[Parameter] public Content? Content { get; set; }
 	[Parameter] public WidthDefinition? Width { get; set; }
 	[Parameter] public Appearance Appearance { get; set; } = new();
 	[Parameter] public DismissOptions DismissOptions { get; set; } = new(0, true);
@@ -40,12 +39,11 @@
 			Content = Content,
 			DismissOptions = DismissOptions,
 			Header = Header,
-			Icon = Icon,
 			Position = Position,
 			Width = Width
 		};
 
-	public void Show(string? content = null)
+	public void Show(Content? content = null)
 	{
 		if (content is not null)
 			ViewModel.Content = content;

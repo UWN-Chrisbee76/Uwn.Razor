@@ -1,0 +1,31 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+
+<tr>
+	<th scope="row">IdString</th>
+	<td><code>string</code></td>
+	<td>(Optional) An ID to append to the Route</td>
+	@if (!IsBase)
+	{
+		@if (IsRoute)
+		{
+			<td></td>
+		}
+		else
+		{
+			<td>Inherited from <code>UwnComponentWithRouteBase</code></td>
+			<td>
+				<InputText class="form-control w-8"
+						   Value="@Value"
+						   ValueChanged="@(v=>ValueChanged.InvokeAsync(v))"
+						   ValueExpression="@(()=>Value)" />
+			</td>
+		}
+	}
+</tr>
+
+@code {
+	[Parameter] public bool IsBase { get; set; } = false;
+	[Parameter] public bool IsRoute { get; set; } = false;
+	[Parameter] public string? Value { get; set; }
+	[Parameter] public EventCallback<string?> ValueChanged { get; set; }
+}

@@ -1,0 +1,57 @@
+﻿@attribute [Route(RouteStrings.EnumerationsLengthUnits)]
+@namespace Uwn.Razor.Demo.Components.Enumerations
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations;
+
+public enum AbsoluteLengthUnit
+{
+	Centimeter = 101, // cm
+	Inch,             // in
+	Millimeter,       // mm
+	Pica,             // pc
+	Pixel,            // px
+	Point,            // pt
+
+	cm = Centimeter,
+	@@in = Inch,
+	mm = Millimeter,
+	pc = Pica,
+	px = Pixel,
+	pt = Point
+}
+
+public enum RelativeLengthUnit
+{
+	ElementFontSize = 201, // em
+	RootFontSize,          // rem
+	ViewportHeight,        // vh
+	ViewportWidth,         // vw
+	Percent,               // %
+
+	em = ElementFontSize,
+	rem = RootFontSize,
+	vh = ViewportHeight,
+	vw = ViewportWidth,
+	pc = Percent
+}
+</CodeContainer>
+
+<p>Provides values for absolute and relative length units.</p>
+
+<CodeContainer Language="Language.CSharp">
+public static class LengthUnitExtender
+{
+	// Gets the name of the length unit
+	public static string GetName(this AbsoluteLengthUnit unit) { ... }
+
+	// Gets the name of the length unit
+	public static string GetName(this RelativeLengthUnit unit) { ... }
+
+	// Gets a dictionary of all length units and their names
+	public static Dictionary&lt;string, Dictionary&lt;int, string&gt;&gt; GetGroupedValues() { ... }
+
+	// Gets the type of a length unit from its integer representation
+	public static Type? GetLengthUnitType(int value) { ... }
+}
+</CodeContainer>

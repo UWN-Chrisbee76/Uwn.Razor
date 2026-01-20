@@ -1,0 +1,29 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsBootstrapPaginationViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Bootstrap
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(Pagination)"
+						   ComponentRoute="@RouteStrings.ComponentsBootstrapPagination"
+						   Namespace="Uwn.Razor.Models.ViewModels.Bootstrap.Navs"
+						   InheritsType="@typeof(BaseViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsBaseViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="CurrentPage"
+						  PropertyType="@typeof(Int32)"
+						  Description="Defines the current page of the Component." />
+		<ModelPropertyRow PropertyName="NumberOfPages"
+						  PropertyType="@typeof(Int32)"
+						  Description="Defines the number of pages of the Component." />
+		<ModelPropertyRow PropertyName="MaximumNumberOfLinks"
+						  PropertyType="@typeof(Int32)"
+						  Description="Defines the maximum number of links shown by the Component." />
+		<ModelPropertyRow PropertyName="OnPageSelected"
+						  PropertyType="@typeof(EventCallback<Int32>)"
+						  Description="Defines the event callback method for the page selection event." />
+	</TableBody>
+</Table>

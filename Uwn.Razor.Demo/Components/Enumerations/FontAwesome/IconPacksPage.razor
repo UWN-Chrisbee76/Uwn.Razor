@@ -1,0 +1,17 @@
+﻿@attribute [Route(RouteStrings.EnumerationsFontAwesomeIconPacks)]
+@namespace Uwn.Razor.Demo.Components.Enumerations.FontAwesome
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations.FontAwesome;
+
+[Flags]
+public enum IconPacks
+{
+	Classic = 1 &lt;&lt; 16,
+	Duotone = 1 &lt;&lt; 17,
+	Sharp = 1 &lt;&lt; 18,
+	SharpDuotone = 1 &lt;&lt; 19
+}
+</CodeContainer>
+
+<p>Provides flags for each of the supported icon packs.</p>

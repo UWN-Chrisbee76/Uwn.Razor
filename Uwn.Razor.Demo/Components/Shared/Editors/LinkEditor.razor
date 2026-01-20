@@ -1,0 +1,20 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Editors
+@inherits ModelEditorBase<Link>
+
+@RenderSwitch
+
+@if (HasModel)
+{
+	<strong>Href</strong>
+	<InputText class="form-control w-8" @bind-Value="Model.Href" @oninput="() => ModelChanged.InvokeAsync(Model)" />
+
+	<strong>Text</strong>
+	<InputText class="form-control w-8" @bind-Value="Model.Text" @oninput="() => ModelChanged.InvokeAsync(Model)" />
+
+	<strong>Icon</strong>
+	<InputText class="form-control w-8" @bind-Value="Model.Icon" @oninput="() => ModelChanged.InvokeAsync(Model)" />
+}
+
+@code {
+	protected override string GetLabel() => "Has Link";
+}

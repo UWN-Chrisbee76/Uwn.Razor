@@ -1,0 +1,55 @@
+﻿@attribute [Route(RouteStrings.ComponentsBootstrapToast)]
+@namespace Uwn.Razor.Demo.Components.Components.Bootstrap.Modals
+@inherits PageBase<ToastViewModel>
+
+<DemoContainer>
+	<CodeContainer Language="Language.HTML">
+&#60;Toast AdditionalClassNames="@ViewModel.AdditionalClassNames"
+       Appearance="@ViewModel.Appearance"
+       Content="@ViewModel.Content"
+       DismissOptions="@ViewModel.DismissOptions"
+       Header="@ViewModel.Header"
+       Id="@ViewModel.Id"
+       IsVisible="@ViewModel.IsVisible"
+       Position="@ViewModel.Position"
+       TriggerId="@ViewModel.TriggerId" /&#62;
+	</CodeContainer>
+	<Toast Model="ViewModel" />
+	<button id="@ViewModel.TriggerId" class="btn btn-primary" onclick="uwn.showToast('@ViewModel.Id');">Show Toast</button>
+</DemoContainer>
+
+<ComponentDescriptionContainer Description="A configurable Toast message"
+							   Namespace="Uwn.Razor.Components.Bootstrap.Toasts"
+							   Inherits="UwnComponentBase" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow @bind-Value="ViewModel.AdditionalClassNames" />
+		<AppearanceEditorRow @bind-Value="ViewModel.Appearance" />
+		<ContentEditorRow @bind-Value="ViewModel.Content" />
+		<DismissOptionsEditorRow @bind-Value="ViewModel.DismissOptions" />
+		<HeaderEditorRow @bind-Value="ViewModel.Header" />
+		<IdRow @bind-Value="ViewModel.Id" />
+		<IsVisibleRow @bind-Value="ViewModel.IsVisible" />
+		<PositionRow @bind-Value="ViewModel.Position" />
+		<GenericStringRow Label="TriggerId" Description="Unique Trigger ID for the Toast" @bind-Value="ViewModel.TriggerId" />
+	</TableBody>
+</Table>
+
+@code {
+	protected override void InitializeViewModel()
+	{
+		ViewModel.AdditionalClassNames = null;
+		ViewModel.Appearance = new();
+		ViewModel.Content = "Toast content";
+		ViewModel.DismissOptions = new();
+		ViewModel.Header = "Toast header";
+		ViewModel.Id = "uwn-toast";
+		ViewModel.IsVisible = true;
+		ViewModel.Position = Position.None;
+		ViewModel.TriggerId = "uwn-toast-trigger";
+	}
+}

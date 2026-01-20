@@ -1,0 +1,16 @@
+﻿@attribute [Route(RouteStrings.ComponentsCommonUwnComponentBase)]
+@namespace Uwn.Razor.Demo.Components.Components.Common
+
+<ComponentDescriptionContainer Description="This is the abstract base class for all other Components"
+							   Namespace="Uwn.Razor.Components.Common" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<PropertiesHeaderRow IsBase="true" />
+	</TableHead>
+	<TableBody>
+		<AdditionalClassNamesRow IsBase="true" />
+		<IdRow IsBase="true" />
+		<IsVisibleRow IsBase="true" />
+	</TableBody>
+</Table>

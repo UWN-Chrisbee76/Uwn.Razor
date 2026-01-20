@@ -1,22 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
-@using Uwn.Razor.Components
-@using Uwn.Razor.Components.Bootstrap.Alerts
-@using Uwn.Razor.Demo.Components.Shared
-@using Uwn.Razor.Enumerations.Bootstrap
-@using Uwn.Razor.Enumerations.FontAwesome
-@using Uwn.Razor.Models
-
-@inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager
-
-@*
-@using System.Net.Http
-@using System.Net.Http.Json
-@using static Microsoft.AspNetCore.Components.Web.RenderMode
-@using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.JSInterop
+
+@using Uwn.Razor.Components
 @using Uwn.Razor.Components.Bootstrap
+@using Uwn.Razor.Components.Bootstrap.Alerts
 @using Uwn.Razor.Components.Bootstrap.Cards
 @using Uwn.Razor.Components.Bootstrap.Links
 @using Uwn.Razor.Components.Bootstrap.Modals
@@ -25,12 +14,43 @@
 @using Uwn.Razor.Components.Bootstrap.Toasts
 @using Uwn.Razor.Components.Common
 @using Uwn.Razor.Components.Common.Links
-@using Uwn.Razor.Demo
-@using Uwn.Razor.Demo.Components
+
+@using Uwn.Razor.Demo.Components.Shared
+@using Uwn.Razor.Demo.Components.Shared.Containers
+@using Uwn.Razor.Demo.Components.Shared.Editors
+@using Uwn.Razor.Demo.Components.Shared.Rows
+@using Uwn.Razor.Demo.Logic
+
 @using Uwn.Razor.Enumerations
+@using Uwn.Razor.Enumerations.Bootstrap
+@using Uwn.Razor.Enumerations.FontAwesome
+
+@using Uwn.Razor.Models
+@using Uwn.Razor.Models.ViewModels
+@using Uwn.Razor.Models.ViewModels.Bootstrap
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Alerts
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Cards
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Links
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Modals
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Navs
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Tables
+@using Uwn.Razor.Models.ViewModels.Bootstrap.Toasts
+@using Uwn.Razor.Models.ViewModels.Common
+@using Uwn.Razor.Models.ViewModels.Common.Links
+
+@using Uwn.Razor.Providers
+
 @using Uwn.Razor.Services
+
+@inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager
+@inject Microsoft.JSInterop.IJSRuntime JsRuntime
+
+@*
+@using System.Net.Http
+@using System.Net.Http.Json
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
+@using Microsoft.AspNetCore.Components.Web.Virtualization
 
 @inject Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage.ProtectedLocalStorage LocalStorage
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment WebHostEnvironment
-@inject Microsoft.JSInterop.IJSRuntime JsRuntime
 *@

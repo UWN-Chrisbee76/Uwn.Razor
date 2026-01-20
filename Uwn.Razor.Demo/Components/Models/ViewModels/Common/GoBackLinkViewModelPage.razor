@@ -1,0 +1,9 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsCommonGoBackLinkViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Common
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(GoBackLink)"
+						   ComponentRoute="@RouteStrings.ComponentsCommonGoBackLink"
+						   Namespace="Uwn.Razor.Models.ViewModels.Common.Links"
+						   InheritsType="@typeof(RouteViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsRouteViewModel" />

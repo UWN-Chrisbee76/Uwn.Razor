@@ -1,0 +1,15 @@
+﻿@attribute [Route(RouteStrings.EnumerationsBootstrapTablePurpose)]
+@namespace Uwn.Razor.Demo.Components.Enumerations.Bootstrap
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations.Bootstrap;
+
+public enum TablePurpose
+{
+	Editor,
+	Filter,
+	Data
+}
+</CodeContainer>
+
+<p>Defines the purpose of a <NavLink href="@RouteStrings.ComponentsBootstrapTable">Table</NavLink> component.</p>

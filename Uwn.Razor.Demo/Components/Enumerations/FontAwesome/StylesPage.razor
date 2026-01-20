@@ -1,0 +1,17 @@
+﻿@attribute [Route(RouteStrings.EnumerationsFontAwesomeStyles)]
+@namespace Uwn.Razor.Demo.Components.Enumerations.FontAwesome
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations.FontAwesome;
+
+[Flags]
+public enum Styles
+{
+	Solid = 1 &lt;&lt; 0,   // 1
+	Regular = 1 &lt;&lt; 1, // 2
+	Light = 1 &lt;&lt; 2,   // 4
+	Thin = 1 &lt;&lt; 3     // 8
+}
+</CodeContainer>
+
+<p>Provides flags for each of the supported styles.</p>

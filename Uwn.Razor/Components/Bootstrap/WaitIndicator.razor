@@ -7,7 +7,7 @@
 	if (ViewModel.Fullscreen)
 	{
 		<div id="@ViewModel.Id" class="@ViewModel.AdditionalClassNames">
-			@FragmentProvider.BuildFontAwesomeFragment("fa-gear fa-spin fa-2xl")
+			@FragmentProvider.BuildFontAwesomeFragment(IconNames.StatusWorking, "fa-2xl")
 			@if (ViewModel.DisplayText)
 			{
 				<br />
@@ -23,7 +23,7 @@
 	else
 	{
 		<div id="@ViewModel.Id" class="d-flex align-items-center m-4 @ViewModel.AdditionalClassNames">
-			@FragmentProvider.BuildFontAwesomeFragment("fa-gear fa-spin fa-lg")
+			@FragmentProvider.BuildFontAwesomeFragment(IconNames.StatusWorking, "fa-lg")
 			@if (ViewModel.DisplayText)
 			{
 				<i id="@ViewModel.Id-text" class="ms-2">@GetTranslation("PleaseWaitMessage")</i>

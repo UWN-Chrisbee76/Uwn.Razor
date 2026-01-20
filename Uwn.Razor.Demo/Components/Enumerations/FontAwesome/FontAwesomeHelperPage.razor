@@ -1,0 +1,60 @@
+﻿@attribute [Route(RouteStrings.EnumerationsFontAwesomeFontAwesomeHelper)]
+@namespace Uwn.Razor.Demo.Components.Enumerations.FontAwesome
+
+<CodeContainer Language="Language.CSharp">
+namespace Uwn.Razor.Enumerations.FontAwesome;
+
+public static class FontAwesomeHelper
+{
+	public const IconPacks DefaultIconPack = IconPacks.Classic;     // Defines the default icon pack
+	public const Styles DefaultStyle = Styles.Solid;                // Defines the default style
+																    
+	public const string SolidClassName = "fa-solid";                // CSS class name for the "Solid" style
+	public const string RegularClassName = "fa-regular";            // CSS class name for the "Regular" style
+	public const string LightClassName = "fa-light";                // CSS class name for the "Light" style
+	public const string ThinClassName = "fa-thin";                  // CSS class name for the "Thin" style
+																    
+	public const string ClassicClassName = "";                      // CSS class name for the "Classic" icon pack
+	public const string DuotoneClassName = "fa-duotone";            // CSS class name for the "Duotone" icon pack
+	public const string SharpClassName = "fa-sharp";                // CSS class name for the "Sharp" icon pack
+	public const string SharpDuotoneClassName = "fa-sharp-duotone"; // CSS class name for the "Sharp Duotone" icon pack
+
+	// Gets both default flags
+	public static int DefaultFlags => ToInt32(DefaultIconPack, DefaultStyle);
+
+	// Gets or sets the icon pack and style flags
+	public static int Flags { get; set; } = DefaultFlags;
+
+	// Converts from an integer flag value to the corresponding IconPacks and Styles enums
+	public static void FromInt32(int flags, out IconPacks iconPack, out Styles style) { ... }
+
+	// Converts from IconPacks and Styles enums to an integer flag value
+	public static int ToInt32(IconPacks pack, Styles style) { ... }
+
+	// Gets the IconPacks enum from the integer flags
+	public static IconPacks GetIconPack(int flags) { ... }
+
+	// Gets the Styles enum from the integer flags
+	public static Styles GetStyle(int flags) { ... }
+
+	// Gets an enum value from the integer flags
+	public static TEnum GetFlag&lt;TEnum&gt;(int flags) where TEnum : Enum { ... }
+
+	// Gets the CSS class name for the specified icon pack
+	public static string GetClassName(IconPacks iconPack)  { ... }
+
+	// Gets the CSS class name for the specified style
+	public static string GetClassName(Styles style)  { ... }
+
+	// Gets the CSS class name for the specified combined flags
+	public static string GetClassNames(int flags) { ... }
+
+	// Gets the combined CSS classes for the combined flags, icon class name, and optional additional class names
+	public static string GetClassNames(int flags, string iconClassName, string? additionalClassNames = null) { ... }
+
+	// Gets the combined CSS classes for an icon, and optional additional class names
+	public static string GetClassNames(string iconClassName, string? additionalClassNames = null) { ... }
+}
+</CodeContainer>
+
+<p>Provides various definitions and helper methods for working with the FontAwesome enumerations.</p>

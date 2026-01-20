@@ -1,0 +1,39 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsBootstrapWaitIndicatorViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Bootstrap
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(WaitIndicator)"
+						   ComponentRoute="@RouteStrings.ComponentsBootstrapWaitIndicator"
+						   Namespace="Uwn.Razor.Models.ViewModels.Bootstrap"
+						   InheritsType="@typeof(BaseViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsBaseViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Fullscreen"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Defines if the Component should be shown as fullscreen." />
+		<ModelPropertyRow PropertyName="DisplayTime"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Defines if the Component should display the elapsed time." />
+		<ModelPropertyRow PropertyName="DisplayText"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Defines if the Component should display a 'Please wait' text." />
+		<ModelPropertyRow PropertyName="MinimumBusyMilliseconds"
+						  PropertyType="@typeof(Int32)"
+						  Description="Defines the minimum number of milliseconds that the Component should stay visible." />
+	</TableBody>
+</Table>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Shows the Component
+public override async Task ShowAsync() { .. }
+
+// Hides the Component
+public override async Task HideAsync() { .. }
+</CodeContainer>
+

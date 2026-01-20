@@ -1,0 +1,15 @@
+﻿@attribute [Route(RouteStrings.ServicesFragmentProvider)]
+@namespace Uwn.Razor.Demo.Services
+
+<ServiceDescriptionContainer Description="A static helper class that provides RenderFragement instances for various content." />
+
+<CodeContainer Language="@Language.CSharp">
+// Builds a RenderFragment that represents a FontAwesome icon with optional additional class names.
+public static RenderFragment BuildFontAwesomeFragment(string iconClassName, string? additionalClassNames = null) { ... }
+
+// Builds a RenderFragment that represents a FontAwesome icon with flags for customization, and additional class names.
+public static RenderFragment BuildFontAwesomeFragment(int flags, string iconClassName, string? additionalClassNames = null) { ... }
+
+// Builds a RenderFragment that breaks up content by line breaks (regular, or HTML), and optionally limits the number of lines displayed.
+public static RenderFragment BuildFormattedContent(string? content, int? maxLines = null) { ... }
+</CodeContainer>

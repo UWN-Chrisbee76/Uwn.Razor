@@ -1,0 +1,36 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Editors
+@inherits ModelEditorBase<WidthDefinition>
+
+@RenderSwitch
+
+@if (HasModel)
+{
+	<strong>MinWidth</strong>
+	<InputNumber class="form-control w-8" @bind-Value="Model.MinWidth" />
+
+	<strong>FixedWidth</strong>
+	<InputNumber class="form-control w-8" @bind-Value="Model.FixedWidth" />
+
+	<strong>MaxWidth</strong>
+	<InputNumber class="form-control w-8" @bind-Value="Model.MaxWidth" />
+
+	<strong>LengthUnit</strong>
+	<InputSelect class="form-select w-8" @bind-Value="Model.LengthUnit.RawValue">
+		@{
+			var groups = LengthUnitExtender.GetGroupedValues();
+			foreach (var group in groups)
+			{
+				<optgroup label="@group.Key">
+					@foreach (var value in group.Value)
+					{
+						<option value="@value.Key">@value.Value</option>
+					}
+				</optgroup>
+			}
+		}
+	</InputSelect>
+}
+
+@code {
+	protected override string GetLabel() => "Has Definition";
+}

@@ -1,0 +1,1 @@
+﻿window.prismHighlight = () => Prism.highlightAll();

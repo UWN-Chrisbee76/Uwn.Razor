@@ -1,0 +1,25 @@
+﻿@attribute [Route(RouteStrings.ModelsUwnCapabilities)]
+@namespace Uwn.Razor.Demo.Models
+
+<ModelDescriptionContainer IsViewModel="false"
+						   Namespace="Uwn.Razor.Models" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="BootstrapMajorVersion"
+						  PropertyType="@typeof(Int32)"
+						  Description="Gets the available major version of Bootstrap." />
+		<ModelPropertyRow PropertyName="IsFontAwesomeAvailable"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Gets a value indicating whether FontAwesome is available." />
+		<ModelPropertyRow PropertyName="IsJqueryAvailable"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Gets a value indicating whether JQuery is available." />
+		<ModelPropertyRow PropertyName="IsPopperAvailable"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Gets a value indicating whether Popper is available." />
+	</TableBody>
+</Table>

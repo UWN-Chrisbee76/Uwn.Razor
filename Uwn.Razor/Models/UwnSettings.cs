@@ -2,6 +2,7 @@
 
 namespace Uwn.Razor.Models;
 
+// Not observable, as it is not meant to be modified on the fly
 public sealed class UwnSettings
 {
 	public IconPacks FontAwesomeIconPack { get; set; } = FontAwesomeHelper.DefaultIconPack;

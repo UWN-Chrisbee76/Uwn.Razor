@@ -1,0 +1,64 @@
+﻿@attribute [Route(RouteStrings.ModelsDismissOptions)]
+@namespace Uwn.Razor.Demo.Models
+
+<ModelDescriptionContainer IsViewModel="false"
+						   Namespace="Uwn.Razor.Models" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Delay"
+						  PropertyType="@typeof(Int32)"
+						  Description="Defines the auto-close delay for the Component." />
+		<ModelPropertyRow PropertyName="HasCloseButton"
+						  PropertyType="@typeof(Boolean)"
+						  Description="Defines if the Component has a 'Close' button." />
+	</TableBody>
+</Table>
+
+<h4>Constructors</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance
+public DismissOptions() { ... }
+
+// Creates a new instance and sets the delay
+public DismissOptions(int delay) { ... }
+
+// Creates a new instance and sets the close button option
+public DismissOptions(bool hasCloseButton) { ... }
+
+// Creates a new instance and sets the delay, and the close button option
+public DismissOptions(int delay, bool hasCloseButton) { ... }
+
+// Creates a new instance and tries to parse properties from a String
+public DismissOptions(string value) { ... }
+</CodeContainer>
+
+<h4>Implicit Conversions</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance from an Int32
+public static implicit operator DismissOptions(int delay) { ... }
+
+// Creates a new instance from a Boolean
+public static implicit operator DismissOptions(bool hasCloseButton) { ... }
+
+// Creates a new instance from a String
+public static implicit operator DismissOptions(string value) { ... }
+</CodeContainer>
+
+<h4>Static Factory Properties</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a new instance that has no auto-close delay
+public static DismissOptions Permanent { ... }
+
+// Creates a new instance with an auto-close delay
+public static DismissOptions Temporary { ... }
+</CodeContainer>
+
+<h4>Methods</h4>
+<CodeContainer Language="@Language.CSharp">
+// Creates a String representation
+public override string ToString() { ... }
+</CodeContainer>

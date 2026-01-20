@@ -1,0 +1,12 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+
+<GenericEnumRow TEnum="TablePurpose"
+				Value="@Value"
+				ValueChanged="ValueChanged"
+				Label="Purpose"
+				Description="The purpose of the table represented by the Component" />
+
+@code {
+	[Parameter] public TablePurpose Value { get; set; }
+	[Parameter] public EventCallback<TablePurpose> ValueChanged { get; set; }
+}

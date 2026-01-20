@@ -1,0 +1,12 @@
+﻿@namespace Uwn.Razor.Demo.Components.Shared.Rows
+@inherits ModelEditorBaseRow<WidthDefinition>
+
+<tr>
+	<th scope="row">Width</th>
+	<td><code>WidthDefinition</code></td>
+	<td>(Optional) Definitions for the Component's display width</td>
+	<td></td>
+	<td>
+		<WidthDefinitionEditor Model="@Value" ModelChanged="v => Value = v" />
+	</td>
+</tr>

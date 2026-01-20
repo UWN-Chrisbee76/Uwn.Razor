@@ -1,0 +1,27 @@
+﻿@attribute [Route(RouteStrings.ModelsUwnSettings)]
+@namespace Uwn.Razor.Demo.Models
+
+<ModelDescriptionContainer IsViewModel="false"
+						   Namespace="Uwn.Razor.Models" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="FontAwesomeIconPack"
+						  PropertyType="@typeof(IconPacks)"
+						  PropertyTypeRoute="@RouteStrings.EnumerationsFontAwesomeIconPacks"
+						  Description="Defines the FontAwesome icon pack to use." />
+		<ModelPropertyRow PropertyName="FontAwesomeStyle"
+						  PropertyType="@typeof(Styles)"
+						  PropertyTypeRoute="@RouteStrings.EnumerationsFontAwesomeStyles"
+						  Description="Defines the FontAwesome style to use." />
+		<ModelPropertyRow PropertyName="Translations"
+						  PropertyType="@typeof(Dictionary<String, String>)"
+						  Description="Defines custom translations." />
+		<ModelPropertyRow PropertyName="FontAwesomeFlags"
+						  PropertyType="@typeof(Int32)"
+						  Description="Gets the Int32 representation of the FontAwesome settings." />
+	</TableBody>
+</Table>

@@ -7,6 +7,5 @@ public abstract partial class NotificationViewModel
 	: DismissOptionsViewModel
 {
 	[ObservableProperty] private Position _position = Position.None;
-	[ObservableProperty] private string? _icon;
-	[ObservableProperty] private string? _header;
+	[ObservableProperty] private Content? _header;
 }

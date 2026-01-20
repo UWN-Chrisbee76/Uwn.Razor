@@ -1,0 +1,148 @@
+﻿@page "/"
+@page "/{*path}"
+
+@if (IsRoot)
+{
+	<div class="row">
+
+		<div class="col-6">
+			<div class="border rounded m-1 p-4">
+				<ul>
+					@RenderNodes(_root.Children.Values, basePath: "/")
+				</ul>
+			</div>
+		</div>
+
+		<div class="col-6">
+			<div class="border rounded m-1 p-4">
+				<h1>Welcome!</h1>
+				<p>
+					This is the Documentation and Demonstration website for <strong>Uwn.Razor</strong>,
+					a Razor Class Library for re-usable components and Bootstrap wrappers.
+				</p>
+				<p>
+					<strong>Project information:</strong>
+					<br />
+					<ExternalLink Href="https://github.com/UWN-Chrisbee76/Uwn.Razor">https://github.com/UWN-Chrisbee76/Uwn.Razor</ExternalLink>
+				</p>
+				<p>
+					For <strong>information</strong> on any of the components, models, or providers, use the <strong>navigation</strong> tree on the left.
+					<br />
+					These pages also provide <strong>examples</strong> and <strong>demonstrations</strong> for each component.
+				</p>
+				<p>
+					If you are new to Uwn.Razor, you might be interested in the <NavLink href="/GettingStarted">Getting Started</NavLink> guide.
+				</p>
+				<p class="fs-6 fst-italic fw-light text-secondary">
+					Version 9.1.0
+					<br />
+					Published 2026-01-20
+				</p>
+			</div>
+		</div>
+
+	</div>
+}
+else
+{
+	<ul>
+		@RenderNodes(_root.Children.Values, basePath: "/")
+	</ul>
+}
+
+@code {
+	[Parameter] public string? Path { get; set; }
+
+	private Node _root = new(String.Empty);
+	private string CalledPath = "/";
+
+	private bool IsRoot => CalledPath == "/";
+
+	protected override void OnParametersSet()
+	{
+		CalledPath = GetCalledPath();
+		IReadOnlyList<string> allRoutes = RouteStringsHelper.GetAllRoutes();
+		IEnumerable<string> filteredRoutes = FilterByCalledPath(allRoutes, CalledPath);
+		_root = BuildTree(filteredRoutes);
+	}
+
+	private string GetCalledPath()
+	{
+		string path = (Path ?? String.Empty).Split('?', '#')[0].Trim('/');
+		return String.IsNullOrEmpty(path) ? "/" : $"/{path}";
+	}
+
+	private static IEnumerable<string> FilterByCalledPath(IEnumerable<string> routes, string calledPath)
+	{
+		if (calledPath == "/")
+			return routes;
+		string? prefix = calledPath.EndsWith('/') ? calledPath : (calledPath + "/");
+		return routes.Where(r => r.StartsWith(prefix, StringComparison.OrdinalIgnoreCase));
+	}
+
+	private static Node BuildTree(IEnumerable<string> routes)
+	{
+		Node rootNode = new(String.Empty);
+		foreach (string route in routes.OrderBy(r => r, StringComparer.OrdinalIgnoreCase))
+		{
+			string[]? segments = route.Split('/', StringSplitOptions.RemoveEmptyEntries);
+			if (segments.Length == 0)
+				continue;
+			Node currentNode = rootNode;
+			for (int i = 0; i < segments.Length; i++)
+			{
+				string? segment = segments[i];
+				if (!currentNode.Children.TryGetValue(segment, out var nextNode))
+				{
+					nextNode = new Node(segment);
+					currentNode.Children.Add(segment, nextNode);
+				}
+				currentNode = nextNode;
+				if (i == segments.Length - 1)
+					currentNode.Route = route;
+			}
+		}
+		return rootNode;
+	}
+
+	private RenderFragment RenderNodes(IEnumerable<Node> nodes, string basePath) => builder =>
+	{
+		List<Node>? orderedNodes = nodes.OrderBy(n => n.Name, StringComparer.OrdinalIgnoreCase).ToList();
+
+		int seq = 0;
+		foreach (Node node in orderedNodes)
+		{
+			builder.OpenElement(seq++, "li");
+			string? nodePath = CombinePath(basePath, node.Name);
+			if (!String.IsNullOrWhiteSpace(node.Route))
+			{
+				builder.OpenElement(seq++, "a");
+				builder.AddAttribute(seq++, "href", node.Route);
+				builder.AddContent(seq++, node.Name);
+				builder.CloseElement();
+			}
+			else
+			{
+				builder.OpenElement(seq++, "a");
+				builder.AddAttribute(seq++, "href", nodePath);
+				builder.AddContent(seq++, node.Name);
+				builder.CloseElement();
+			}
+			if (node.Children.Count > 0)
+			{
+				builder.OpenElement(seq++, "ul");
+				builder.AddContent(seq++, RenderNodes(node.Children.Values, nodePath));
+				builder.CloseElement();
+			}
+			builder.CloseElement();
+		}
+	};
+
+	private static string CombinePath(string basePath, string segment)
+	{
+		if (String.IsNullOrEmpty(basePath)) basePath = "/";
+		if (!basePath.StartsWith('/')) basePath = "/" + basePath;
+		if (basePath == "/") return "/" + segment;
+		return basePath.TrimEnd('/') + "/" + segment;
+	}
+}

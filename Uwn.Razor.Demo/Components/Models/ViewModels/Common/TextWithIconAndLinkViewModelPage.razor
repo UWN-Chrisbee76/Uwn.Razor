@@ -1,0 +1,21 @@
+﻿@attribute [Route(RouteStrings.ModelsViewModelsCommonTextWithIconAndLinkViewModel)]
+@namespace Uwn.Razor.Demo.Models.ViewModels.Common
+
+<ModelDescriptionContainer IsViewModel="true"
+						   ComponentType="@typeof(TextWithIconAndLink)"
+						   ComponentRoute="@RouteStrings.ComponentsCommonTextWithIconAndLink"
+						   Namespace="Uwn.Razor.Models.ViewModels.Common"
+						   InheritsType="@typeof(ContentViewModel)"
+						   InheritsRoute="@RouteStrings.ModelsViewModelsContentViewModel" />
+
+<Table Purpose="TablePurpose.Editor">
+	<TableHead>
+		<ModelPropertiesHeaderRow />
+	</TableHead>
+	<TableBody>
+		<ModelPropertyRow PropertyName="Link"
+						  PropertyType="@typeof(Link)"
+						  PropertyTypeRoute="@RouteStrings.ModelsLink"
+						  Description="Defines the Link content for the Component." />
+	</TableBody>
+</Table>

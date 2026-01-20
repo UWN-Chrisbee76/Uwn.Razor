@@ -35,8 +35,8 @@ jobs:
     - name: Remove the .snk file
       run: Remove-Item Assets/UWN-GH.snk -ErrorAction SilentlyContinue
       
-#   - name: Pack
-#     run: dotnet pack --configuration Release --no-build --output nupkgs
+    - name: Pack
+      run: dotnet pack --configuration Release --no-build --output nupkgs
 
     - name: Publish to NuGet
-      run: dotnet nuget push Uwn.Razor/Uwn.Razor/Uwn.Razor/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

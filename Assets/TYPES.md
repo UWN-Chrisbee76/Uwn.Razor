@@ -27,4 +27,5 @@
   - TextWithIconViewModel
   - TextWithIconAndLinkViewModel
   - WaitIndicatorViewModel
-_EOF_
+
+  _EOF_

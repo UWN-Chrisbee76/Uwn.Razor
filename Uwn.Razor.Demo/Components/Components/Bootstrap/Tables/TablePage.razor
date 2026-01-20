@@ -81,7 +81,9 @@
 
 <ComponentDescriptionContainer Description="Tables for various purposes"
 							   Namespace="Uwn.Razor.Components.Bootstrap.Tables"
-							   Inherits="UwnComponentBase" />
+							   InheritsType="@typeof(UwnComponentBase<TableViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsBootstrapTableViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

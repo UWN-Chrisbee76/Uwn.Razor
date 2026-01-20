@@ -16,7 +16,9 @@
 
 <ComponentDescriptionContainer Description="A link with the visual style of a 'Add new' button."
 							   Namespace="Uwn.Razor.Components.Bootstrap.Links"
-							   Inherits="UwnComponentWithRouteBase" />
+							   InheritsType="@typeof(UwnComponentWithRouteBase<AddNewButtonViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentWithRouteBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsBootstrapAddNewButtonViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

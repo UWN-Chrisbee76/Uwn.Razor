@@ -17,7 +17,9 @@
 
 <ComponentDescriptionContainer Description="Provides a wait indicator - either inline, or fullscreen"
 							   Namespace="Uwn.Razor.Components.Bootstrap"
-							   Inherits="UwnComponentBase" />
+							   InheritsType="@typeof(UwnComponentBase<WaitIndicatorViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsBootstrapWaitIndicatorViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

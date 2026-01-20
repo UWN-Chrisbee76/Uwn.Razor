@@ -14,7 +14,9 @@
 
 <ComponentDescriptionContainer Description="Provides a hyperlink with an optional icon"
 							   Namespace="Uwn.Razor.Components.Common.Links"
-							   Inherits="UwnComponentWithRouteBase" />
+							   InheritsType="@typeof(UwnComponentWithRouteBase<EditLinkViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentWithRouteBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsCommonHyperlinkViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

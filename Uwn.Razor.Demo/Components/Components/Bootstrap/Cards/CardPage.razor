@@ -21,7 +21,9 @@
 
 <ComponentDescriptionContainer Description="A configurable card, which is a flexible and extensible content container."
 							   Namespace="Uwn.Razor.Components.Bootstrap.Cards"
-							   Inherits="UwnComponentBase" />
+							   InheritsType="@typeof(UwnComponentBase<CardViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsBootstrapCardViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

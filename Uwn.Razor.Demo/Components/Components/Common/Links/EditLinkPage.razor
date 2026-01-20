@@ -16,7 +16,9 @@
 
 <ComponentDescriptionContainer Description="Provides an 'Edit' type link"
 							   Namespace="Uwn.Razor.Components.Common.Links"
-							   Inherits="UwnComponentWithRouteBase" />
+							   InheritsType="@typeof(UwnComponentWithRouteBase<EditLinkViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentWithRouteBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsCommonEditLinkViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

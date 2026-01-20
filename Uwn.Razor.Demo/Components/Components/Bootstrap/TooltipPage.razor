@@ -20,7 +20,9 @@
 
 <ComponentDescriptionContainer Description="Provides a tooltip"
 							   Namespace="Uwn.Razor.Components.Bootstrap"
-							   Inherits="UwnComponentBase" />
+							   InheritsType="@typeof(UwnComponentBase<TooltipViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsBootstrapTooltipViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

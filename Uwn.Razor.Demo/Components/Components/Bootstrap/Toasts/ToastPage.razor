@@ -20,7 +20,9 @@
 
 <ComponentDescriptionContainer Description="A configurable Toast message"
 							   Namespace="Uwn.Razor.Components.Bootstrap.Toasts"
-							   Inherits="UwnComponentBase" />
+							   InheritsType="@typeof(UwnComponentBase<ToastViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentBase" 
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsBootstrapToastViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

@@ -16,7 +16,9 @@
 
 <ComponentDescriptionContainer Description="Provides an 'Go Back' type link"
 							   Namespace="Uwn.Razor.Components.Common.Links"
-							   Inherits="UwnComponentWithRouteBase" />
+							   InheritsType="@typeof(UwnComponentWithRouteBase<GoBackLinkViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentWithRouteBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsCommonGoBackLinkViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

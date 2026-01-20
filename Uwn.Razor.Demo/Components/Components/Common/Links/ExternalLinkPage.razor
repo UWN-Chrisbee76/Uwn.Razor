@@ -18,7 +18,9 @@
 
 <ComponentDescriptionContainer Description="A link that indicates that the linked content is on an external site"
 							   Namespace="Uwn.Razor.Components.Common.Links"
-							   Inherits="UwnComponentWithRouteBase"
+							   InheritsType="@typeof(UwnComponentWithRouteBase<EditLinkViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentWithRouteBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsCommonExternalLinkViewModel"
 							   CssClasses="@(["external"])" />
 
 <Table Purpose="TablePurpose.Editor">

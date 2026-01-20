@@ -12,7 +12,7 @@
 		"https": {
 			"commandName": "Project",
 			"launchBrowser": true,
-			"launchUrl": "GettingStarted",
+			"launchUrl": "Components/Bootstrap/Card",
 			"environmentVariables": {
 				"ASPNETCORE_ENVIRONMENT": "Development"
 			},

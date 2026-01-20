@@ -23,7 +23,9 @@
 
 <ComponentDescriptionContainer Description="A pagination nav bar"
 							   Namespace="Uwn.Razor.Components.Bootstrap.Navs"
-							   Inherits="UwnComponentBase" />
+							   InheritsType="@typeof(UwnComponentBase<PaginationViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsBootstrapPaginationViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

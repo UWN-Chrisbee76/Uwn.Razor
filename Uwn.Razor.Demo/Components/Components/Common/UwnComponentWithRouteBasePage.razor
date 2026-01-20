@@ -3,7 +3,9 @@
 
 <ComponentDescriptionContainer Description="This is the abstract base class for all Components that include route data"
 							   Namespace="Uwn.Razor.Components.Common"
-							   Inherits="UwnComponentBase" />
+							   InheritsType="@typeof(UwnComponentBase<HyperlinkViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentBase"
+							   IsBaseComponent="true" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

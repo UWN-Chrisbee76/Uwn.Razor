@@ -35,7 +35,9 @@
 
 <ComponentDescriptionContainer Description="A modal Dialog"
 							   Namespace="Uwn.Razor.Components.Bootstrap.Modals"
-							   Inherits="UwnComponentBase" />
+							   InheritsType="@typeof(UwnComponentBase<ModalDialogViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsBootstrapModalDialogViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

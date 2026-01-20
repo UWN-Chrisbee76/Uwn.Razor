@@ -19,7 +19,9 @@
 
 <ComponentDescriptionContainer Description="A configurable Alert"
 							   Namespace="Uwn.Razor.Components.Bootstrap.Alerts"
-							   Inherits="UwnComponentBase" />
+							   InheritsType="@typeof(UwnComponentBase<AlertViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsBootstrapAlertViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

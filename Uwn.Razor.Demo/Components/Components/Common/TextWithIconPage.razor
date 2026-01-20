@@ -14,7 +14,9 @@
 
 <ComponentDescriptionContainer Description="Provides a text with an optional icon"
 							   Namespace="Uwn.Razor.Components.Common"
-							   Inherits="UwnComponentBase" />
+							   InheritsType="@typeof(UwnComponentBase<TextWithIconViewModel>)"
+							   InheritsRoute="@RouteStrings.ComponentsCommonUwnComponentBase"
+							   ViewModelRoute="@RouteStrings.ModelsViewModelsCommonTextWithIconViewModel" />
 
 <Table Purpose="TablePurpose.Editor">
 	<TableHead>

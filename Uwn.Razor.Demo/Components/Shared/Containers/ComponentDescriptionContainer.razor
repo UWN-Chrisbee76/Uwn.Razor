@@ -1,24 +1,51 @@
 ﻿@namespace Uwn.Razor.Demo.Components.Shared.Containers
 
 <p class="m-4">
-	<strong>Description:</strong>
-	<br />
-	<span class="ps-4">@Description</span>
-	<br />
-	<strong>Namespace:</strong>
-	<br />
-	<code class="ps-4">@Namespace</code>
-	@if (Inherits is not null)
+	@if (Description is not null)
 	{
+		<strong>Description:</strong>
 		<br />
+		<span class="ps-4">@Description</span>
+		<br />
+	}
+	@if (Namespace is not null)
+	{
+		<strong>Namespace:</strong>
+		<br />
+		<code class="ps-4">@Namespace</code>
+		<br />
+	}
+	@if (InheritsType is not null)
+	{
 		<strong>Inherits:</strong>
 		<br />
-		<code class="ps-4">@Inherits</code>
+		@if (InheritsRoute is not null)
+		{
+			<NavLink Href="@InheritsRoute" class="ps-4">@InheritsTypeName</NavLink>
+		}
+		else
+		{
+			<code class="ps-4">@InheritsTypeName</code>
+		}
+		<br />
+	}
+	@if (ViewModelType is not null && !IsBaseComponent)
+	{
+		<strong>ViewModel:</strong>
+		<br />
+		@if (ViewModelRoute is not null)
+		{
+			<NavLink Href="@ViewModelRoute" class="ps-4">@ViewModelTypeName</NavLink>
+		}
+		else
+		{
+			<code class="ps-4">@ViewModelTypeName</code>
+		}
+		<br />
 	}
 	@if (CssClasses is not null)
 	{
-		var content = string.Join(", ", CssClasses);
-		<br />
+		string content = String.Join(", ", CssClasses);
 		<strong>CSS class(es):</strong>
 		<br />
 		<code class="ps-4">@content</code>
@@ -26,8 +53,15 @@
 </p>
 
 @code {
-	[Parameter] public string Description { get; set; } = string.Empty;
-	[Parameter] public string Namespace { get; set; } = string.Empty;
-	[Parameter] public string? Inherits { get; set; }
+	[Parameter] public string? Description { get; set; }
+	[Parameter] public string? Namespace { get; set; }
+	[Parameter] public Type? InheritsType { get; set; }
+	[Parameter] public string? InheritsRoute { get; set; }
+	[Parameter] public string? ViewModelRoute { get; set; }
 	[Parameter] public string[]? CssClasses { get; set; }
+	[Parameter] public bool IsBaseComponent { get; set; } = false;
+
+	private string? InheritsTypeName => InheritsType?.Name;
+	private Type? ViewModelType => InheritsType?.GetGenericArguments()?.FirstOrDefault();
+	private string? ViewModelTypeName => ViewModelType?.Name;
 }

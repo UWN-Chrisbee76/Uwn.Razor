@@ -36,8 +36,8 @@ jobs:
         $bytes = [System.Convert]::FromBase64String($base64String)
         [System.IO.File]::WriteAllBytes("Assets/UWN-GH.snk", $bytes)
 
-    - name: Build and Pack
-      run: dotnet pack --configuration ${{ env.CONFIGURATION }} --no-restore -p:PackageOutputPath="${{ env.PACKAGES_DIR }}"
+    - name: Build and create NuGet package
+      run: dotnet build --configuration ${{ env.CONFIGURATION }} --no-restore -p:GeneratePackageOnBuild=true -p:PackageOutputPath="${{ env.PACKAGES_DIR }}"
 
     - name: Remove the .snk file
       run: Remove-Item Assets/UWN-GH.snk -ErrorAction SilentlyContinue

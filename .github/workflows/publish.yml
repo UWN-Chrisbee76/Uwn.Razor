@@ -22,7 +22,7 @@ jobs:
       run: dotnet restore
       
     - name: Clean old NuGet packages
-      run: Remove-Item Uwn.Razor/Uwn.Razor/bin/Release/*.nupkg -ErrorAction SilentlyContinue
+      run: Remove-Item Uwn.Razor/Uwn.Razor/Uwn.Razor/bin/Release/*.nupkg -ErrorAction SilentlyContinue
 
     - name: Decode and save .snk file
       shell: pwsh
@@ -41,4 +41,4 @@ jobs:
 #     run: dotnet pack --configuration Release --no-build --output nupkgs
 
     - name: Publish to NuGet
-      run: dotnet nuget push Uwn.Razor/Uwn.Razor/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Uwn.Razor/Uwn.Razor/Uwn.Razor/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

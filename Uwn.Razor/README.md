@@ -35,7 +35,7 @@ https://razor-demo.ultimatewisdom.net/
 
 ### Component Providers
 
-Component Providers have been added for almost all components (doing this for Tables and their sub-components make no sense).
+Component Providers have been added for almost all components (doing this for Tables and their sub-components makes no sense).
 
 Providers allow you to cascade components, and access their view models in your embedded components.
 

@@ -9,6 +9,10 @@ jobs:
   publish:
     runs-on: windows-latest
 
+    env:
+     CONFIGURATION: Release
+     PACKAGES_DIR: ${{ github.workspace }}\nupkgs
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -22,7 +26,10 @@ jobs:
       run: dotnet restore
       
     - name: Clean old NuGet packages
-      run: Remove-Item Uwn.Razor/Uwn.Razor/Uwn.Razor/bin/Release/*.nupkg -ErrorAction SilentlyContinue
+      shell: pwsh
+      run: |
+          New-Item -ItemType Directory -Force "$env:PACKAGES_DIR" | Out-Null
+          Remove-Item "$env:PACKAGES_DIR\*.nupkg" -ErrorAction SilentlyContinue
 
     - name: Decode and save .snk file
       shell: pwsh
@@ -31,14 +38,11 @@ jobs:
         $bytes = [System.Convert]::FromBase64String($base64String)
         [System.IO.File]::WriteAllBytes("Assets/UWN-GH.snk", $bytes)
 
-    - name: Build and sign the project; this will create the NuGet package as well
-      run: dotnet build --configuration Release --no-restore
+    - name: Build and create NuGet package
+      run: dotnet build --configuration ${{ env.CONFIGURATION }} --no-restore -p:GeneratePackageOnBuild=true -p:PackageOutputPath="${{ env.PACKAGES_DIR }}"
 
     - name: Remove the .snk file
       run: Remove-Item Assets/UWN-GH.snk -ErrorAction SilentlyContinue
-      
-#   - name: Pack
-#     run: dotnet pack --configuration Release --no-build --output nupkgs
 
     - name: Publish to NuGet
-      run: dotnet nuget push Uwn.Razor/Uwn.Razor/Uwn.Razor/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push "${{ env.PACKAGES_DIR }}\*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate

@@ -11,9 +11,9 @@
 		<RootNamespace>Uwn.Razor.Demo</RootNamespace>
 		<TargetFramework>net9.0</TargetFramework>
 		<Title>UltimateWisdom.Net Demo for Uwn.Razor</Title>
-		<AssemblyVersion>9.1.0.0</AssemblyVersion>
-		<FileVersion>9.1.0.0</FileVersion>
-		<Version>9.1.0</Version>
+		<AssemblyVersion>9.1.1.0</AssemblyVersion>
+		<FileVersion>9.1.1.0</FileVersion>
+		<Version>9.1.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

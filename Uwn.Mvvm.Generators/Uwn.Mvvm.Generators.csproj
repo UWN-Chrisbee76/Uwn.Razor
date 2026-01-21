@@ -1,22 +1,43 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<AssemblyOriginatorKeyFile>..\Assets\UWN-GH.snk</AssemblyOriginatorKeyFile>
 		<Authors>Chris B.</Authors>
-		<Copyright>Copyright © 2025 Chris B.</Copyright>
+		<Copyright>Copyright © 2026 Chris B.</Copyright>
 		<Description>Generators for the Uwn.Mvvm Class Library.</Description>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<EnableAnalyzer>true</EnableAnalyzer>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
+		<PackageIcon>Assets\codex-32.png</PackageIcon>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/UWN-Chrisbee76/Uwn.Razor</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PublisherName>UltimateWisdom.Net</PublisherName>
 		<RootNamespace>Uwn.Mvvm.Generators</RootNamespace>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<Title>UltimateWisdom.Net MVVM Generators</Title>
-		<AssemblyVersion>9.1.0.0</AssemblyVersion>
-		<FileVersion>9.1.0.0</FileVersion>
-		<Version>9.1.0</Version>
+		<AssemblyVersion>9.1.1.0</AssemblyVersion>
+		<FileVersion>9.1.1.0</FileVersion>
+		<Version>9.1.1</Version>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Update="Assets\codex-32.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" PrivateAssets="all" />

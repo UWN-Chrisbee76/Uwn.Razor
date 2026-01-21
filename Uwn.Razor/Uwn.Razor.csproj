@@ -4,7 +4,7 @@
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 		<AssemblyOriginatorKeyFile>..\Assets\UWN-GH.snk</AssemblyOriginatorKeyFile>
 		<Authors>Chris B.</Authors>
-		<Copyright>Copyright © 2025 Chris B.</Copyright>
+		<Copyright>Copyright © 2026 Chris B.</Copyright>
 		<Description>A Razor Class Library for re-usable components, and Bootstrap wrappers.</Description>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -19,9 +19,9 @@
 		<SignAssembly>true</SignAssembly>
 		<TargetFramework>net9.0</TargetFramework>
 		<Title>UltimateWisdom.Net Library for Razor components</Title>
-		<AssemblyVersion>9.1.0.0</AssemblyVersion>
-		<FileVersion>9.1.0.0</FileVersion>
-		<Version>9.1.0</Version>
+		<AssemblyVersion>9.1.1.0</AssemblyVersion>
+		<FileVersion>9.1.1.0</FileVersion>
+		<Version>9.1.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

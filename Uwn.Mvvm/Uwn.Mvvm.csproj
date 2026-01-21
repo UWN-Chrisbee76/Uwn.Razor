@@ -1,21 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<AssemblyOriginatorKeyFile>..\Assets\UWN-GH.snk</AssemblyOriginatorKeyFile>
 		<Authors>Chris B.</Authors>
 		<AssemblyOriginatorKeyFile>..\Assets\UWN-GH.snk</AssemblyOriginatorKeyFile>
-		<Copyright>Copyright © 2025 Chris B.</Copyright>
+		<Copyright>Copyright © 2026 Chris B.</Copyright>
 		<Description>Class Library for a minimalistic MVVM approach.</Description>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
+		<PackageIcon>Assets\codex-32.png</PackageIcon>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/UWN-Chrisbee76/Uwn.Razor</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PublisherName>UltimateWisdom.Net</PublisherName>
 		<RootNamespace>Uwn.Mvvm</RootNamespace>
 		<SignAssembly>true</SignAssembly>
 		<TargetFramework>net9.0</TargetFramework>
 		<Title>UltimateWisdom.Net MVVM Library</Title>
-		<AssemblyVersion>9.1.0.0</AssemblyVersion>
-		<FileVersion>9.1.0.0</FileVersion>
-		<Version>9.1.0</Version>
+		<AssemblyVersion>9.1.1.0</AssemblyVersion>
+		<FileVersion>9.1.1.0</FileVersion>
+		<Version>9.1.1</Version>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Update="Assets\codex-32.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@
 @using Uwn.Razor.Components.Bootstrap.Links
 @inherits UwnComponentBase<CardViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
 	<div id="@ViewModel.Id" class="@BuildClassNames()" style="@BuildStyles()">
 		@if (ViewModel.Header is not null)

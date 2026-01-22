@@ -22,6 +22,9 @@ https://razor-demo.ultimatewisdom.net/
 1. Most `Content` / `Text` properties have been changed to the `Content` type, which includes an optional icon
 1. Moved component `ExternalLink` from `Bootstrap` to `Common`
 
+## Patch v9.1.1 
+
+1. Fixed an error where fragments of `Card` and `ModalDialog` could be rendered despite `IsVisible=false`
 ## New and Improved in v9.1.0
 
 1. Added ViewModels for all components

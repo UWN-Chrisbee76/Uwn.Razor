@@ -1,11 +1,19 @@
 ﻿@namespace Uwn.Razor.Providers
 @inherits ProviderBase<EditLinkViewModel>
 
-<EditLink Model="_ViewModel" />
+@if (Placement == Enumerations.ControlPlacement.BeforeChildContent)
+{
+	<EditLink Model="_ViewModel" />
+}
 
 <CascadingValue Value="_ViewModel" IsFixed="true">
 	@ChildContent
 </CascadingValue>
+
+@if (Placement == Enumerations.ControlPlacement.AfterChildContent)
+{
+	<EditLink Model="_ViewModel" />
+}
 
 @code {
 	protected override string GetDefaultId() => DefaultIds.EditLinkId;

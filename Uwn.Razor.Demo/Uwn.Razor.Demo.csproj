@@ -11,13 +11,13 @@
 		<RootNamespace>Uwn.Razor.Demo</RootNamespace>
 		<TargetFramework>net9.0</TargetFramework>
 		<Title>UltimateWisdom.Net Demo for Uwn.Razor</Title>
-		<AssemblyVersion>9.1.1.0</AssemblyVersion>
-		<FileVersion>9.1.1.0</FileVersion>
-		<Version>9.1.1</Version>
+		<AssemblyVersion>9.1.2.0</AssemblyVersion>
+		<FileVersion>9.1.2.0</FileVersion>
+		<Version>9.1.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
+		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="3.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

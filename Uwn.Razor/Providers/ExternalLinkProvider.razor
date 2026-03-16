@@ -1,11 +1,19 @@
 ﻿@namespace Uwn.Razor.Providers
 @inherits ProviderBase<ExternalLinkViewModel>
 
-<ExternalLink Model="_ViewModel" />
+@if (Placement == Enumerations.ControlPlacement.BeforeChildContent)
+{
+	<ExternalLink Model="_ViewModel" />
+}
 
 <CascadingValue Value="_ViewModel" IsFixed="true">
 	@ChildContent
 </CascadingValue>
+
+@if (Placement == Enumerations.ControlPlacement.AfterChildContent)
+{
+	<ExternalLink Model="_ViewModel" />
+}
 
 @code {
 	protected override string GetDefaultId() => DefaultIds.ExternalLinkId;

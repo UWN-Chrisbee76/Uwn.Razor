@@ -1,11 +1,19 @@
 ﻿@namespace Uwn.Razor.Providers
 @inherits ProviderBase<ModalDialogViewModel>
 
-<ModalDialog Model="_ViewModel" />
+@if (Placement == Enumerations.ControlPlacement.BeforeChildContent)
+{
+	<ModalDialog Model="_ViewModel" />
+}
 
 <CascadingValue Value="_ViewModel" IsFixed="true">
 	@ChildContent
 </CascadingValue>
+
+@if (Placement == Enumerations.ControlPlacement.AfterChildContent)
+{
+	<ModalDialog Model="_ViewModel" />
+}
 
 @code {
 	protected override string GetDefaultId() => DefaultIds.ModalDialogId;

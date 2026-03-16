@@ -2,7 +2,7 @@
 @using Uwn.Razor.Models.ViewModels.Bootstrap.Modals
 @inherits UwnComponentBase<ModalDialogViewModel>
 
-@if (IsVisible)
+@if (ViewModel.IsVisible)
 {
 	<div id="@ViewModel.Id" class="@BuildModalClassNames()" role="dialog" tabindex="-1" data-bs-backdrop="static" aria-labelledby="@ViewModel.Id-modal-label" aria-hidden="true">
 		<div class="@BuildDialogClassNames()">

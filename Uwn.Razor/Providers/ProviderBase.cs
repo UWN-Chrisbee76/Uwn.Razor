@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using Microsoft.AspNetCore.Components;
+using Uwn.Razor.Enumerations;
 using Uwn.Razor.Models.ViewModels;
 
 namespace Uwn.Razor.Providers;
@@ -9,6 +10,8 @@ public abstract class ProviderBase<TViewModel>
 	where TViewModel : BaseViewModel, new()
 {
 	protected readonly TViewModel _ViewModel = new();
+
+	[Parameter] public ControlPlacement Placement { get; set; } = ControlPlacement.BeforeChildContent;
 
 	[Parameter] public RenderFragment? ChildContent { get; set; }
 

@@ -19,9 +19,9 @@
 		<SignAssembly>true</SignAssembly>
 		<TargetFramework>net9.0</TargetFramework>
 		<Title>UltimateWisdom.Net Library for Razor components</Title>
-		<AssemblyVersion>9.1.1.0</AssemblyVersion>
-		<FileVersion>9.1.1.0</FileVersion>
-		<Version>9.1.1</Version>
+		<AssemblyVersion>9.1.2.0</AssemblyVersion>
+		<FileVersion>9.1.2.0</FileVersion>
+		<Version>9.1.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -48,8 +48,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.10" />
-		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.14" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.14" />
 	</ItemGroup>
 
 	<ItemGroup>

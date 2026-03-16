@@ -6,7 +6,7 @@ A Razor Class Library for re-usable components, and Bootstrap wrappers.
 |--|--
 |**Project Type**|Razor Class Library
 |**Framework**|.NET 9.0
-|**Current Version**|9.1.1
+|**Current Version**|9.1.2
 |**Author**|Chris B.
 |**Publisher**|UltimateWisdom.Net
 |**License**|MIT License
@@ -35,6 +35,10 @@ https://razor-demo.ultimatewisdom.net/
 1. Added static class `IconNames` for commonly used icon names
 1. Added `OnDismissed` callback to `ModalDialog`
 1. Added `Header` to `Alert`
+
+**9.1.1** Minor Bugfixes
+
+**9.1.2** Added `Placement` parameter to Providers; bugfixes
 
 ### Component Providers
 

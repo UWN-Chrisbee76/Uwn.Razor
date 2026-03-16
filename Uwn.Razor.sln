@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uwn.Mvvm", "Uwn.Mvvm\Uwn.Mv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uwn.Mvvm.Generators", "Uwn.Mvvm.Generators\Uwn.Mvvm.Generators.csproj", "{74CD2C0E-A7FF-4FD5-B45F-8354948248D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uwn.Presentation.Web.Razor", "Uwn.Presentation.Web.Razor\Uwn.Presentation.Web.Razor.csproj", "{3C7C8E87-2441-440A-82EE-B8AEFB701B25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uwn.Presentation.Web.Razor.Demo", "Uwn.Presentation.Web.Razor.Demo\Uwn.Presentation.Web.Razor.Demo.csproj", "{2D620264-5C1F-48BD-883B-73D471A25DD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,14 @@ Global
 		{74CD2C0E-A7FF-4FD5-B45F-8354948248D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74CD2C0E-A7FF-4FD5-B45F-8354948248D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74CD2C0E-A7FF-4FD5-B45F-8354948248D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C7C8E87-2441-440A-82EE-B8AEFB701B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C7C8E87-2441-440A-82EE-B8AEFB701B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C7C8E87-2441-440A-82EE-B8AEFB701B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C7C8E87-2441-440A-82EE-B8AEFB701B25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D620264-5C1F-48BD-883B-73D471A25DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D620264-5C1F-48BD-883B-73D471A25DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D620264-5C1F-48BD-883B-73D471A25DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D620264-5C1F-48BD-883B-73D471A25DD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

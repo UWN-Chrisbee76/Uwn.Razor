@@ -1,11 +1,19 @@
 ﻿@namespace Uwn.Razor.Providers
 @inherits ProviderBase<AlertViewModel>
 
-<Alert Model="_ViewModel" />
+@if (Placement == Enumerations.ControlPlacement.BeforeChildContent)
+{
+	<Alert Model="_ViewModel" />
+}
 
 <CascadingValue Value="_ViewModel" IsFixed="true">
 	@ChildContent
 </CascadingValue>
+
+@if (Placement == Enumerations.ControlPlacement.AfterChildContent)
+{
+	<Alert Model="_ViewModel" />
+}
 
 @code {
 	protected override string GetDefaultId() => DefaultIds.AlertId;

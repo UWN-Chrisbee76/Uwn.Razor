@@ -1,11 +1,19 @@
 ﻿@namespace Uwn.Razor.Providers
 @inherits ProviderBase<PaginationViewModel>
 
-<Pagination Model="_ViewModel" />
+@if (Placement == Enumerations.ControlPlacement.BeforeChildContent)
+{
+	<Pagination Model="_ViewModel" />
+}
 
 <CascadingValue Value="_ViewModel" IsFixed="true">
 	@ChildContent
 </CascadingValue>
+
+@if (Placement == Enumerations.ControlPlacement.AfterChildContent)
+{
+	<Pagination Model="_ViewModel" />
+}
 
 @code {
 	protected override string GetDefaultId() => DefaultIds.PaginationId;

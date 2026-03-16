@@ -1,11 +1,19 @@
 ﻿@namespace Uwn.Razor.Providers
 @inherits ProviderBase<HyperlinkViewModel>
 
-<Hyperlink Model="_ViewModel" />
+@if (Placement == Enumerations.ControlPlacement.BeforeChildContent)
+{
+	<Hyperlink Model="_ViewModel" />
+}
 
 <CascadingValue Value="_ViewModel" IsFixed="true">
 	@ChildContent
 </CascadingValue>
+
+@if (Placement == Enumerations.ControlPlacement.AfterChildContent)
+{
+	<Hyperlink Model="_ViewModel" />
+}
 
 @code {
 	protected override string GetDefaultId() => DefaultIds.HyperlinkId;

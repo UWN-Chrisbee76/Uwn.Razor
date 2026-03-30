@@ -2,6 +2,7 @@
 
 namespace Uwn.Razor.Enumerations;
 
+[Obsolete("Reference Uwn.Common.Enums")]
 public sealed class FlagsHelper
 {
 	public static bool HasNoFlagsSet<T>(T value) where T : Enum

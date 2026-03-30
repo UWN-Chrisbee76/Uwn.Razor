@@ -6,7 +6,7 @@ A Razor Class Library for re-usable components, and Bootstrap wrappers.
 |--|--
 |**Project Type**|Razor Class Library
 |**Framework**|.NET 9.0
-|**Current Version**|9.1.2
+|**Current Version**|9.1.3
 |**Author**|Chris B.
 |**Publisher**|UltimateWisdom.Net
 |**License**|MIT License
@@ -36,6 +36,8 @@ https://razor-demo.ultimatewisdom.net/
 **9.1.1** Minor Bugfixes
 
 **9.1.2** Added `Placement` parameter to Providers; bugfixes
+
+**9.1.3** Added missing FontAwesome IconPacks and Styles
 
 ### Component Providers
 
